@@ -64,8 +64,87 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\CardModel.cs" />
-    <Compile Include="Assets\Scripts\DebugChangeCard.cs" />
+    <Compile Include="Assets\Scripts\Commands\Command.cs" />
+    <Compile Include="Assets\Scripts\Commands\CreatureAttackCommand.cs" />
+    <Compile Include="Assets\Scripts\Commands\CreatureDieCommand.cs" />
+    <Compile Include="Assets\Scripts\Commands\DealDamageCommand.cs" />
+    <Compile Include="Assets\Scripts\Commands\DelayCommand.cs" />
+    <Compile Include="Assets\Scripts\Commands\DrawACardCommand.cs" />
+    <Compile Include="Assets\Scripts\Commands\GameOverCommand.cs" />
+    <Compile Include="Assets\Scripts\Commands\PlayACreatureCommand.cs" />
+    <Compile Include="Assets\Scripts\Commands\PlayASpellCardCommand.cs" />
+    <Compile Include="Assets\Scripts\Commands\ShowMessageCommand.cs" />
+    <Compile Include="Assets\Scripts\Commands\StartATurnCommand.cs" />
+    <Compile Include="Assets\Scripts\Commands\UpdateManaCrystalsCommand.cs" />
+    <Compile Include="Assets\Scripts\Dragging\DragCreatureAttack.cs" />
+    <Compile Include="Assets\Scripts\Dragging\DragCreatureOnTable.cs" />
+    <Compile Include="Assets\Scripts\Dragging\DragHeroPowerActions.cs" />
+    <Compile Include="Assets\Scripts\Dragging\DragSpellNoTarget.cs" />
+    <Compile Include="Assets\Scripts\Dragging\DragSpellOnTarget.cs" />
+    <Compile Include="Assets\Scripts\Dragging\Draggable.cs" />
+    <Compile Include="Assets\Scripts\Dragging\DraggingActions.cs" />
+    <Compile Include="Assets\Scripts\Dragging\DraggingTest\DragOnTargetTest.cs" />
+    <Compile Include="Assets\Scripts\Dragging\DraggingTest\DraggableTest.cs" />
+    <Compile Include="Assets\Scripts\Dragging\DraggingTest\DraggableTestWithActions.cs" />
+    <Compile Include="Assets\Scripts\Dragging\DraggingTest\DraggingActionsTest.cs" />
+    <Compile Include="Assets\Scripts\Dragging\DraggingTest\DraggingActionsTestReturn.cs" />
+    <Compile Include="Assets\Scripts\Logic\BattleStats.cs" />
+    <Compile Include="Assets\Scripts\Logic\Buffs\Buff.cs" />
+    <Compile Include="Assets\Scripts\Logic\CardLogic.cs" />
+    <Compile Include="Assets\Scripts\Logic\Character.cs" />
+    <Compile Include="Assets\Scripts\Logic\CreatureLogic.cs" />
+    <Compile Include="Assets\Scripts\Logic\CreatureScripts\BiteOwner.cs" />
+    <Compile Include="Assets\Scripts\Logic\CreatureScripts\CreatureEffect.cs" />
+    <Compile Include="Assets\Scripts\Logic\Deck.cs" />
+    <Compile Include="Assets\Scripts\Logic\Hand.cs" />
+    <Compile Include="Assets\Scripts\Logic\IDHolder.cs" />
+    <Compile Include="Assets\Scripts\Logic\MovesHighlighter.cs" />
+    <Compile Include="Assets\Scripts\Logic\Player.cs" />
+    <Compile Include="Assets\Scripts\Logic\RopeTimer.cs" />
+    <Compile Include="Assets\Scripts\Logic\SpellScripts\DamageAllCreatures.cs" />
+    <Compile Include="Assets\Scripts\Logic\SpellScripts\DealDamageToTarget.cs" />
+    <Compile Include="Assets\Scripts\Logic\SpellScripts\GiveManaBonus.cs" />
+    <Compile Include="Assets\Scripts\Logic\SpellScripts\HeroPower2Face.cs" />
+    <Compile Include="Assets\Scripts\Logic\SpellScripts\HeroPowerDrawCardTakeDamage.cs" />
+    <Compile Include="Assets\Scripts\Logic\SpellScripts\SpellEffect.cs" />
+    <Compile Include="Assets\Scripts\Logic\Table.cs" />
+    <Compile Include="Assets\Scripts\Logic\TurnManager.cs" />
+    <Compile Include="Assets\Scripts\Logic\TurnsAndAI\AITurnMaker.cs" />
+    <Compile Include="Assets\Scripts\Logic\TurnsAndAI\PlayerTurnMaker.cs" />
+    <Compile Include="Assets\Scripts\Logic\TurnsAndAI\TurnMaker.cs" />
+    <Compile Include="Assets\Scripts\RaycastExample.cs" />
+    <Compile Include="Assets\Scripts\SO Asset Scripts\CardAsset\CardAsset.cs" />
+    <Compile Include="Assets\Scripts\SO Asset Scripts\CharacterAsset\CharacterAsset.cs" />
+    <Compile Include="Assets\Scripts\SceneReloader.cs" />
+    <Compile Include="Assets\Scripts\ShufflingExtention.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\EndTurnButton.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\GlowBlink.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\Outlines by N Yoda\BoxOutline.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\Outlines by N Yoda\CircleOutline.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\Outlines by N Yoda\ListPool.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\Outlines by N Yoda\ModifiedShadow.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\Outlines by N Yoda\ObjectPool.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\Outlines by N Yoda\Outline8.cs" />
+    <Compile Include="Assets\Scripts\Visual\CardVisualScripts\BetterCardRotation.cs" />
+    <Compile Include="Assets\Scripts\Visual\CardVisualScripts\OneCardManager.cs" />
+    <Compile Include="Assets\Scripts\Visual\CardVisualScripts\WhereIsTheCardOrCreature.cs" />
+    <Compile Include="Assets\Scripts\Visual\CreatureAttackVisual.cs" />
+    <Compile Include="Assets\Scripts\Visual\DamageEffect.cs" />
+    <Compile Include="Assets\Scripts\Visual\DamageEffectTest.cs" />
+    <Compile Include="Assets\Scripts\Visual\GlobalSettings.cs" />
+    <Compile Include="Assets\Scripts\Visual\HandVisual.cs" />
+    <Compile Include="Assets\Scripts\Visual\HeroPowerButton.cs" />
+    <Compile Include="Assets\Scripts\Visual\HoverPreview.cs" />
+    <Compile Include="Assets\Scripts\Visual\IDFactory.cs" />
+    <Compile Include="Assets\Scripts\Visual\ManaPoolVisual.cs" />
+    <Compile Include="Assets\Scripts\Visual\MessageManager.cs" />
+    <Compile Include="Assets\Scripts\Visual\OneCreatureManager.cs" />
+    <Compile Include="Assets\Scripts\Visual\PlayerArea.cs" />
+    <Compile Include="Assets\Scripts\Visual\PlayerDeckVisual.cs" />
+    <Compile Include="Assets\Scripts\Visual\PlayerPortraitVisual.cs" />
+    <Compile Include="Assets\Scripts\Visual\RopeVisual.cs" />
+    <Compile Include="Assets\Scripts\Visual\SameDistanceChildren.cs" />
+    <Compile Include="Assets\Scripts\Visual\TableVisual.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
@@ -117,6 +196,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\Scripts\DOTween\readme.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
@@ -306,6 +386,9 @@
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>F:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>F:/Repos/GraphicsLab-Yugioh/Assets/Scripts/DOTween/DOTween.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>F:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
