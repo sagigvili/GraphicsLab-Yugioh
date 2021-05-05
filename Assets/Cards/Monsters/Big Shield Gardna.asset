@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87e63ff8efc667841a720372373b65e0, type: 3}
+  m_Name: Big Shield Gardna
+  m_EditorClassIdentifier: 
+  Name: Big Shield Gardna
+  characterAsset: {fileID: 0}
+  Description: 'During either player''s turn, when this face-down card (and no other
+    cards) is targeted by spell card: change this card to face-up defense position,
+    and if you do, negate the spell cards activation. If this card is attacked change
+    it to attack position at the end of the damage step.'
+  CardImage: {fileID: 21300000, guid: 0f1e2831dfaa2d047b0c67551bc579a8, type: 3}
+  Attack: 100
+  Defence: 2600
+  Attribute: 3
+  AttacksForOneTurn: 1
+  Type: 5
+  Rank: 4
