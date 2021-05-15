@@ -44,20 +44,22 @@ public class OneCardManager : MonoBehaviour {
     public void ReadCardFromAsset()
     {
         // 2) add card name
-/*        NameText.text = cardAsset.Name;
-        // 4) add description
+        /*        NameText.text = cardAsset.Name;
+                // 4) add description
 
-        DescriptionText.text = cardAsset.Description;*/
+                DescriptionText.text = cardAsset.Description;*/
 
 
-        if (cardAsset.Attack != -1)//
+        /*if (cardAsset.Attack != -1)
         {
             Attack.text = cardAsset.Attack.ToString();
             Defence.text = cardAsset.Defence.ToString();
             Rank.text = cardAsset.Rank.ToString();
-/*            Attribute.text = cardAsset.Attribute;
-            TypeText.text = cardAsset.Type;*/
-        }
+            Attribute.text = cardAsset.Attribute;
+            TypeText.text = cardAsset.Type;
+        }*/
+
+        CardImageFront.sprite = cardAsset.CardImage;
 
         if (PreviewManager != null)
         {
