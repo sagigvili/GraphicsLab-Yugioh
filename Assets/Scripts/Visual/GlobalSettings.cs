@@ -18,10 +18,11 @@ public class GlobalSettings: MonoBehaviour
     public float CardPreviewTimeFast = 0.2f;
     public float CardTransitionTimeFast = 0.5f;
     [Header("Prefabs and Assets")]
-    public GameObject NoTargetSpellCardPrefab;
-    public GameObject TargetedSpellCardPrefab;
-    public GameObject CreatureCardPrefab;
-    public GameObject CreaturePrefab;
+    public GameObject MonsterCardPrefab;
+    public GameObject MonsterFieldPrefab;
+    public GameObject SpellCardPrefab;
+    public GameObject TrapCardPrefab;
+    public GameObject SpellTrapFieldPrefab;
     public GameObject DamageEffectPrefab;
     public GameObject ExplosionPrefab;
     [Header("Other")]

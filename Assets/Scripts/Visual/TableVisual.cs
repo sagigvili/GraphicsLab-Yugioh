@@ -73,7 +73,7 @@ public class TableVisual : MonoBehaviour
     public void AddCreatureAtIndex(CardAsset ca, int UniqueID ,int index)
     {
         // create a new creature from prefab
-        GameObject creature = GameObject.Instantiate(GlobalSettings.Instance.CreaturePrefab, slots.Children[index].transform.position, Quaternion.identity) as GameObject;
+        GameObject creature = GameObject.Instantiate(GlobalSettings.Instance.MonsterFieldPrefab, slots.Children[index].transform.position, Quaternion.identity) as GameObject;
 
         // apply the look from CardAsset
         OneMonsterManager manager = creature.GetComponent<OneMonsterManager>();
