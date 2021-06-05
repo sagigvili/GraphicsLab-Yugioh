@@ -16,7 +16,7 @@ public class DragCreatureAttack : DraggingActions {
     // when we stop dragging, the gameObject that we were targeting will be stored in this variable.
     private GameObject Target;
     // Reference to creature manager, attached to the parent game object
-    private OneCreatureManager manager;
+    private OneMonsterManager manager;
 
     void Awake()
     {
@@ -27,7 +27,7 @@ public class DragCreatureAttack : DraggingActions {
         triangle = transform.Find("Triangle");
         triangleSR = triangle.GetComponent<SpriteRenderer>();
 
-        manager = GetComponentInParent<OneCreatureManager>();
+        manager = GetComponentInParent<OneMonsterManager>();
         whereIsThisCreature = GetComponentInParent<WhereIsTheCardOrCreature>();
     }
 

@@ -491,7 +491,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0021343c3dd13174a9eb65eee19053d5, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -512,10 +512,10 @@ GameObject:
   - component: {fileID: 6388979813558579958}
   - component: {fileID: 6388979813558579964}
   - component: {fileID: 6388979813558579963}
-  - component: {fileID: 6388979813558579962}
   - component: {fileID: 6388979813558579961}
   - component: {fileID: 6388979813558579960}
   - component: {fileID: 6388979813558579959}
+  - component: {fileID: 8010704449710212913}
   m_Layer: 0
   m_Name: BabyDragon
   m_TagString: Untagged
@@ -569,29 +569,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1023.59766, y: 1461.3806, z: 15.99}
   m_Center: {x: -6832.84, y: 1456.1515, z: 89}
---- !u!114 &6388979813558579962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6388979813558579957}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f67c73fa2ef11d47add09297f36f1df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardAsset: {fileID: 11400000, guid: 34a3c543c258d654aac7e127e3144b9c, type: 2}
-  PreviewManager: {fileID: 6388979813999095754}
-  NameText: {fileID: 0}
-  TypeText: {fileID: 0}
-  DescriptionText: {fileID: 0}
-  Attack: {fileID: 0}
-  Defence: {fileID: 0}
-  Attribute: {fileID: 0}
-  Rank: {fileID: 0}
-  CardImageFront: {fileID: 6388979812928904066}
-  CardImageBack: {fileID: 6388979812753391835}
 --- !u!114 &6388979813558579961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -634,6 +611,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UsePointerDisplacement: 1
+--- !u!114 &8010704449710212913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6388979813558579957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 358c07557e1a93d45882ab2700ae7b98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardAsset: {fileID: 11400000, guid: 34a3c543c258d654aac7e127e3144b9c, type: 2}
+  PreviewManager: {fileID: 6388979813999095754}
+  MonsterGraphicImage: {fileID: 6388979812928904066}
 --- !u!1 &6388979813870272195
 GameObject:
   m_ObjectHideFlags: 0

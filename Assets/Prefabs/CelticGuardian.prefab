@@ -161,10 +161,10 @@ GameObject:
   - component: {fileID: 997275104831872809}
   - component: {fileID: 997275104831872803}
   - component: {fileID: 997275104831872804}
-  - component: {fileID: 997275104831872805}
   - component: {fileID: 997275104831872806}
   - component: {fileID: 997275104831872807}
   - component: {fileID: 997275104831872808}
+  - component: {fileID: 6161439658414173504}
   m_Layer: 0
   m_Name: CelticGuardian
   m_TagString: Untagged
@@ -218,29 +218,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1023.59766, y: 1461.3806, z: 15.99}
   m_Center: {x: -6832.84, y: 1456.1515, z: 89}
---- !u!114 &997275104831872805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 997275104831872810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f67c73fa2ef11d47add09297f36f1df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardAsset: {fileID: 11400000, guid: 4d878ee8db5a0164eb3d29df4478bcf9, type: 2}
-  PreviewManager: {fileID: 997275105938096891}
-  NameText: {fileID: 0}
-  TypeText: {fileID: 0}
-  DescriptionText: {fileID: 0}
-  Attack: {fileID: 0}
-  Defence: {fileID: 0}
-  Attribute: {fileID: 0}
-  Rank: {fileID: 0}
-  CardImageFront: {fileID: 997275104785809370}
-  CardImageBack: {fileID: 997275105887748927}
 --- !u!114 &997275104831872806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,6 +260,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UsePointerDisplacement: 1
+--- !u!114 &6161439658414173504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997275104831872810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 358c07557e1a93d45882ab2700ae7b98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardAsset: {fileID: 11400000, guid: 4d878ee8db5a0164eb3d29df4478bcf9, type: 2}
+  PreviewManager: {fileID: 997275105938096891}
+  MonsterGraphicImage: {fileID: 997275104785809370}
 --- !u!1 &997275105404285167
 GameObject:
   m_ObjectHideFlags: 0

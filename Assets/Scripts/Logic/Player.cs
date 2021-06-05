@@ -232,7 +232,7 @@ public class Player : MonoBehaviour, ICharacter
         {
             GameObject g = IDHolder.GetGameObjectWithID(crl.UniqueCreatureID);
             if(g!= null)
-                g.GetComponent<OneCreatureManager>().CanAttackNow = (crl.AttacksLeftThisTurn > 0) && !removeAllHighlights;
+                g.GetComponent<OneMonsterManager>().CanAttackNow = (crl.AttacksLeftThisTurn > 0) && !removeAllHighlights;
         }
             
         // highlight hero power
@@ -247,14 +247,15 @@ public class Player : MonoBehaviour, ICharacter
         PArea.Portrait.charAsset = charAsset;
         PArea.Portrait.ApplyLookFromAsset();
         // TODO: insert the code to attach hero power script here. 
-        if (charAsset.HeroPowerName != null && charAsset.HeroPowerName != "")
+        /*
+        if (charAsset.CharPowerName != null && charAsset.CharPowerName != "")
         {
-            HeroPowerEffect = System.Activator.CreateInstance(System.Type.GetType(charAsset.HeroPowerName)) as SpellEffect;
+            HeroPowerEffect = System.Activator.CreateInstance(System.Type.GetType(charAsset.CharPowerName)) as SpellEffect;
         }
         else
         {
-            Debug.LogWarning("Check hero powr name for character " + charAsset.ClassName);
-        }
+            Debug.LogWarning("Check hero powr name for character " + charAsset.Name);
+        }*/
     }
 
     public void TransmitInfoAboutPlayerToVisual()

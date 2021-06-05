@@ -8,7 +8,6 @@ public class DragOnTargetTest : DraggingActionsTest
     private LineRenderer lr;
     private Transform triangle;
     private SpriteRenderer triangleSR;
-    private GameObject Target;
 
     void Awake()
     {
@@ -33,13 +32,13 @@ public class DragOnTargetTest : DraggingActionsTest
         float distanceToTarget = (direction*2.3f).magnitude;
         if (notNormalized.magnitude > distanceToTarget)
         {
-            // draw a line between the creature and the target
-            lr.SetPositions(new Vector3[]{ transform.parent.position, transform.position - direction*2.3f });
+            // draw a line between the monster and the target
+            lr.SetPositions(new Vector3[]{ transform.parent.position, transform.position - direction*1250 });
             lr.enabled = true;
 
             // position the end of the arrow between near the target.
             triangleSR.enabled = true;
-            triangleSR.transform.position = transform.position - 1.5f*direction;
+            triangleSR.transform.position = transform.position - 950f*direction;
 
             // proper rotarion of arrow end
             float rot_z = Mathf.Atan2(notNormalized.y, notNormalized.x) * Mathf.Rad2Deg;
@@ -47,7 +46,7 @@ public class DragOnTargetTest : DraggingActionsTest
         }
         else
         {
-            // if the target is not far enough from creature, do not show the arrow
+            // if the target is not far enough from monster, do not show the arrow
             lr.enabled = false;
             triangleSR.enabled = false;
         }

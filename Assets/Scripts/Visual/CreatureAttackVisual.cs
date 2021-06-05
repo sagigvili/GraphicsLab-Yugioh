@@ -4,12 +4,12 @@ using DG.Tweening;
 
 public class CreatureAttackVisual : MonoBehaviour 
 {
-    private OneCreatureManager manager;
+    private OneMonsterManager manager;
     private WhereIsTheCardOrCreature w;
 
     void Awake()
     {
-        manager = GetComponent<OneCreatureManager>();    
+        manager = GetComponent<OneMonsterManager>();    
         w = GetComponent<WhereIsTheCardOrCreature>();
     }
 

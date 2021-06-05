@@ -389,10 +389,10 @@ GameObject:
   - component: {fileID: 2193759550506395335}
   - component: {fileID: 2193759550506395341}
   - component: {fileID: 2193759550506395338}
-  - component: {fileID: 2193759550506395339}
   - component: {fileID: 2193759550506395336}
   - component: {fileID: 2193759550506395337}
   - component: {fileID: 2193759550506395334}
+  - component: {fileID: 4966114865619193306}
   m_Layer: 0
   m_Name: ClownZombie
   m_TagString: Untagged
@@ -446,29 +446,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1023.59766, y: 1461.3806, z: 15.99}
   m_Center: {x: -6832.84, y: 1456.1515, z: 89}
---- !u!114 &2193759550506395339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2193759550506395332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f67c73fa2ef11d47add09297f36f1df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardAsset: {fileID: 11400000, guid: 0478c8aa9cf966343be655ea328b8add, type: 2}
-  PreviewManager: {fileID: 2193759551748193045}
-  NameText: {fileID: 0}
-  TypeText: {fileID: 0}
-  DescriptionText: {fileID: 0}
-  Attack: {fileID: 0}
-  Defence: {fileID: 0}
-  Attribute: {fileID: 0}
-  Rank: {fileID: 0}
-  CardImageFront: {fileID: 2193759550468572724}
-  CardImageBack: {fileID: 2193759551563659985}
 --- !u!114 &2193759550506395336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,6 +488,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UsePointerDisplacement: 1
+--- !u!114 &4966114865619193306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2193759550506395332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 358c07557e1a93d45882ab2700ae7b98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardAsset: {fileID: 11400000, guid: 0478c8aa9cf966343be655ea328b8add, type: 2}
+  PreviewManager: {fileID: 2193759551748193045}
+  MonsterGraphicImage: {fileID: 2193759550468572724}
 --- !u!1 &2193759551006519844
 GameObject:
   m_ObjectHideFlags: 0

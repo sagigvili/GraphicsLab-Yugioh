@@ -315,10 +315,10 @@ GameObject:
   - component: {fileID: 1183866819894907771}
   - component: {fileID: 1183866819894907761}
   - component: {fileID: 1183866819894907766}
-  - component: {fileID: 1183866819894907767}
   - component: {fileID: 1183866819894907764}
   - component: {fileID: 1183866819894907765}
   - component: {fileID: 1183866819894907770}
+  - component: {fileID: 7210797372906643576}
   m_Layer: 0
   m_Name: AlphaTheMagentWarrior
   m_TagString: Untagged
@@ -372,29 +372,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1023.59766, y: 1461.3806, z: 15.99}
   m_Center: {x: -6832.84, y: 1456.1515, z: 89}
---- !u!114 &1183866819894907767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1183866819894907768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f67c73fa2ef11d47add09297f36f1df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardAsset: {fileID: 11400000, guid: 2cade215d28eaea4cbf6002ddfb945fe, type: 2}
-  PreviewManager: {fileID: 1183866821068639913}
-  NameText: {fileID: 0}
-  TypeText: {fileID: 0}
-  DescriptionText: {fileID: 0}
-  Attack: {fileID: 0}
-  Defence: {fileID: 0}
-  Attribute: {fileID: 0}
-  Rank: {fileID: 0}
-  CardImageFront: {fileID: 1183866819940987784}
-  CardImageBack: {fileID: 1183866820984737645}
 --- !u!114 &1183866819894907764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,6 +414,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UsePointerDisplacement: 1
+--- !u!114 &7210797372906643576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183866819894907768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 358c07557e1a93d45882ab2700ae7b98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardAsset: {fileID: 0}
+  PreviewManager: {fileID: 1183866821068639913}
+  MonsterGraphicImage: {fileID: 1183866819940987784}
 --- !u!1 &1183866819940987790
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,7 +493,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8b6fed34f8df2424db09fbb5df16ad8a, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -575,7 +567,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8b6fed34f8df2424db09fbb5df16ad8a, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -76,9 +76,9 @@ public class TableVisual : MonoBehaviour
         GameObject creature = GameObject.Instantiate(GlobalSettings.Instance.CreaturePrefab, slots.Children[index].transform.position, Quaternion.identity) as GameObject;
 
         // apply the look from CardAsset
-        OneCreatureManager manager = creature.GetComponent<OneCreatureManager>();
+        OneMonsterManager manager = creature.GetComponent<OneMonsterManager>();
         manager.cardAsset = ca;
-        manager.ReadCreatureFromAsset();
+        manager.ReadMonsterFromAsset();
 
         // add tag according to owner
         foreach (Transform t in creature.GetComponentsInChildren<Transform>())
