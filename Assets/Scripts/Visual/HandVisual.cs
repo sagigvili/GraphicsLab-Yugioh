@@ -14,7 +14,6 @@ public class HandVisual : MonoBehaviour
     public Transform DrawPreviewSpot;
     public Transform DeckTransform;
     public Transform OtherCardDrawSourceTransform;
-    public Transform PlayPreviewSpot;
 
     // PRIVATE : a list of all card visual representations as GameObjects
     private List<GameObject> CardsInHand = new List<GameObject>();
@@ -85,7 +84,7 @@ public class HandVisual : MonoBehaviour
             g.transform.DOLocalMoveX(slots.Children[CardsInHand.IndexOf(g)].transform.localPosition.x, 0.3f);
 
             // apply correct sorting order and HandSlot value for later 
-            WhereIsTheCardOrCreature w = g.GetComponent<WhereIsTheCardOrCreature>();
+            WhereIsTheCardOrMonster w = g.GetComponent<WhereIsTheCardOrMonster>();
             w.Slot = CardsInHand.IndexOf(g);
             w.SetHandSortingOrder();
         }
@@ -99,6 +98,17 @@ public class HandVisual : MonoBehaviour
         // Instantiate a card depending on its type
         GameObject card;
         card = GameObject.Instantiate(GlobalSettings.Instance.MonsterCardPrefab, position, Quaternion.Euler(eulerAngles)) as GameObject;
+        if (c.Attack != -1)
+        {
+            // this card is a creature card
+            card = GameObject.Instantiate(GlobalSettings.Instance.MonsterCardPrefab, position, Quaternion.Euler(eulerAngles)) as GameObject;
+        }
+        else
+        {
+            // this is a spell: checking for targeted or non-targeted spell
+            // TODO Implement a spell card and trap card prefabs
+
+        }
 
         // apply the look of the card based on the info from CardAsset
         OneCardManager manager = card.GetComponent<OneCardManager>();
@@ -124,7 +134,7 @@ public class HandVisual : MonoBehaviour
         AddCard(card);
 
         // Bring card to front while it travels from draw spot to hand
-        WhereIsTheCardOrCreature w = card.GetComponent<WhereIsTheCardOrCreature>();
+        WhereIsTheCardOrMonster w = card.GetComponent<WhereIsTheCardOrMonster>();
         w.BringToFront();
         w.Slot = 0; 
 
@@ -158,7 +168,7 @@ public class HandVisual : MonoBehaviour
     }
 
     // this method will be called when the card arrived to hand 
-    void ChangeLastCardStatusToInHand(GameObject card, WhereIsTheCardOrCreature w)
+    void ChangeLastCardStatusToInHand(GameObject card, WhereIsTheCardOrMonster w)
     {
         //Debug.Log("Changing state to Hand for card: " + card.gameObject.name);
         if (owner == AreaPosition.Low)
@@ -185,13 +195,12 @@ public class HandVisual : MonoBehaviour
     public void PlayASpellFromHand(GameObject CardVisual)
     {
         Command.CommandExecutionComplete();
-        CardVisual.GetComponent<WhereIsTheCardOrCreature>().VisualState = VisualStates.Transition;
+        CardVisual.GetComponent<WhereIsTheCardOrMonster>().VisualState = VisualStates.Transition;
         RemoveCard(CardVisual);
 
         CardVisual.transform.SetParent(null);
 
         Sequence s = DOTween.Sequence();
-        s.Append(CardVisual.transform.DOMove(PlayPreviewSpot.position, 1f));
         s.Insert(0f, CardVisual.transform.DORotate(Vector3.zero, 1f));
         s.AppendInterval(2f);
         s.OnComplete(()=>

@@ -26,7 +26,7 @@ public class DealDamageCommand : Command {
         }
         else
         {
-            // target is a creature
+            // target is a monster
             target.GetComponent<OneMonsterManager>().TakeDamage(amount, healthAfter);
         }
         CommandExecutionComplete();

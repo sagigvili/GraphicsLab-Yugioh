@@ -5,11 +5,11 @@ using DG.Tweening;
 public class DragSpellNoTarget: DraggingActions{
 
     private int savedHandSlot;
-    private WhereIsTheCardOrCreature whereIsCard;
+    private WhereIsTheCardOrMonster whereIsCard;
 
     void Awake()
     {
-        whereIsCard = GetComponent<WhereIsTheCardOrCreature>();
+        whereIsCard = GetComponent<WhereIsTheCardOrMonster>();
     }
 
     public override void OnStartDrag()

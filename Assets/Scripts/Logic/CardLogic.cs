@@ -12,15 +12,12 @@ public class CardLogic: IIdentifiable
     public CardAsset ca;
     public GameObject VisualRepresentation;
 
-    private int baseManaCost;
     public SpellEffect effect;
 
     public int ID
     {
         get{ return UniqueCardID; }
     }
-
-    public int CurrentManaCost{ get; set; }
 
     public bool CanBePlayed
     {
@@ -31,7 +28,7 @@ public class CardLogic: IIdentifiable
             bool fieldNotFull = true;
             // but if this is a creature, we have to check if there is room on board (table)
             //Debug.Log("Card: " + ca.name + " has params: ownersTurn=" + ownersTurn + "fieldNotFull=" + fieldNotFull + " hasMana=" + (CurrentManaCost <= owner.ManaLeft));
-            return ownersTurn && fieldNotFull && (CurrentManaCost <= owner.ManaLeft);
+            return ownersTurn && fieldNotFull;
         }
     }
 
@@ -39,13 +36,7 @@ public class CardLogic: IIdentifiable
     {
         this.ca = ca;
         UniqueCardID = IDFactory.GetUniqueID();
-        //UniqueCardID = IDFactory.GetUniqueID();
         CardsCreatedThisGame.Add(UniqueCardID, this);
-    }
-
-    public void ResetManaCost()
-    {
-        CurrentManaCost = baseManaCost;
     }
 
     // STATIC (for managing IDs)

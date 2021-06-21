@@ -27,7 +27,7 @@ public abstract class DraggingActions : MonoBehaviour {
                 return GlobalSettings.Instance.TopPlayer;
             else
             {
-                Debug.LogError("Untagged Card or creature " + transform.parent.name);
+                Debug.LogError("Untagged Card or monster " + transform.parent.name);
                 return null;
             }
         }

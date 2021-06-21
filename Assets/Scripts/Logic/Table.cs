@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 public class Table : MonoBehaviour 
 {
-    public List<CreatureLogic> CreaturesOnTable = new List<CreatureLogic>();
+    public List<MonsterLogic> MonstersOnTable = new List<MonsterLogic>();
 
-    public void PlaceCreatureAt(int index, CreatureLogic creature)
+    public void PlaceMonstereAt(int index, MonsterLogic monster)
     {
-        CreaturesOnTable.Insert(index, creature);
+        MonstersOnTable.Insert(index, monster);
     }
         
 }

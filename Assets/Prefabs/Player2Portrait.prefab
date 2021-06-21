@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5941737231701416644}
   - component: {fileID: 5941737231701416651}
   m_Layer: 0
-  m_Name: CardPanel
+  m_Name: Avatar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 5941737232441389524}
   - component: {fileID: 5941737232257190250}
   m_Layer: 0
-  m_Name: CardFace
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

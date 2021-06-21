@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3953820893380036747}
   - component: {fileID: 8490329402906236232}
   m_Layer: 0
-  m_Name: CardFace
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 5169741010827467990}
   - component: {fileID: 1094312691733351969}
   m_Layer: 0
-  m_Name: CardPanel
+  m_Name: Avatar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -306,9 +306,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2366618203f8a1b428b5512da29b6147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Explosion: {fileID: 0}
+  charAsset: {fileID: 0}
   HealthText: {fileID: 0}
-  HeroPowerIconImage: {fileID: 0}
-  HeroPowerBackgroundImage: {fileID: 0}
   PortraitImage: {fileID: 0}
-  PortraitBackgroundImage: {fileID: 0}

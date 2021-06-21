@@ -38,10 +38,10 @@ public class BetterCardRotation : MonoBehaviour {
             if (h.collider == col)
                 passedThroughColliderOnCard = true;
         }
-        if (hits.Length > 0)
-        {
-            Debug.Log("TotalHits: " + hits.Length);
-        }
+        //if (hits.Length > 0)
+        //{
+        //    Debug.Log("TotalHits: " + hits.Length);
+        //}
         if (passedThroughColliderOnCard!= showingBack)
         {
             // something changed

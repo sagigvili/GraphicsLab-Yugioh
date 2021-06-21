@@ -6,8 +6,6 @@ using DG.Tweening;
 // this class will take care of switching turns and counting down time until the turn expires
 public class TurnManager : MonoBehaviour {
 
-    private RopeTimer timer;
-
     // for Singleton Pattern
     public static TurnManager Instance;
 
@@ -22,7 +20,6 @@ public class TurnManager : MonoBehaviour {
         set
         {
             _whoseTurn = value;
-            timer.StartTimer();
 
             GlobalSettings.Instance.EnableEndTurnButtonOnStart(_whoseTurn);
 
@@ -42,12 +39,11 @@ public class TurnManager : MonoBehaviour {
     void Awake()
     {
         Instance = this;
-        timer = GetComponent<RopeTimer>();
     }
 
     void Start()
     {
-        OnGameStart();
+        // UNTAG IT LATER OnGameStart();
     }
 
     public void OnGameStart()
@@ -55,12 +51,11 @@ public class TurnManager : MonoBehaviour {
         //Debug.Log("In TurnManager.OnGameStart()");
 
         CardLogic.CardsCreatedThisGame.Clear();
-        CreatureLogic.CreaturesCreatedThisGame.Clear();
+        MonsterLogic.MonstersCreatedThisGame.Clear();
 
         foreach (Player p in Player.Players)
         {
-            p.ManaThisTurn = 0;
-            p.ManaLeft = 0;
+            // TODO update each player's HP to 4000
             p.LoadCharacterInfoFromAsset();
             p.TransmitInfoAboutPlayerToVisual();
             p.PArea.PDeck.CardsInDeck = p.deck.cards.Count;
@@ -94,7 +89,7 @@ public class TurnManager : MonoBehaviour {
                 // add one more card to second player`s hand
                 whoGoesSecond.DrawACard(true);
                 //new GivePlayerACoinCommand(null, whoGoesSecond).AddToQueue();
-                whoGoesSecond.DrawACoin();
+                //whoGoesSecond.DrawACoin();
                 new StartATurnCommand(whoGoesFirst).AddToQueue();
             });
     }
@@ -107,17 +102,10 @@ public class TurnManager : MonoBehaviour {
 
     public void EndTurn()
     {
-        // stop timer
-        timer.StopTimer();
         // send all commands in the end of current player`s turn
         whoseTurn.OnTurnEnd();
 
         new StartATurnCommand(whoseTurn.otherPlayer).AddToQueue();
-    }
-
-    public void StopTheTimer()
-    {
-        timer.StopTimer();
     }
 
 }

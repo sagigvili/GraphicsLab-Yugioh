@@ -138,7 +138,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 21cd1df6f5d99c74d86af8edf9ae2f2c, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -374,7 +374,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 21cd1df6f5d99c74d86af8edf9ae2f2c, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -624,7 +624,9 @@ GameObject:
   m_Component:
   - component: {fileID: 883065498474253633}
   - component: {fileID: 883065498474253643}
-  - component: {fileID: 8510438524384816094}
+  - component: {fileID: 2297874956141867600}
+  - component: {fileID: 5647349693813952200}
+  - component: {fileID: 2283918702761582625}
   m_Layer: 0
   m_Name: MonsterField
   m_TagString: Untagged
@@ -640,7 +642,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 883065498474253634}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -594.58, y: 1565, z: 2264.18}
+  m_LocalPosition: {x: -594.58, y: 1565, z: 900}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3790360629637912416}
@@ -666,7 +668,7 @@ MonoBehaviour:
   CardBack: {fileID: 883065497416470856}
   targetFacePoint: {fileID: 883065498304537222}
   col: {fileID: 6275143645768607211}
---- !u!114 &8510438524384816094
+--- !u!114 &2297874956141867600
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -675,20 +677,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 883065498474253634}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f67c73fa2ef11d47add09297f36f1df, type: 3}
+  m_Script: {fileID: 11500000, guid: 358c07557e1a93d45882ab2700ae7b98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cardAsset: {fileID: 0}
   PreviewManager: {fileID: 883065497768808595}
-  NameText: {fileID: 0}
-  TypeText: {fileID: 0}
-  DescriptionText: {fileID: 0}
-  Attack: {fileID: 0}
-  Defence: {fileID: 0}
-  Attribute: {fileID: 0}
-  Rank: {fileID: 0}
-  CardImageFront: {fileID: 883065498495298994}
-  CardImageBack: {fileID: 883065497416470871}
+  MonsterGraphicImage: {fileID: 883065498495298994}
+--- !u!114 &5647349693813952200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883065498474253634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35988869caed0b34c8596fa26cc50a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2283918702761582625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883065498474253634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353bd28318a41f849b18024b58498362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &883065498495298996
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,6 +951,7 @@ GameObject:
   - component: {fileID: 6275143645768607211}
   - component: {fileID: 8279168725606732273}
   - component: {fileID: 5692455591162099070}
+  - component: {fileID: 5913200243536502794}
   m_Layer: 0
   m_Name: Target
   m_TagString: Untagged
@@ -1035,7 +1054,7 @@ MonoBehaviour:
   TargetPosition: {x: 0, y: 2.5, z: 0}
   TargetScale: 6
   previewGameObject: {fileID: 883065497768808597}
-  ActivateInAwake: 1
+  ActivateInAwake: 0
 --- !u!114 &5692455591162099070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1046,6 +1065,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d322daec5eb4994f86239be47023f76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5913200243536502794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2783100745971999184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d00441cecb32ba94187e65a303b408a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7599296097533041142

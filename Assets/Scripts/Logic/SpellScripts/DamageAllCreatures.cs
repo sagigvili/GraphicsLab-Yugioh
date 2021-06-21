@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DamageAllCreatures : SpellEffect {
+public class DamageAllMonsters : SpellEffect {
 
     public override void ActivateEffect(int specialAmount = 0, ICharacter target = null)
     {
-        CreatureLogic[] CreaturesToDamage = TurnManager.Instance.whoseTurn.otherPlayer.table.CreaturesOnTable.ToArray();
-        foreach (CreatureLogic cl in CreaturesToDamage)
+        MonsterLogic[] MonstersToDamage = TurnManager.Instance.whoseTurn.otherPlayer.table.MonstersOnTable.ToArray();
+        foreach (MonsterLogic cl in MonstersToDamage)
         {
             new DealDamageCommand(cl.ID, specialAmount, healthAfter: cl.Health - specialAmount).AddToQueue();
             cl.Health -= specialAmount;

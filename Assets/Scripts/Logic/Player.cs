@@ -6,47 +6,47 @@ public class Player : MonoBehaviour, ICharacter
     public int PlayerID;
     public CharacterAsset charAsset;
     public PlayerArea PArea;
-    public SpellEffect HeroPowerEffect;
+    public SpellEffect PlayerPowerEffect;
 
     public Deck deck;
     public Hand hand;
     public Table table;
 
-    private int bonusManaThisTurn = 0;
-    public bool usedHeroPowerThisTurn = false;
+    //private int bonusManaThisTurn = 0;
+    public bool usedPlayerPowerThisTurn = false;
 
     public int ID
     {
         get{ return PlayerID; }
     }
 
-    private int manaThisTurn;
-    public int ManaThisTurn
-    {
-        get{ return manaThisTurn;}
-        set
-        {
-            manaThisTurn = value;
-            //PArea.ManaBar.TotalCrystals = manaThisTurn;
-            new UpdateManaCrystalsCommand(this, manaThisTurn, manaLeft).AddToQueue();
-        }
-    }
+    //private int manaThisTurn;
+    //public int ManaThisTurn
+    //{
+    //    get{ return manaThisTurn;}
+    //    set
+    //    {
+    //        manaThisTurn = value;
+    //        //PArea.ManaBar.TotalCrystals = manaThisTurn;
+    //        new UpdateManaCrystalsCommand(this, manaThisTurn, manaLeft).AddToQueue();
+    //    }
+    //}
 
-    private int manaLeft;
-    public int ManaLeft
-    {
-        get
-        { return manaLeft;}
-        set
-        {
-            manaLeft = value;
-            //PArea.ManaBar.AvailableCrystals = manaLeft;
-            new UpdateManaCrystalsCommand(this, ManaThisTurn, manaLeft).AddToQueue();
-            //Debug.Log(ManaLeft);
-            if (TurnManager.Instance.whoseTurn == this)
-                HighlightPlayableCards();
-        }
-    }
+    //private int manaLeft;
+    //public int ManaLeft
+    //{
+    //    get
+    //    { return manaLeft;}
+    //    set
+    //    {
+    //        manaLeft = value;
+    //        //PArea.ManaBar.AvailableCrystals = manaLeft;
+    //        new UpdateManaCrystalsCommand(this, ManaThisTurn, manaLeft).AddToQueue();
+    //        //Debug.Log(ManaLeft);
+    //        if (TurnManager.Instance.whoseTurn == this)
+    //            HighlightPlayableCards();
+    //    }
+    //}
 
     public Player otherPlayer
     {
@@ -72,7 +72,7 @@ public class Player : MonoBehaviour, ICharacter
     }
 
     public delegate void VoidWithNoArguments();
-    //public event VoidWithNoArguments CreaturePlayedEvent;
+    //public event VoidWithNoArguments MonsterPlayedEvent;
     //public event VoidWithNoArguments SpellPlayedEvent;
     //public event VoidWithNoArguments StartTurnEvent;
     public event VoidWithNoArguments EndTurnEvent;
@@ -89,28 +89,28 @@ public class Player : MonoBehaviour, ICharacter
     {
         // add one mana crystal to the pool;
         Debug.Log("In ONTURNSTART for "+ gameObject.name);
-        usedHeroPowerThisTurn = false;
-        ManaThisTurn++;
-        ManaLeft = ManaThisTurn;
-        foreach (CreatureLogic cl in table.CreaturesOnTable)
+        usedPlayerPowerThisTurn = false;
+        //ManaThisTurn++;
+        //ManaLeft = ManaThisTurn;
+        foreach (MonsterLogic cl in table.MonstersOnTable)
             cl.OnTurnStart();
         PArea.HeroPower.WasUsedThisTurn = false;
 
     }
 
-    public void GetBonusMana(int amount)
-    {
-        bonusManaThisTurn += amount;
-        ManaThisTurn += amount;
-        ManaLeft += amount;
-    }   
+    //public void GetBonusMana(int amount)
+    //{
+    //    bonusManaThisTurn += amount;
+    //    ManaThisTurn += amount;
+    //    ManaLeft += amount;
+    //}   
 
     public void OnTurnEnd()
     {
         if(EndTurnEvent != null)
             EndTurnEvent.Invoke();
-        ManaThisTurn -= bonusManaThisTurn;
-        bonusManaThisTurn = 0;
+        //ManaThisTurn -= bonusManaThisTurn;
+        //bonusManaThisTurn = 0;
         GetComponent<TurnMaker>().StopAllCoroutines();
     }
 
@@ -170,38 +170,35 @@ public class Player : MonoBehaviour, ICharacter
         }
         else
         {
-            // target is a creature
-            PlayASpellFromHand(CardLogic.CardsCreatedThisGame[SpellCardUniqueID], CreatureLogic.CreaturesCreatedThisGame[TargetUniqueID]);
+            // target is a monster
+            PlayASpellFromHand(CardLogic.CardsCreatedThisGame[SpellCardUniqueID], MonsterLogic.MonstersCreatedThisGame[TargetUniqueID]);
         }
           
     }
 
     public void PlayASpellFromHand(CardLogic playedCard, ICharacter target)
     {
-        ManaLeft -= playedCard.CurrentManaCost;
         // no matter what happens, move this card to PlayACardSpot
         new PlayASpellCardCommand(this, playedCard).AddToQueue();
         // remove this card from hand
         hand.CardsInHand.Remove(playedCard);
-        // check if this is a creature or a spell
+        // check if this is a monster or a spell
     }
 
-    public void PlayACreatureFromHand(int UniqueID, int tablePos)
+    public void PlayAMonsterFromHand(int UniqueID, int tablePos)
     {
-        PlayACreatureFromHand(CardLogic.CardsCreatedThisGame[UniqueID], tablePos);
+        PlayAMonsterFromHand(CardLogic.CardsCreatedThisGame[UniqueID], tablePos);
     }
 
-    public void PlayACreatureFromHand(CardLogic playedCard, int tablePos)
+    public void PlayAMonsterFromHand(CardLogic playedCard, int tablePos)
     {
-        Debug.Log(ManaLeft);
-        Debug.Log(playedCard.CurrentManaCost);
-        ManaLeft -= playedCard.CurrentManaCost;
-        Debug.Log("Mana Left after played a creature: " + ManaLeft);
-        // create a new creature object and add it to Table
-        CreatureLogic newCreature = new CreatureLogic(this, playedCard.ca);
-        table.CreaturesOnTable.Insert(tablePos, newCreature);
+        //Debug.Log(ManaLeft);
+        //Debug.Log("Mana Left after played a monster: " + ManaLeft);
+        // create a new monster object and add it to Table
+        MonsterLogic newMonster = new MonsterLogic(this, playedCard.ca);
+        table.MonstersOnTable.Insert(tablePos, newMonster);
         // no matter what happens, move this card to PlayACardSpot
-        new PlayACreatureCommand(playedCard, this, tablePos, newCreature.UniqueCreatureID).AddToQueue();
+        new PlayAMonsterCommand(playedCard, this, tablePos, newMonster.UniqueMonsterID).AddToQueue();
         // remove this card from hand
         hand.CardsInHand.Remove(playedCard);
         HighlightPlayableCards();
@@ -213,7 +210,6 @@ public class Player : MonoBehaviour, ICharacter
         // block both players from taking new moves 
         PArea.ControlsON = false;
         otherPlayer.PArea.ControlsON = false;
-        TurnManager.Instance.StopTheTimer();
         new GameOverCommand(this).AddToQueue();
     }
 
@@ -225,18 +221,18 @@ public class Player : MonoBehaviour, ICharacter
         {
             GameObject g = IDHolder.GetGameObjectWithID(cl.UniqueCardID);
             if (g!=null)
-                g.GetComponent<OneCardManager>().CanBePlayedNow = (cl.CurrentManaCost <= ManaLeft) && !removeAllHighlights;
+                g.GetComponent<OneCardManager>().CanBePlayedNow = !removeAllHighlights;
         }
 
-        foreach (CreatureLogic crl in table.CreaturesOnTable)
+        foreach (MonsterLogic crl in table.MonstersOnTable)
         {
-            GameObject g = IDHolder.GetGameObjectWithID(crl.UniqueCreatureID);
+            GameObject g = IDHolder.GetGameObjectWithID(crl.UniqueMonsterID);
             if(g!= null)
                 g.GetComponent<OneMonsterManager>().CanAttackNow = (crl.AttacksLeftThisTurn > 0) && !removeAllHighlights;
         }
             
-        // highlight hero power
-        PArea.HeroPower.Highlighted = (!usedHeroPowerThisTurn) && (ManaLeft > 1) && !removeAllHighlights;
+        //// highlight hero power
+        //PArea.HeroPower.Highlighted = (!usedHeroPowerThisTurn) && (ManaLeft > 1) && !removeAllHighlights;
     }
 
     // START GAME METHODS
@@ -273,10 +269,10 @@ public class Player : MonoBehaviour, ICharacter
         }
     }
 
-    public void UseHeroPower()
+    public void UsePlayerPower()
     {
-        ManaLeft -= 2;
-        usedHeroPowerThisTurn = true;
-        HeroPowerEffect.ActivateEffect();
+        //ManaLeft -= 2;
+        //usedHeroPowerThisTurn = true;
+        PlayerPowerEffect.ActivateEffect();
     }
 }

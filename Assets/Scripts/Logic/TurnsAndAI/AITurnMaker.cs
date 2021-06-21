@@ -36,9 +36,9 @@ public class AITurnMaker: TurnMaker {
         if (Command.CardDrawPending())
             return true;
         else if (attackFirst)
-            return AttackWithACreature() || PlayACardFromHand() || UseHeroPower();
+            return AttackWithAMonster() || PlayACardFromHand() || UsePlayerPower();
         else 
-            return PlayACardFromHand() || AttackWithACreature() || UseHeroPower();
+            return PlayACardFromHand() || AttackWithAMonster() || UsePlayerPower();
     }
 
     bool PlayACardFromHand()
@@ -54,12 +54,12 @@ public class AITurnMaker: TurnMaker {
         return false;
     }
 
-    bool UseHeroPower()
+    bool UsePlayerPower()
     {
-        if (p.ManaLeft >= 2 && !p.usedHeroPowerThisTurn)
+        if (!p.usedPlayerPowerThisTurn)
         {
             // use HP
-            p.UseHeroPower();
+            p.UsePlayerPower();
             InsertDelay(1.5f);
             //Debug.Log("AI used hero power");
             return true;
@@ -67,24 +67,24 @@ public class AITurnMaker: TurnMaker {
         return false;
     }
 
-    bool AttackWithACreature()
+    bool AttackWithAMonster()
     {
-        foreach (CreatureLogic cl in p.table.CreaturesOnTable)
+        foreach (MonsterLogic cl in p.table.MonstersOnTable)
         {
             if (cl.AttacksLeftThisTurn > 0)
             {
-                // attack a random target with a creature
-                if (p.otherPlayer.table.CreaturesOnTable.Count > 0)
+                // attack a random target with a monster
+                if (p.otherPlayer.table.MonstersOnTable.Count > 0)
                 {
-                    int index = Random.Range(0, p.otherPlayer.table.CreaturesOnTable.Count);
-                    CreatureLogic targetCreature = p.otherPlayer.table.CreaturesOnTable[index];
-                    cl.AttackCreature(targetCreature);
+                    int index = Random.Range(0, p.otherPlayer.table.MonstersOnTable.Count);
+                    MonsterLogic targetMonster = p.otherPlayer.table.MonstersOnTable[index];
+                    cl.AttackMonster(targetMonster);
                 }                    
                 else
                     cl.GoFace();
                 
                 InsertDelay(1f);
-                //Debug.Log("AI attacked with creature");
+                //Debug.Log("AI attacked with monster");
                 return true;
             }
         }
