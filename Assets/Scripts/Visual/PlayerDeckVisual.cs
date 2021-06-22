@@ -1,13 +1,14 @@
-﻿using UnityEngine;
+﻿ using UnityEngine;
 using System.Collections;
 using DG.Tweening;
+
 
 // this class should be attached to the deck
 // generates new cards and places them into the hand
 public class PlayerDeckVisual : MonoBehaviour {
 
     public AreaPosition owner;
-    public float HeightOfOneCard = 0.012f;
+    public float HeightOfOneCard = 670;
 
     void Start()
     {
@@ -22,7 +23,13 @@ public class PlayerDeckVisual : MonoBehaviour {
         set
         {
             cardsInDeck = value;
-            transform.position = new Vector3(transform.position.x, transform.position.y, - HeightOfOneCard * value);
+            if (value == 0)
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, -8040);
+            }
+            else 
+                transform.position = new Vector3(transform.position.x, transform.position.y,  HeightOfOneCard * value);
+            
         }
     }
    

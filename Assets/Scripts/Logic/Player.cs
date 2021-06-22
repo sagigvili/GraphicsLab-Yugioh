@@ -97,7 +97,11 @@ public class Player : MonoBehaviour, ICharacter
         PArea.HeroPower.WasUsedThisTurn = false;
 
     }
-
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.D))
+            DrawACard();
+    }
     //public void GetBonusMana(int amount)
     //{
     //    bonusManaThisTurn += amount;
@@ -118,10 +122,11 @@ public class Player : MonoBehaviour, ICharacter
     {
         if (deck.cards.Count > 0)
         {
+
             if (hand.CardsInHand.Count < PArea.handVisual.slots.Children.Length)
             {
                 // 1) save index to place a visual card into visual hand
-                int indexToPlaceACard = hand.CardsInHand.Count;
+                /*int indexToPlaceACard = hand.CardsInHand.Count;*/
                 // 2) logic: add card to hand
                 CardLogic newCard = new CardLogic(deck.cards[0]);
                 newCard.owner = this;
@@ -130,7 +135,7 @@ public class Player : MonoBehaviour, ICharacter
                 // 3) logic: remove the card from the deck
                 deck.cards.RemoveAt(0);
                 // 4) create a command
-                new DrawACardCommand(hand.CardsInHand[indexToPlaceACard], this, indexToPlaceACard, fast, fromDeck: true).AddToQueue(); 
+                new DrawACardCommand(hand.CardsInHand[0], this, fast, fromDeck: true).AddToQueue(); 
             }
         }
         else
@@ -149,7 +154,7 @@ public class Player : MonoBehaviour, ICharacter
             newCard.owner = this;
             hand.CardsInHand.Add(newCard);
             // 2) send message to the visual Deck
-            new DrawACardCommand(hand.CardsInHand[hand.CardsInHand.Count - 1], this, hand.CardsInHand.Count - 1, fast: true, fromDeck: false).AddToQueue(); 
+            new DrawACardCommand(hand.CardsInHand[hand.CardsInHand.Count - 1], this, fast: true, fromDeck: false).AddToQueue(); 
         }
         // no removal from deck because the coin was not in the deck
     }

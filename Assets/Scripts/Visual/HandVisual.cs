@@ -82,9 +82,10 @@ public class HandVisual : MonoBehaviour
         {
             // tween this card to a new Slot
             g.transform.DOLocalMoveX(slots.Children[CardsInHand.IndexOf(g)].transform.localPosition.x, 0.3f);
-
+            Debug.Log("slots = " + g);
             // apply correct sorting order and HandSlot value for later 
             WhereIsTheCardOrMonster w = g.GetComponent<WhereIsTheCardOrMonster>();
+            Debug.Log("slots = " + w);
             w.Slot = CardsInHand.IndexOf(g);
             w.SetHandSortingOrder();
         }
@@ -123,9 +124,9 @@ public class HandVisual : MonoBehaviour
     {
         GameObject card;
         if (fromDeck)
-            card = CreateACardAtPosition(c, DeckTransform.position, new Vector3(0f, -179f, 0f));
+            card = CreateACardAtPosition(c, DeckTransform.position, new Vector3(0f, 179f, 0f));
         else
-            card = CreateACardAtPosition(c, OtherCardDrawSourceTransform.position, new Vector3(0f, -179f, 0f));
+            card = CreateACardAtPosition(c, OtherCardDrawSourceTransform.position, DrawPreviewSpot.position);
 
         // Set a tag to reflect where this card is
         foreach (Transform t in card.GetComponentsInChildren<Transform>())

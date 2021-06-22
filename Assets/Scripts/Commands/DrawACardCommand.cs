@@ -7,24 +7,23 @@ public class DrawACardCommand : Command {
     // "0" - normal
 
     private Player p;
-    private int handPos;
     private CardLogic cl;
     private bool fast;
-    private int ID;
     private bool fromDeck;
 
-    public DrawACardCommand(CardLogic cl, Player p, int positionInHand, bool fast, bool fromDeck)
-    {        
+    public DrawACardCommand(CardLogic cl, Player p, bool fast, bool fromDeck)
+    {
+        Debug.Log("1");
         this.cl = cl;
         this.p = p;
-        handPos = positionInHand;
         this.fast = fast;
         this.fromDeck = fromDeck;
     }
 
-    /*public override void StartCommandExecution()
+    public override void StartCommandExecution()
     {
+        Debug.Log("2");
         p.PArea.PDeck.CardsInDeck--;
-        p.PArea.handVisual.GivePlayerACard(cl.ca, cl.UniqueCardID, handPos, fast, fromDeck);
-    }*/
+        p.PArea.handVisual.GivePlayerACard(cl.ca, cl.UniqueCardID, fast, fromDeck);
+    }
 }

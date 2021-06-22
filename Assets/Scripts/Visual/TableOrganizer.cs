@@ -9,27 +9,25 @@ public class TableOrganizer : MonoBehaviour {
 
     public AreaPosition side;
 
-	// Use this for initialization
-	void Awake () 
+    // Use this for initialization
+    void Awake()
     {
-        if (side == AreaPosition.Low)
-        {
-            Children[1].transform.position = Children[0].transform.position + new Vector3((float)574.8, 0, 0);
-            Children[2].transform.position = Children[1].transform.position + new Vector3(222, 0, 0);
-            Children[3].transform.position = Children[0].transform.position - new Vector3(0, 2000, 0);
-            Children[3].transform.position = Children[3].transform.position - new Vector3((float)1421.84, 0, 0);
-            Children[4].transform.position = Children[3].transform.position + new Vector3(2000, 0, 0);
-            Children[5].transform.position = Children[4].transform.position + new Vector3(2000, 0, 0);
-        } else {
-            Children[1].transform.position = Children[0].transform.position + new Vector3((float)574.8, 0, 0);
-            Children[2].transform.position = Children[1].transform.position + new Vector3(222, 0, 0);
-            Children[3].transform.position = Children[0].transform.position + new Vector3(0, 2000, 0);
-            Children[3].transform.position = Children[3].transform.position - new Vector3((float)1421.84, 0, 0);
-            Children[4].transform.position = Children[3].transform.position + new Vector3(2000, 0, 0);
-            Children[5].transform.position = Children[4].transform.position + new Vector3(2000, 0, 0);
-        }
+        Vector3 firstElementPos = Children[0].transform.position;
+        Vector3 lastElementPos = Children[Children.Length - 1].transform.position;
 
+        // dividing by Children.Length - 1 because for example: between 10 points that are 9 segments
+
+
+        float XDist = (lastElementPos.x - firstElementPos.x) / (float)(Children.Length - 1);
+        float YDist = (lastElementPos.y - firstElementPos.y) / (float)(Children.Length - 1);
+        float ZDist = (lastElementPos.z - firstElementPos.z) / (float)(Children.Length - 1);
+        Vector3 Dist = new Vector3(800, 0, 0);
+
+        for (int i = 1; i < Children.Length; i++)
+        {
+            Children[i].transform.position = Children[i - 1].transform.position + Dist;
+        }
     }
-	
-	
+
+
 }

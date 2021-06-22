@@ -703,7 +703,7 @@ GameObject:
   - component: {fileID: 4886273858188954557}
   - component: {fileID: 4886273858188954559}
   - component: {fileID: 7925735795783456882}
-  - component: {fileID: 2232250526963937666}
+  - component: {fileID: 958129590667085725}
   m_Layer: 0
   m_Name: TrapCard
   m_TagString: Untagged
@@ -797,7 +797,7 @@ MonoBehaviour:
   Rank: {fileID: 0}
   CardImageFront: {fileID: 4886273858218257219}
   CardImageBack: {fileID: 4886273857167480742}
---- !u!114 &2232250526963937666
+--- !u!114 &958129590667085725
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -806,7 +806,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4886273858188954547}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 353bd28318a41f849b18024b58498362, type: 3}
+  m_Script: {fileID: 11500000, guid: f845eceed102cc34d81f58d3251ba9c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4886273858218257221

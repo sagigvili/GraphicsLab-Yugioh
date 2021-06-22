@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 4494493472452051129}
   - component: {fileID: 6490860413809976247}
   - component: {fileID: 7884200350655532355}
-  - component: {fileID: 4375250989149419692}
+  - component: {fileID: 916846526425261918}
   m_Layer: 0
   m_Name: MonsterCard
   m_TagString: Untagged
@@ -439,7 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 138bb7c9d701d5a4384125de6bdfec00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4375250989149419692
+--- !u!114 &916846526425261918
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -448,7 +448,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1183866819894907768}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 353bd28318a41f849b18024b58498362, type: 3}
+  m_Script: {fileID: 11500000, guid: f845eceed102cc34d81f58d3251ba9c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1183866819940987790
