@@ -97,12 +97,12 @@ public class WhereIsTheCardOrMonster : MonoBehaviour {
     public void SetTableSortingOrder()
     {
         canvas.sortingOrder = 0;
-        canvas.sortingLayerName = "Creatures";
+        canvas.sortingLayerName = "Monsters";
     }
 
     private int HandSortingOrder(int placeInHand)
     {
-        return (-(placeInHand + 1) * 10); 
+        return ((placeInHand + 1) * 10); 
     }
 
 

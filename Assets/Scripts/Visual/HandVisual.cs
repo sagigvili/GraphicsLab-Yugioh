@@ -27,11 +27,11 @@ public class HandVisual : MonoBehaviour
         CardsInHand.Insert(0, card);
 
         // parent this card to our Slots GameObject
-        card.transform.SetParent(slots.transform);
+        card.transform.SetParent(slots.Children[CardsInHand.Count - 1]);
 
         // re-calculate the position of the hand
         PlaceCardsOnNewSlots();
-        UpdatePlacementOfSlots();
+        //UpdatePlacementOfSlots();
     }
 
     // remove a card GameObject from hand
@@ -69,7 +69,9 @@ public class HandVisual : MonoBehaviour
         if (CardsInHand.Count > 0)
             posX = (slots.Children[0].transform.localPosition.x - slots.Children[CardsInHand.Count - 1].transform.localPosition.x) / 2f;
         else
+        {
             posX = 0f;
+        }
 
         // tween Slots GameObject to new position in 0.3 seconds
         slots.gameObject.transform.DOLocalMoveX(posX, 0.3f);  
@@ -82,10 +84,8 @@ public class HandVisual : MonoBehaviour
         {
             // tween this card to a new Slot
             g.transform.DOLocalMoveX(slots.Children[CardsInHand.IndexOf(g)].transform.localPosition.x, 0.3f);
-            Debug.Log("slots = " + g);
             // apply correct sorting order and HandSlot value for later 
             WhereIsTheCardOrMonster w = g.GetComponent<WhereIsTheCardOrMonster>();
-            Debug.Log("slots = " + w);
             w.Slot = CardsInHand.IndexOf(g);
             w.SetHandSortingOrder();
         }
@@ -98,17 +98,16 @@ public class HandVisual : MonoBehaviour
     {
         // Instantiate a card depending on its type
         GameObject card;
-        card = GameObject.Instantiate(GlobalSettings.Instance.MonsterCardPrefab, position, Quaternion.Euler(eulerAngles)) as GameObject;
         if (c.Attack != -1)
         {
-            // this card is a creature card
+            // this card is a monster card
             card = GameObject.Instantiate(GlobalSettings.Instance.MonsterCardPrefab, position, Quaternion.Euler(eulerAngles)) as GameObject;
         }
         else
         {
             // this is a spell: checking for targeted or non-targeted spell
             // TODO Implement a spell card and trap card prefabs
-
+            card = GameObject.Instantiate(GlobalSettings.Instance.MonsterCardPrefab, position, Quaternion.Euler(eulerAngles)) as GameObject;
         }
 
         // apply the look of the card based on the info from CardAsset
@@ -123,11 +122,12 @@ public class HandVisual : MonoBehaviour
     public void GivePlayerACard(CardAsset c, int UniqueID, bool fast = false, bool fromDeck = true)
     {
         GameObject card;
+        Debug.Log(DeckTransform.position);
         if (fromDeck)
             card = CreateACardAtPosition(c, DeckTransform.position, new Vector3(0f, 179f, 0f));
         else
             card = CreateACardAtPosition(c, OtherCardDrawSourceTransform.position, DrawPreviewSpot.position);
-
+        Debug.Log(card.transform.position);
         // Set a tag to reflect where this card is
         foreach (Transform t in card.GetComponentsInChildren<Transform>())
             t.tag = owner.ToString()+"Card";
@@ -150,9 +150,9 @@ public class HandVisual : MonoBehaviour
             // Debug.Log ("Not fast!!!");
             s.Append(card.transform.DOMove(DrawPreviewSpot.position, GlobalSettings.Instance.CardTransitionTime));
             if (TakeCardsOpenly)
-                s.Insert(0f, card.transform.DORotate(Vector3.zero, GlobalSettings.Instance.CardTransitionTime)); 
-            else 
-                s.Insert(0f, card.transform.DORotate(new Vector3(0f, 179f, 0f), GlobalSettings.Instance.CardTransitionTime)); 
+                s.Insert(0f, card.transform.DORotate(Vector3.zero, GlobalSettings.Instance.CardTransitionTime));
+            else
+                s.Insert(0f, card.transform.DORotate(new Vector3(0f, 179f, 0f), GlobalSettings.Instance.CardTransitionTime));
             s.AppendInterval(GlobalSettings.Instance.CardPreviewTime);
             // displace the card so that we can select it in the scene easier.
             s.Append(card.transform.DOLocalMove(slots.Children[0].transform.localPosition, GlobalSettings.Instance.CardTransitionTime));
@@ -161,11 +161,11 @@ public class HandVisual : MonoBehaviour
         {
             // displace the card so that we can select it in the scene easier.
             s.Append(card.transform.DOLocalMove(slots.Children[0].transform.localPosition, GlobalSettings.Instance.CardTransitionTimeFast));
-            if (TakeCardsOpenly)    
-                s.Insert(0f,card.transform.DORotate(Vector3.zero, GlobalSettings.Instance.CardTransitionTimeFast)); 
+            if (TakeCardsOpenly)
+                s.Insert(0f, card.transform.DORotate(Vector3.zero, GlobalSettings.Instance.CardTransitionTimeFast));
         }
 
-        s.OnComplete(()=>ChangeLastCardStatusToInHand(card, w));
+        s.OnComplete(() => ChangeLastCardStatusToInHand(card, w));
     }
 
     // this method will be called when the card arrived to hand 

@@ -13,6 +13,7 @@ TagManager:
   - Player2Trap
   - Player2Hand
   - TopCard
+  - Monsters
   layers:
   - Default
   - TransparentFX

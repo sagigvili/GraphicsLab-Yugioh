@@ -9,6 +9,7 @@ public class PlayerDeckVisual : MonoBehaviour {
 
     public AreaPosition owner;
     public float HeightOfOneCard = 670;
+    public GameObject Cube;
 
     void Start()
     {
@@ -23,13 +24,11 @@ public class PlayerDeckVisual : MonoBehaviour {
         set
         {
             cardsInDeck = value;
-            if (value == 0)
-            {
-                transform.position = new Vector3(transform.position.x, transform.position.y, -8040);
-            }
-            else 
-                transform.position = new Vector3(transform.position.x, transform.position.y,  HeightOfOneCard * value);
-            
+            if (value == 3)
+                Cube.transform.position = new Vector3(0, 0, -8040);
+            else
+                Cube.transform.localScale = new Vector3(Cube.transform.localScale.x - HeightOfOneCard, Cube.transform.localScale.y - 5, Cube.transform.localScale.z - HeightOfOneCard);
+
         }
     }
    
