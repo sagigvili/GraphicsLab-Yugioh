@@ -37,6 +37,7 @@ public class HoverPreview: MonoBehaviour
         set 
         { 
             _thisPreviewEnabled = value;
+            Debug.Log("value is: " + value);
             if (!_thisPreviewEnabled)
                 StopThisPreview();
         }
@@ -47,12 +48,14 @@ public class HoverPreview: MonoBehaviour
     // MONOBEHVIOUR METHODS
     void Awake()
     {
+
         ThisPreviewEnabled = ActivateInAwake;
     }
             
     void OnMouseEnter()
     {
         OverCollider = true;
+
         if (PreviewsAllowed && ThisPreviewEnabled)
             PreviewThisObject();
     }
@@ -68,6 +71,7 @@ public class HoverPreview: MonoBehaviour
     // OTHER METHODS
     void PreviewThisObject()
     {
+
         // 1) clone this card 
         // first disable the previous preview if there is one already
         StopAllPreviews();

@@ -9,6 +9,7 @@ public class TableOrganizer : MonoBehaviour {
 
     public AreaPosition side;
 
+    
     // Use this for initialization
     void Awake()
     {
@@ -23,9 +24,18 @@ public class TableOrganizer : MonoBehaviour {
         float ZDist = (lastElementPos.z - firstElementPos.z) / (float)(Children.Length - 1);
         Vector3 Dist = new Vector3(800, 0, 0);
 
+        foreach (Transform t in Children[0].GetComponentsInChildren<Transform>())
+        {
+            t.tag = side.ToString() + "Card";
+        }
+
         for (int i = 1; i < Children.Length; i++)
         {
             Children[i].transform.position = Children[i - 1].transform.position + Dist;
+            foreach (Transform t in Children[i].GetComponentsInChildren<Transform>())
+            {
+                t.tag = side.ToString() + "Card";
+            }
         }
     }
 
