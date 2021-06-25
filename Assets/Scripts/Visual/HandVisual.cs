@@ -149,7 +149,6 @@ public class HandVisual : MonoBehaviour
             card = CreateACardAtPosition(c, DeckTransform.position, new Vector3(0f, -179f, 0f));
         else
             card = CreateACardAtPosition(c, OtherCardDrawSourceTransform.position, new Vector3(0f, -179f, 0f));
-        //Debug.Log("CHECK!!!" + card.transform.position);
         // Set a tag to reflect where this card is
         foreach (Transform t in card.GetComponentsInChildren<Transform>())
         {
