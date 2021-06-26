@@ -48,6 +48,8 @@ public class WhereIsTheCardOrMonster : MonoBehaviour {
         set
         {
             state = value;
+            if (!hover)
+                return;
             switch (state)
             {
                 case VisualStates.LowHand:
@@ -102,7 +104,7 @@ public class WhereIsTheCardOrMonster : MonoBehaviour {
 
     private int HandSortingOrder(int placeInHand)
     {
-        return ((placeInHand + 1) * 10); 
+        return (-(placeInHand + 1) * 10); 
     }
 
 

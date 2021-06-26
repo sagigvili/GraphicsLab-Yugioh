@@ -100,7 +100,10 @@ public class Player : MonoBehaviour, ICharacter
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.D))
+        {
             DrawACard();
+        }
+            
     }
     //public void GetBonusMana(int amount)
     //{
@@ -195,8 +198,6 @@ public class Player : MonoBehaviour, ICharacter
 
     public void PlayAMonsterFromHand(CardLogic playedCard, int tablePos)
     {
-        //Debug.Log(ManaLeft);
-        //Debug.Log("Mana Left after played a monster: " + ManaLeft);
         // create a new monster object and add it to Table
         MonsterLogic newMonster = new MonsterLogic(this, playedCard.ca);
         table.MonstersOnTable.Insert(tablePos, newMonster);
@@ -204,7 +205,7 @@ public class Player : MonoBehaviour, ICharacter
         new PlayAMonsterCommand(playedCard, this, tablePos, newMonster.UniqueMonsterID).AddToQueue();
         // remove this card from hand
         hand.CardsInHand.Remove(playedCard);
-        HighlightPlayableCards();
+        //HighlightPlayableCards();
     }
 
     public void Die()

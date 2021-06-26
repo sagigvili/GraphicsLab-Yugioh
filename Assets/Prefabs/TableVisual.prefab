@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2219415876310649399}
   - component: {fileID: 2219415876310649398}
+  - component: {fileID: 1414669273316356598}
   m_Layer: 0
   m_Name: SpellTrapSlots
   m_TagString: Untagged
@@ -51,6 +52,19 @@ MonoBehaviour:
   - {fileID: 2219415876508487831}
   - {fileID: 2219415877614300218}
   side: 0
+--- !u!65 &1414669273316356598
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2219415876310649392}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4189.003, y: 1856.8291, z: 0.1}
+  m_Center: {x: 1435.1434, y: -30.019043, z: 1}
 --- !u!1 &2219415876508487824
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,6 +168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2219415877605473741}
   - component: {fileID: 2219415877605473740}
+  - component: {fileID: 9008386664643141254}
   m_Layer: 0
   m_Name: MonsterSlots
   m_TagString: Untagged
@@ -195,6 +210,19 @@ MonoBehaviour:
   - {fileID: 2219415877922951401}
   - {fileID: 2219415877060583556}
   side: 0
+--- !u!65 &9008386664643141254
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2219415877605473742}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4189.003, y: 1717.3291, z: 0.1}
+  m_Center: {x: 1435.1433, y: -0.10888672, z: 1}
 --- !u!1 &2219415877614300219
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +300,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: 0
-  slots: {fileID: 2219415877605473740}
+  MonstersSlots: {fileID: 2219415877605473740}
+  SpellsTrapsSlots: {fileID: 2219415876310649398}
 --- !u!1 &2219415877922951402
 GameObject:
   m_ObjectHideFlags: 0

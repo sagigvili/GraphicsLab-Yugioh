@@ -4,17 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Player1Monster
-  - Player1Spell
-  - Player1Trap
-  - Player1Hand
-  - Player2Monster
-  - Player2Spell
-  - Player2Trap
-  - Player2Hand
   - TopCard
   - Monsters
   - LowCard
+  - Player1
+  - Player2
+  - LowMonster
+  - TopMonster
+  - LowTable
+  - TopTable
   layers:
   - Default
   - TransparentFX

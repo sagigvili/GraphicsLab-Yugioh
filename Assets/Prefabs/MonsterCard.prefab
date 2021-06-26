@@ -100,36 +100,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!1 &1183866819457023165
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1183866819457023164}
-  m_Layer: 0
-  m_Name: facePoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1183866819457023164
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1183866819457023165}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5487, y: 1454, z: 81}
-  m_LocalScale: {x: 100, y: 100, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1183866819894907771}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1183866819610633937
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,7 +294,7 @@ GameObject:
   - component: {fileID: 916846526425261918}
   m_Layer: 0
   m_Name: MonsterCard
-  m_TagString: Untagged
+  m_TagString: Monsters
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -342,7 +312,7 @@ Transform:
   m_Children:
   - {fileID: 1183866821068639918}
   - {fileID: 1183866819411027623}
-  - {fileID: 1183866819457023164}
+  - {fileID: 8573979290043276212}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -360,7 +330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardFront: {fileID: 1183866819940987785}
   CardBack: {fileID: 1183866820984737650}
-  targetFacePoint: {fileID: 1183866819457023164}
+  targetFacePoint: {fileID: 8573979290043276212}
   col: {fileID: 1183866819894907766}
 --- !u!65 &1183866819894907766
 BoxCollider:
@@ -373,8 +343,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1023.59766, y: 1461.3806, z: 15.99}
-  m_Center: {x: -6832.84, y: 1456.151, z: 89}
+  m_Size: {x: 1031.99, y: 1468.134, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 1}
 --- !u!114 &1183866819894907764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,8 +358,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TurnThisOffWhenPreviewing: {fileID: 1183866819739109616}
-  TargetPosition: {x: 33500, y: -4000, z: -400}
-  TargetScale: 6
+  TargetPosition: {x: 0, y: 5000, z: 0}
+  TargetScale: 4
   previewGameObject: {fileID: 1183866821068639919}
   ActivateInAwake: 1
 --- !u!114 &4494493472452051129
@@ -623,7 +593,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1183866820872633443}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5487, y: 1454, z: 81}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 1}
   m_Children: []
   m_Father: {fileID: 1183866821068639918}
@@ -795,7 +765,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1183866821068639918
 Transform:
   m_ObjectHideFlags: 0
@@ -909,3 +879,33 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &6023763503118177482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8573979290043276212}
+  m_Layer: 0
+  m_Name: facePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8573979290043276212
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6023763503118177482}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.02}
+  m_LocalScale: {x: 100, y: 100, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1183866819894907771}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

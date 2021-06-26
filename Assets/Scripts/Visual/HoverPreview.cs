@@ -9,7 +9,7 @@ public class HoverPreview: MonoBehaviour
     public Vector3 TargetPosition;
     public float TargetScale;
     public GameObject previewGameObject;
-    public bool ActivateInAwake = false;
+    public bool ActivateInAwake;
 
     // PRIVATE FIELDS
     private static HoverPreview currentlyViewing = null;
@@ -21,7 +21,7 @@ public class HoverPreview: MonoBehaviour
         get { return _PreviewsAllowed;}
 
         set 
-        { 
+        {
             _PreviewsAllowed= value;
             if (!_PreviewsAllowed)
                 StopAllPreviews();
@@ -34,7 +34,7 @@ public class HoverPreview: MonoBehaviour
         get { return _thisPreviewEnabled;}
 
         set 
-        { 
+        {
             _thisPreviewEnabled = value;
             if (!_thisPreviewEnabled)
                 StopThisPreview();
@@ -46,14 +46,12 @@ public class HoverPreview: MonoBehaviour
     // MONOBEHVIOUR METHODS
     void Awake()
     {
-
         ThisPreviewEnabled = ActivateInAwake;
     }
             
     void OnMouseEnter()
     {
         OverCollider = true;
-
         if (PreviewsAllowed && ThisPreviewEnabled)
             PreviewThisObject();
     }

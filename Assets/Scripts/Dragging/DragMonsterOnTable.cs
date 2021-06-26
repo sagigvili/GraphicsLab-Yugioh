@@ -15,7 +15,8 @@ public class DragMonsterOnTable : DraggingActions {
         get
         { 
             // TODO : include full field check
-            return base.CanDrag && manager.CanBePlayedNow;
+            return true;
+            //return base.CanDrag && manager.CanBePlayedNow;
         }
     }
 
@@ -48,7 +49,7 @@ public class DragMonsterOnTable : DraggingActions {
             // determine table position
             int tablePos = playerOwner.PArea.tableVisual.TablePosForNewMonster(Camera.main.ScreenToWorldPoint(
                 new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z - Camera.main.transform.position.z)).x);
-            // Debug.Log("Table Pos for new Creature: " + tablePos.ToString());
+            Debug.Log("Table Pos for new Monster: " + tablePos.ToString());
             // play this card
             playerOwner.PlayAMonsterFromHand(GetComponent<IDHolder>().UniqueID, tablePos);
         }
@@ -57,9 +58,9 @@ public class DragMonsterOnTable : DraggingActions {
             // Set old sorting order 
             whereIsCard.SetHandSortingOrder();
             whereIsCard.VisualState = tempState;
+            // TODO : Currenty returning to wrong place (slot place not like on drawing), fix it
             // Move this card back to its slot position
-            HandVisual PlayerHand = playerOwner.PArea.handVisual;
-            Vector3 oldCardPos = PlayerHand.slots.Children[savedHandSlot].transform.localPosition;
+            Vector3 oldCardPos = transform.parent.localPosition;
             transform.DOLocalMove(oldCardPos, 1f);
         } 
     }

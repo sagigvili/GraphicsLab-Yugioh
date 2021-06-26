@@ -28,8 +28,8 @@ public class HandVisual : MonoBehaviour
         CardsInHand.Insert(0, card);
 
         // parent this card to our Slots GameObject
-        //card.transform.SetParent(slots.Children[CardsInHand.Count - 1]);
-        card.transform.SetParent(slots.transform);
+        card.transform.SetParent(slots.Children[CardsInHand.Count - 1]);
+        //card.transform.SetParent(slots.transform);
 
         // re-calculate the position of the hand
         PlaceCardsOnNewSlots();
@@ -144,9 +144,8 @@ public class HandVisual : MonoBehaviour
     public void GivePlayerACard(CardAsset c, int UniqueID, bool fast = false, bool fromDeck = true)
     {
         GameObject card;
-        Debug.Log(DeckTransform.position);
         if (fromDeck)
-            card = CreateACardAtPosition(c, DeckTransform.position, new Vector3(0f, -179f, 0f));
+            card = CreateACardAtPosition(c, DeckTransform.position, new Vector3(0f, 0f, 0f));
         else
             card = CreateACardAtPosition(c, OtherCardDrawSourceTransform.position, new Vector3(0f, -179f, 0f));
         // Set a tag to reflect where this card is
@@ -196,10 +195,15 @@ public class HandVisual : MonoBehaviour
     {
         //Debug.Log("Changing state to Hand for card: " + card.gameObject.name);
         if (owner == AreaPosition.Low)
+        {
             w.VisualState = VisualStates.LowHand;
+        }
         else
+        {
             w.VisualState = VisualStates.TopHand;
+        }
 
+        card.transform.localPosition = new Vector3(card.transform.localPosition.x, card.transform.localPosition.y, -1f);
         // set correct sorting order
         w.SetHandSortingOrder();
         // end command execution for DrawACArdCommand

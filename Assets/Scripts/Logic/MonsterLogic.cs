@@ -22,6 +22,7 @@ public class MonsterLogic : ICharacter
         get{ return UniqueMonsterID; }
     }
     public FieldPosition MonsterPosition;
+    static private int monstersLogicCounter = 0; // How many logics we created so far
 
     //// the basic health that we have in CardAsset
     //private int baseHealth;
@@ -82,6 +83,7 @@ public class MonsterLogic : ICharacter
     // CONSTRUCTOR
     public MonsterLogic(Player owner, CardAsset ca)
     {
+        UniqueMonsterID = ++monstersLogicCounter;
         this.ca = ca;
         MonstersCreatedThisGame.Add(UniqueMonsterID, this);
     }
