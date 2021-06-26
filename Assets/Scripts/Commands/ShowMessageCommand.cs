@@ -4,17 +4,17 @@ using System;
 
 public class ShowMessageCommand : Command {
 
-    string message;
+    bool turn;
     float duration;
 
-    public ShowMessageCommand(string message, float duration)
+    public ShowMessageCommand(bool turn, float duration)
     {
-        this.message = message;
+        this.turn = turn;
         this.duration = duration;
     }
 
     public override void StartCommandExecution()
     {
-        MessageManager.Instance.ShowMessage(message, duration, this);
+        MessageManager.Instance.ShowMessage(turn, duration, this);
     }
 }

@@ -9,6 +9,7 @@ public class TableVisual : MonoBehaviour
 
     // an enum that mark to whish caracter this table belongs. The alues are - Top or Low
     public AreaPosition owner;
+    public int setsPerTurn = 1;
 
     // a referense to a game object that marks positions where we should put new Creatures
     public TableOrganizer MonstersSlots;
@@ -40,6 +41,11 @@ public class TableVisual : MonoBehaviour
             TableVisual[] bothTables = GameObject.FindObjectsOfType<TableVisual>();
             return (bothTables[0].CursorOverThisTable || bothTables[1].CursorOverThisTable);
         }
+    }
+
+    public int getMonstersOnTableCount()
+    {
+        return MonstersOnTable.Count;
     }
 
     // returns true only if we are hovering over this table`s collider

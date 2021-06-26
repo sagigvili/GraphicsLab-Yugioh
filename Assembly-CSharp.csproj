@@ -64,7 +64,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ExitGame.cs" />
     <Compile Include="Assets\Scripts\Commands\Command.cs" />
     <Compile Include="Assets\Scripts\Commands\DealDamageCommand.cs" />
     <Compile Include="Assets\Scripts\Commands\DelayCommand.cs" />
@@ -88,6 +87,7 @@
     <Compile Include="Assets\Scripts\Dragging\DraggingTest\DraggableTestWithActions.cs" />
     <Compile Include="Assets\Scripts\Dragging\DraggingTest\DraggingActionsTest.cs" />
     <Compile Include="Assets\Scripts\Dragging\DraggingTest\DraggingActionsTestReturn.cs" />
+    <Compile Include="Assets\Scripts\ExitGame.cs" />
     <Compile Include="Assets\Scripts\Logic\BattleStats.cs" />
     <Compile Include="Assets\Scripts\Logic\Buffs\Buff.cs" />
     <Compile Include="Assets\Scripts\Logic\CardLogic.cs" />
@@ -112,12 +112,12 @@
     <Compile Include="Assets\Scripts\Logic\TurnsAndAI\AITurnMaker.cs" />
     <Compile Include="Assets\Scripts\Logic\TurnsAndAI\PlayerTurnMaker.cs" />
     <Compile Include="Assets\Scripts\Logic\TurnsAndAI\TurnMaker.cs" />
+    <Compile Include="Assets\Scripts\PhasesActions.cs" />
     <Compile Include="Assets\Scripts\RaycastExample.cs" />
     <Compile Include="Assets\Scripts\SO Asset Scripts\CardAsset\CardAsset.cs" />
     <Compile Include="Assets\Scripts\SO Asset Scripts\CharacterAsset\CharacterAsset.cs" />
     <Compile Include="Assets\Scripts\SceneReloader.cs" />
     <Compile Include="Assets\Scripts\ShufflingExtention.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\EndTurnButton.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\GlowBlink.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\Outlines by N Yoda\BoxOutline.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\Outlines by N Yoda\CircleOutline.cs" />

@@ -13,10 +13,10 @@ public class DragMonsterOnTable : DraggingActions {
     public override bool CanDrag
     {
         get
-        { 
+        {
             // TODO : include full field check
-            return true;
-            //return base.CanDrag && manager.CanBePlayedNow;
+            //return true;
+            return base.CanDrag && manager.CanBePlayedNow;
         }
     }
 
@@ -47,9 +47,7 @@ public class DragMonsterOnTable : DraggingActions {
         if (DragSuccessful())
         {
             // determine table position
-            int tablePos = playerOwner.PArea.tableVisual.TablePosForNewMonster(Camera.main.ScreenToWorldPoint(
-                new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z - Camera.main.transform.position.z)).x);
-            Debug.Log("Table Pos for new Monster: " + tablePos.ToString());
+            int tablePos = playerOwner.PArea.tableVisual.getMonstersOnTableCount();
             // play this card
             playerOwner.PlayAMonsterFromHand(GetComponent<IDHolder>().UniqueID, tablePos);
         }

@@ -21,12 +21,8 @@ public class PlayerPortraitVisual : MonoBehaviour {
 
     public void ApplyLookFromAsset()
     {
-        
         HealthText.text = charAsset.MaxHealth.ToString();
         PortraitImage.sprite = charAsset.AvatarImage;
-
-
-
     }
 
     public void TakeDamage(int amount, int healthAfter)

@@ -13,6 +13,7 @@ public class HoverPreview: MonoBehaviour
 
     // PRIVATE FIELDS
     private static HoverPreview currentlyViewing = null;
+    public bool ToPreview = true;
 
     // PROPERTIES WITH UNDERLYING PRIVATE FIELDS
     private static bool _PreviewsAllowed = true;
@@ -52,7 +53,7 @@ public class HoverPreview: MonoBehaviour
     void OnMouseEnter()
     {
         OverCollider = true;
-        if (PreviewsAllowed && ThisPreviewEnabled)
+        if (PreviewsAllowed && ThisPreviewEnabled && ToPreview)
             PreviewThisObject();
     }
         
@@ -62,6 +63,11 @@ public class HoverPreview: MonoBehaviour
 
         if (!PreviewingSomeCard())
             StopAllPreviews();
+    }
+
+    public void SetPreviewing()
+    {
+        ToPreview = !ToPreview;
     }
 
     // OTHER METHODS

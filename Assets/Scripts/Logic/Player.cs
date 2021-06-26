@@ -87,15 +87,15 @@ public class Player : MonoBehaviour, ICharacter
 
     public virtual void OnTurnStart()
     {
-        // add one mana crystal to the pool;
-        Debug.Log("In ONTURNSTART for "+ gameObject.name);
+        //Debug.Log("In ONTURNSTART for "+ gameObject.name);
         usedPlayerPowerThisTurn = false;
-        //ManaThisTurn++;
-        //ManaLeft = ManaThisTurn;
+        PArea.HeroPower.WasUsedThisTurn = false;
+    }
+
+    public void AddAttackToAllMonstersOnTable()
+    {
         foreach (MonsterLogic cl in table.MonstersOnTable)
             cl.OnTurnStart();
-        PArea.HeroPower.WasUsedThisTurn = false;
-
     }
     void Update()
     {
@@ -146,20 +146,6 @@ public class Player : MonoBehaviour, ICharacter
        
     }
 
-    public void DrawACoin()
-    {
-        if (hand.CardsInHand.Count < PArea.handVisual.slots.Children.Length)
-        {
-            // 1) logic: add card to hand
-            CardLogic newCard = new CardLogic(GlobalSettings.Instance.CoinCard);
-            newCard.owner = this;
-            hand.CardsInHand.Add(newCard);
-            // 2) send message to the visual Deck
-            new DrawACardCommand(hand.CardsInHand[hand.CardsInHand.Count - 1], this, fast: true, fromDeck: false).AddToQueue(); 
-        }
-        // no removal from deck because the coin was not in the deck
-    }
-
     public void PlayASpellFromHand(int SpellCardUniqueID, int TargetUniqueID)
     {
         // TODO: !!!
@@ -205,7 +191,7 @@ public class Player : MonoBehaviour, ICharacter
         new PlayAMonsterCommand(playedCard, this, tablePos, newMonster.UniqueMonsterID).AddToQueue();
         // remove this card from hand
         hand.CardsInHand.Remove(playedCard);
-        //HighlightPlayableCards();
+        HighlightPlayableCards();
     }
 
     public void Die()
@@ -218,21 +204,24 @@ public class Player : MonoBehaviour, ICharacter
     }
 
     // METHODS TO SHOW GLOW HIGHLIGHTS
-    public void HighlightPlayableCards(bool removeAllHighlights = false)
+    public void HighlightPlayableCards()
     {
         //Debug.Log("HighlightPlayable remove: "+ removeAllHighlights);
         foreach (CardLogic cl in hand.CardsInHand)
         {
             GameObject g = IDHolder.GetGameObjectWithID(cl.UniqueCardID);
             if (g!=null)
-                g.GetComponent<OneCardManager>().CanBePlayedNow = !removeAllHighlights;
+                g.GetComponent<OneCardManager>().CanBePlayedNow = true;
         }
 
         foreach (MonsterLogic crl in table.MonstersOnTable)
         {
             GameObject g = IDHolder.GetGameObjectWithID(crl.UniqueMonsterID);
             if(g!= null)
-                g.GetComponent<OneMonsterManager>().CanAttackNow = (crl.AttacksLeftThisTurn > 0) && !removeAllHighlights;
+            {
+                g.GetComponent<OneMonsterManager>().CanAttackNow = (crl.AttacksLeftThisTurn > 0);
+            }
+                                
         }
             
         //// highlight hero power
@@ -260,7 +249,7 @@ public class Player : MonoBehaviour, ICharacter
 
     public void TransmitInfoAboutPlayerToVisual()
     {
-        PArea.Portrait.GetComponent<IDHolder>().UniqueID = PlayerID;
+        PArea.Portrait.gameObject.AddComponent<IDHolder>().UniqueID = PlayerID;
         if (GetComponent<TurnMaker>() is AITurnMaker)
         {
             // turn off turn making for this character

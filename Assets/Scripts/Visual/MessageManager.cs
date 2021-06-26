@@ -4,8 +4,9 @@ using UnityEngine.UI;
 
 public class MessageManager : MonoBehaviour 
 {
-    public Text MessageText;
     public GameObject MessagePanel;
+    public Image YourTurn;
+    public Image PcTurn;
 
     public static MessageManager Instance;
 
@@ -15,15 +16,25 @@ public class MessageManager : MonoBehaviour
         MessagePanel.SetActive(false);
     }
 
-    public void ShowMessage(string Message, float Duration, Command com)
+    public void ShowMessage(bool turn, float Duration, Command com)
     {
-        StartCoroutine(ShowMessageCoroutine(Message, Duration, com));
+        MessagePanel.SetActive(true);
+        StartCoroutine(ShowMessageCoroutine(turn, Duration, com));
     }
 
-    IEnumerator ShowMessageCoroutine(string Message, float Duration, Command com)
+    IEnumerator ShowMessageCoroutine(bool turn, float Duration, Command com)
     {
-        //Debug.Log("Showing some message. Duration: " + Duration);
-        MessageText.text = Message;
+        // If turn is 1 then show "Your Turn" message, else "PC Turn"
+        if (turn)
+        {
+            YourTurn.gameObject.SetActive(true);
+            PcTurn.gameObject.SetActive(false);
+        }
+        else
+        {
+            YourTurn.gameObject.SetActive(false);
+            PcTurn.gameObject.SetActive(true);
+        }
         MessagePanel.SetActive(true);
 
         yield return new WaitForSeconds(Duration);

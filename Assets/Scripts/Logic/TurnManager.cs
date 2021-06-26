@@ -22,16 +22,15 @@ public class TurnManager : MonoBehaviour {
             _whoseTurn = value;
 
             GlobalSettings.Instance.EnableEndTurnButtonOnStart(_whoseTurn);
-
             TurnMaker tm = whoseTurn.GetComponent<TurnMaker>();
             // player`s method OnTurnStart() will be called in tm.OnTurnStart();
             tm.OnTurnStart();
-            if (tm is PlayerTurnMaker)
-            {
-                whoseTurn.HighlightPlayableCards();
-            }
-            // remove highlights for opponent.
-            whoseTurn.otherPlayer.HighlightPlayableCards(true);
+            //if (tm is PlayerTurnMaker)
+            //{
+            //    whoseTurn.HighlightPlayableCards();
+            //}
+            //// remove highlights for opponent.
+            //whoseTurn.otherPlayer.HighlightPlayableCards(true);
                 
         }
     }
@@ -43,7 +42,7 @@ public class TurnManager : MonoBehaviour {
 
     void Start()
     {
-        // UNTAG IT LATER OnGameStart();
+        OnGameStart();
     }
 
     public void OnGameStart()
@@ -52,6 +51,7 @@ public class TurnManager : MonoBehaviour {
 
         CardLogic.CardsCreatedThisGame.Clear();
         MonsterLogic.MonstersCreatedThisGame.Clear();
+        // TODO: later add SpellLogic and TrapLogic
 
         foreach (Player p in Player.Players)
         {
@@ -59,19 +59,17 @@ public class TurnManager : MonoBehaviour {
             p.LoadCharacterInfoFromAsset();
             p.TransmitInfoAboutPlayerToVisual();
             p.PArea.PDeck.CardsInDeck = p.deck.cards.Count;
-            // move both portraits to the center
-            p.PArea.Portrait.transform.position = p.PArea.handVisual.OtherCardDrawSourceTransform.position;
         }
 
         Sequence s = DOTween.Sequence();
-        s.Append(Player.Players[0].PArea.Portrait.transform.DOMove(Player.Players[0].PArea.PortraitPosition.position, 1f).SetEase(Ease.InQuad));
-        s.Insert(0f, Player.Players[1].PArea.Portrait.transform.DOMove(Player.Players[1].PArea.PortraitPosition.position, 1f).SetEase(Ease.InQuad));
-        s.PrependInterval(3f);
         s.OnComplete(() =>
             {
                 // determine who starts the game.
-                int rnd = Random.Range(0,2);  // 2 is exclusive boundary
-                // Debug.Log(Player.Players.Length);
+                // TODO: flipping coin of choosing which player starts
+                //int rnd = Random.Range(0,2);  // 2 is exclusive boundary
+                int rnd = 0;
+                //Debug.Log(Player.Players.Length);
+                //Debug.Log("Who is first - " + rnd);
                 Player whoGoesFirst = Player.Players[rnd];
                 // Debug.Log(whoGoesFirst);
                 Player whoGoesSecond = whoGoesFirst.otherPlayer;
@@ -86,10 +84,6 @@ public class TurnManager : MonoBehaviour {
                     // first player draws a card
                     whoGoesFirst.DrawACard(true);
                 }
-                // add one more card to second player`s hand
-                whoGoesSecond.DrawACard(true);
-                //new GivePlayerACoinCommand(null, whoGoesSecond).AddToQueue();
-                //whoGoesSecond.DrawACoin();
                 new StartATurnCommand(whoGoesFirst).AddToQueue();
             });
     }

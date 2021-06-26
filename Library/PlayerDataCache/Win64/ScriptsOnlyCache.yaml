@@ -935,7 +935,7 @@ ScriptsOnlyBuild:
     className: VertexZoom
   - hash:
       serializedVersion: 2
-      Hash: 0de83242a1608af25034d8200b92793c
+      Hash: 9fd2a0db9ed265f6491d3e44bee606e6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MessageManager
@@ -1043,7 +1043,7 @@ ScriptsOnlyBuild:
     className: Draggable
   - hash:
       serializedVersion: 2
-      Hash: 4432f0a80054b1be18bc3db5c9001943
+      Hash: 2d094eafc8674fd7209a57a5efd4bd41
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GlobalSettings

@@ -22,32 +22,6 @@ public class MonsterLogic : ICharacter
         get{ return UniqueMonsterID; }
     }
     public FieldPosition MonsterPosition;
-    static private int monstersLogicCounter = 0; // How many logics we created so far
-
-    //// the basic health that we have in CardAsset
-    //private int baseHealth;
-    //// health with all the current buffs taken into account
-    //public int MaxHealth
-    //{
-    //    get{ return baseHealth;}
-    //}
-        
-    //private int health;
-
-    //public int Health
-    //{
-    //    get{ return health; }
-
-    //    set
-    //    {
-    //        if (value > MaxHealth)
-    //            health = baseHealth;
-    //        else if (value <= 0)
-    //            Die();
-    //        else
-    //            health = value;
-    //    }
-    //}
 
     public bool CanAttack
     {
@@ -83,13 +57,26 @@ public class MonsterLogic : ICharacter
     // CONSTRUCTOR
     public MonsterLogic(Player owner, CardAsset ca)
     {
-        UniqueMonsterID = ++monstersLogicCounter;
+        //UniqueMonsterID = ++monstersLogicCounter;
+        //this.ca = ca;
+        //MonstersCreatedThisGame.Add(UniqueMonsterID, this);
         this.ca = ca;
+        baseAttack = ca.Attack;
+        baseDefence = ca.Defence;
+        attacksForOneTurn = ca.AttacksForOneTurn;
+        this.owner = owner;
+        UniqueMonsterID = IDFactory.GetUniqueID();
+        //if (ca.MonsterScriptName != null && ca.MonsterScriptName != "")
+        //{
+        //    effect = System.Activator.CreateInstance(System.Type.GetType(ca.MonsterScriptName), new System.Object[] { owner, this, ca.specialMonsterAmount }) as MonsterEffect;
+        //    effect.RegisterEffect();
+        //}
         MonstersCreatedThisGame.Add(UniqueMonsterID, this);
     }
 
     public void OnTurnStart()
     {
+        Debug.Log("In OnTurnStart attacksForOneTurn = " + attacksForOneTurn);
         AttacksLeftThisTurn = attacksForOneTurn;
     }
 

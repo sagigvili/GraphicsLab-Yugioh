@@ -27,9 +27,7 @@ public class GlobalSettings: MonoBehaviour
     public GameObject ExplosionPrefab;
     [Header("Other")]
     public Button EndTurnButton;
-    public CardAsset CoinCard;
     public GameObject GameOverCanvas;
-    //public Sprite HeroPowerCrossMark;
 
     public Dictionary<AreaPosition, Player> Players = new Dictionary<AreaPosition, Player>();
 

@@ -104,7 +104,6 @@ public class HandVisual : MonoBehaviour
         {
             // this card is a monster card
             card = GameObject.Instantiate(GlobalSettings.Instance.MonsterCardPrefab, position, Quaternion.Euler(eulerAngles)) as GameObject;
-           
         }
         else
         {
@@ -112,28 +111,30 @@ public class HandVisual : MonoBehaviour
             // TODO Implement a spell card and trap card prefabs
             card = GameObject.Instantiate(GlobalSettings.Instance.MonsterCardPrefab, position, Quaternion.Euler(eulerAngles)) as GameObject;
         }
-        if(owner == AreaPosition.Top)
-        {
-            foreach(RectTransform t in card.GetComponentsInChildren<RectTransform>())
-            {
-                if(t.name == "CardFace")
-                {
-                    t.gameObject.SetActive(false);
-                }
-            }
-        }
-        else
-        {
-            foreach (RectTransform t in card.GetComponentsInChildren<RectTransform>())
-            {
-                if (t.name == "CardBack")
-                {
-                    t.gameObject.SetActive(false);
-                }
-            }
-        }
+
+        //if (owner == AreaPosition.Top)
+        //{
+        //    foreach(RectTransform t in card.GetComponentsInChildren<RectTransform>())
+        //    {
+        //        if(t.name == "CardFace")
+        //        {
+        //            t.gameObject.SetActive(false);
+        //        }
+        //    }
+        //}
+        //else
+        //{
+        //    foreach (RectTransform t in card.GetComponentsInChildren<RectTransform>())
+        //    {
+        //        if (t.name == "CardBack")
+        //        {
+        //            t.gameObject.SetActive(false);
+        //        }
+        //    }
+        //}
         // apply the look of the card based on the info from CardAsset
         OneCardManager manager = card.GetComponent<OneCardManager>();
+        card.GetComponent<HoverPreview>().SetPreviewing();
         manager.cardAsset = c;
         manager.ReadCardFromAsset();
 
@@ -204,6 +205,7 @@ public class HandVisual : MonoBehaviour
         }
 
         card.transform.localPosition = new Vector3(card.transform.localPosition.x, card.transform.localPosition.y, -1f);
+        card.GetComponent<HoverPreview>().SetPreviewing();
         // set correct sorting order
         w.SetHandSortingOrder();
         // end command execution for DrawACArdCommand
