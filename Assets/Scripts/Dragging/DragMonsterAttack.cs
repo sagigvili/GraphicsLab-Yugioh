@@ -84,20 +84,20 @@ public class DragMonsterAttack : DraggingActions {
         Target = null;
         RaycastHit[] hits;
         // TODO: raycast here anyway, store the results in 
-        hits = Physics.RaycastAll(origin: Camera.main.transform.position, 
-            direction: (-Camera.main.transform.position + this.transform.position).normalized, 
-            maxDistance: 30f) ;
 
+        hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition), 30000f);
         foreach (RaycastHit h in hits)
         {
-            if ((h.transform.tag == "Player2" && this.tag == "Player1Monster") ||
-                (h.transform.tag == "Player1" && this.tag == "Player2Monster"))
+
+            if ((h.transform.tag == "Player2" && this.tag == "LowMonster") ||
+                (h.transform.tag == "Player1" && this.tag == "TopMonster"))
             {
                 // go face
+
                 Target = h.transform.gameObject;
             }
-            else if ((h.transform.tag == "Player2Monster" && this.tag == "Player1Monster") ||
-                    (h.transform.tag == "Player1Monster" && this.tag == "Player2Monster"))
+            else if ((h.transform.tag == "TopMonster" && this.tag == "LowMonster") ||
+                    (h.transform.tag == "LowMonster" && this.tag == "TopMonster"))
             {
                 // hit a monster, save parent transform
                 Target = h.transform.parent.gameObject;
@@ -110,21 +110,43 @@ public class DragMonsterAttack : DraggingActions {
         if (Target != null)
         {
             int targetID = Target.GetComponent<IDHolder>().UniqueID;
-            Debug.Log("Target ID: " + targetID);
             if (targetID == GlobalSettings.Instance.LowPlayer.PlayerID || targetID == GlobalSettings.Instance.TopPlayer.PlayerID)
             {
                 // attack character
-                Debug.Log("Attacking "+Target);
-                Debug.Log("TargetID: " + targetID);
+
                 MonsterLogic.MonstersCreatedThisGame[GetComponentInParent<IDHolder>().UniqueID].GoFace();
                 targetValid = true;
             }
             else if (MonsterLogic.MonstersCreatedThisGame[targetID] != null)
             {
                 // if targeted monster is still alive, attack monster
+
                 targetValid = true;
-                MonsterLogic.MonstersCreatedThisGame[GetComponentInParent<IDHolder>().UniqueID].AttackMonsterWithID(targetID);
-                Debug.Log("Attacking "+Target);
+                GameObject parentSlotTarget = Target.transform.parent.gameObject;
+                GameObject parentSlotSource = this.transform.parent.gameObject.transform.parent.gameObject;
+                int flag = MonsterLogic.MonstersCreatedThisGame[GetComponentInParent<IDHolder>().UniqueID].AttackMonsterWithID(targetID);
+                switch (flag)
+                {
+                    case (0): // No one dies, so nothing should be done
+                        break;
+                    case (1): //player2's monster dies. need to create a new MonsterField
+                        GameObject monster = GameObject.Instantiate(GlobalSettings.Instance.MonsterFieldPrefab, parentSlotTarget.transform.position, Quaternion.identity) as GameObject;
+                        monster.transform.SetParent(parentSlotTarget.transform);
+                        break;
+                    case (2)://both players monsters dies. need to create a new MonsterField for both of them
+                        GameObject monster1 = GameObject.Instantiate(GlobalSettings.Instance.MonsterFieldPrefab, parentSlotTarget.transform.position, Quaternion.identity) as GameObject;
+                        monster1.transform.SetParent(parentSlotTarget.transform);
+
+                        GameObject monster2 = GameObject.Instantiate(GlobalSettings.Instance.MonsterFieldPrefab, parentSlotSource.transform.position, Quaternion.identity) as GameObject;
+                        monster2.transform.SetParent(parentSlotSource.transform);
+                        break;
+                    case (3): //player1's monster dies. need to create a new MonsterField
+                        GameObject monster3 = GameObject.Instantiate(GlobalSettings.Instance.MonsterFieldPrefab, parentSlotSource.transform.position, Quaternion.identity) as GameObject;
+                        monster3.transform.SetParent(parentSlotSource.transform);
+                        break;
+                    
+                }
+
             }
                 
         }

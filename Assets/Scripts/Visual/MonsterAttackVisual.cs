@@ -19,23 +19,35 @@ public class MonsterAttackVisual : MonoBehaviour
         manager.CanAttackNow = false;
         GameObject target = IDHolder.GetGameObjectWithID(targetUniqueID);
 
-        // bring this creature to front sorting-wise.
+        // bring this monster to front sorting-wise.
         w.BringToFront();
         VisualStates tempState = w.VisualState;
         w.VisualState = VisualStates.Transition;
-
+        Debug.Log("Before DoTween");
         transform.DOMove(target.transform.position, 0.5f).SetLoops(2, LoopType.Yoyo).SetEase(Ease.InCubic).OnComplete(() =>
             {
                 if(damageTakenByTarget>0)
                     DamageEffect.CreateDamageEffect(target.transform.position, damageTakenByTarget);
                 if(damageTakenByAttacker>0)
                     DamageEffect.CreateDamageEffect(transform.position, damageTakenByAttacker);
-                
+
+
+                if (targetHPAfter < 0)
+                {
+                    targetHPAfter = 0;
+                }
                 if (targetUniqueID == GlobalSettings.Instance.LowPlayer.PlayerID || targetUniqueID == GlobalSettings.Instance.TopPlayer.PlayerID)
                 {
                     // target is a player
+         
                     target.GetComponent<PlayerPortraitVisual>().HealthText.text = targetHPAfter.ToString();
+                    
+
                 }
+                Debug.Log("HP ATFTER" + targetHPAfter);
+
+
+                /*                target.GetComponent<PlayerPortraitVisual>().HealthText.text = targetHPAfter.ToString();*/
 
                 w.SetTableSortingOrder();
                 w.VisualState = tempState;

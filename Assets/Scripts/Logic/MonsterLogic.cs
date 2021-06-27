@@ -84,7 +84,7 @@ public class MonsterLogic : ICharacter
     {
         // TODO send to graveyard
         owner.table.MonstersOnTable.Remove(this);
-
+        //GameObject monster = GameObject.Instantiate(GlobalSettings.Instance.MonsterFieldPrefab, owner.PArea.tableVisual.MonstersSlots.Children[this].transform.position, Quaternion.identity) as GameObject;
         new MonsterDieCommand(UniqueMonsterID, owner).AddToQueue();
     }
 
@@ -96,7 +96,7 @@ public class MonsterLogic : ICharacter
         owner.otherPlayer.Health -= Attack;
     }
 
-    public void AttackMonster (MonsterLogic target)
+    public int AttackMonster (MonsterLogic target)
     {
         AttacksLeftThisTurn--;
         // calculate the values so that the monster does not fire the DIE command before the Attack command is sent
@@ -113,7 +113,13 @@ public class MonsterLogic : ICharacter
             {
                 new MonsterAttackCommand(target.UniqueMonsterID, UniqueMonsterID, 0, 0, owner.otherPlayer.Health).AddToQueue();
                 owner.Health -= target.Defence - Attack;
+                if (owner.Health < 0)
+                {
+                    owner.Health = 0;
+                }
+                owner.PArea.Portrait.HealthText.text = owner.Health.ToString();
             }
+            return 0;
 
         } else
         {
@@ -123,12 +129,19 @@ public class MonsterLogic : ICharacter
                 new MonsterAttackCommand(target.UniqueMonsterID, UniqueMonsterID, 0, Damage, owner.otherPlayer.Health - Damage).AddToQueue();
                 target.Die();
                 owner.otherPlayer.Health -= Damage;
+                if (owner.otherPlayer.Health < 0)
+                {
+                    owner.otherPlayer.Health = 0;
+                }
+                owner.otherPlayer.PArea.Portrait.HealthText.text = owner.otherPlayer.Health.ToString();
+                return 1;
             }
             else if (Attack == target.Attack)
             {
                 new MonsterAttackCommand(target.UniqueMonsterID, UniqueMonsterID, 0, 0, owner.otherPlayer.Health).AddToQueue();
                 Die();
                 target.Die();
+                return 2;
             }
             else
             {
@@ -136,15 +149,22 @@ public class MonsterLogic : ICharacter
                 new MonsterAttackCommand(target.UniqueMonsterID, UniqueMonsterID, Damage, 0, owner.otherPlayer.Health).AddToQueue();
                 Die();
                 owner.Health -= Damage;
+                if (owner.Health < 0)
+                {
+                    owner.Health = 0;
+                }
+                owner.PArea.Portrait.HealthText.text = owner.Health.ToString();
+                return 3;
             }
         }
 
     }
 
-    public void AttackMonsterWithID(int uniqueMonsterID)
+    public int AttackMonsterWithID(int uniqueMonsterID)
     {
+        
         MonsterLogic target = MonsterLogic.MonstersCreatedThisGame[uniqueMonsterID];
-        AttackMonster(target);
+       return AttackMonster(target);
     }
 
     // STATIC For managing IDs
