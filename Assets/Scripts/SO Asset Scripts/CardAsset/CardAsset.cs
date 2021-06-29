@@ -45,5 +45,17 @@ public class CardAsset : ScriptableObject
     public int AttacksForOneTurn = 1;
     public MonsterType Type;
     public int Rank;
+    private FieldPosition State;
+    public FieldPosition state
+    {
+        get
+        {
+            return State;
+        }
+        set
+        {
+            State = value;
+        }
+    }
 
 }

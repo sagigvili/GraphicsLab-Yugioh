@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87e63ff8efc667841a720372373b65e0, type: 3}
+  m_Name: Alexandrite Dragon
+  m_EditorClassIdentifier: 
+  Name: Alexandrite Dragon
+  characterAsset: {fileID: 0}
+  Description: Many of the czars' lost jewels can be found in the scales of this
+    priceless dragon. Its creator remains a mystery, along with how they acquired
+    the imperial treasures. But whosoever finds this dragon has hit the jackpot...
+    whether they know it or not.
+  CardImage: {fileID: 21300000, guid: ec5f1a0f703032d4a8198174c4c4dfa1, type: 3}
+  Attack: 2000
+  Defence: 100
+  Attribute: 4
+  AttacksForOneTurn: 1
+  Type: 0
+  Rank: 4

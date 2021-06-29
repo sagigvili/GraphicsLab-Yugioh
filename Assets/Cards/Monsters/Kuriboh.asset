@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87e63ff8efc667841a720372373b65e0, type: 3}
+  m_Name: Kuriboh
+  m_EditorClassIdentifier: 
+  Name: Kuriboh
+  characterAsset: {fileID: 0}
+  Description: 'During damage calculation, if your opponent''s monster attacks (Quick
+    Effect): You can discard this card; you take no battle damage from that battle.'
+  CardImage: {fileID: 21300000, guid: 3a5fa1be0d53f434bb2280cd6e7b924e, type: 3}
+  Attack: 300
+  Defence: 200
+  Attribute: 5
+  AttacksForOneTurn: 1
+  Type: 1
+  Rank: 1

@@ -15,7 +15,6 @@ public class MonsterAttackVisual : MonoBehaviour
 
     public void AttackTarget(int targetUniqueID, int damageTakenByTarget, int damageTakenByAttacker, int targetHPAfter)
     {
-        Debug.Log(targetUniqueID);
         manager.CanAttackNow = false;
         GameObject target = IDHolder.GetGameObjectWithID(targetUniqueID);
 
@@ -23,7 +22,6 @@ public class MonsterAttackVisual : MonoBehaviour
         w.BringToFront();
         VisualStates tempState = w.VisualState;
         w.VisualState = VisualStates.Transition;
-        Debug.Log("Before DoTween");
         transform.DOMove(target.transform.position, 0.5f).SetLoops(2, LoopType.Yoyo).SetEase(Ease.InCubic).OnComplete(() =>
             {
                 if(damageTakenByTarget>0)
@@ -44,10 +42,6 @@ public class MonsterAttackVisual : MonoBehaviour
                     
 
                 }
-                Debug.Log("HP ATFTER" + targetHPAfter);
-
-
-                /*                target.GetComponent<PlayerPortraitVisual>().HealthText.text = targetHPAfter.ToString();*/
 
                 w.SetTableSortingOrder();
                 w.VisualState = tempState;

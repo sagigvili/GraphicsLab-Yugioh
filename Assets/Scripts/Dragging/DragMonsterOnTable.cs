@@ -14,9 +14,13 @@ public class DragMonsterOnTable : DraggingActions {
     {
         get
         {
-            // TODO : include full field check
-            //return true;
-            return base.CanDrag && manager.CanBePlayedNow;
+            if (playerOwner.PArea.tableVisual.getMonstersOnTableCount() < 3)
+            {
+                return base.CanDrag && manager.CanBePlayedNow;
+            } else
+            {
+                return false;
+            }
         }
     }
 
@@ -42,14 +46,11 @@ public class DragMonsterOnTable : DraggingActions {
 
     public override void OnEndDrag()
     {
-        
         // 1) Check if we are holding a card over the table
-        if (DragSuccessful())
+        if (DragSuccessful() && !playerOwner.table.PlayedACard && !playerOwner.table.InAttackPhase)
         {
-            // determine table position
-            int tablePos = playerOwner.PArea.tableVisual.getMonstersOnTableCount();
-            // play this card
-            playerOwner.PlayAMonsterFromHand(GetComponent<IDHolder>().UniqueID, tablePos);
+            transform.Find("StatesBalloon").transform.Find("Panel").gameObject.SetActive(true);
+            manager.toLoop = true;
         }
         else
         {
@@ -59,14 +60,27 @@ public class DragMonsterOnTable : DraggingActions {
             // TODO : Currenty returning to wrong place (slot place not like on drawing), fix it
             // Move this card back to its slot position
             Vector3 oldCardPos = transform.parent.localPosition;
-            transform.DOLocalMove(oldCardPos, 1f);
+            transform.DOLocalMove(oldCardPos, 0.3f);
+            playerOwner.PArea.handVisual.ReCalculateCards();
         } 
     }
 
+
+    public void AfterStateSelected()
+    {
+        transform.Find("StatesBalloon").transform.Find("Panel").gameObject.SetActive(false);
+        playerOwner.table.PlayedACard = true;
+        // determine table position
+        int tablePos = playerOwner.PArea.tableVisual.getMonstersOnTableCount();
+        // play this card
+        CardLogic.CardsCreatedThisGame[GetComponent<IDHolder>().UniqueID].ca.state = manager.monsterState;
+        playerOwner.PlayAMonsterFromHand(GetComponent<IDHolder>().UniqueID, tablePos);
+    }
     protected override bool DragSuccessful()
     {
-        bool TableNotFull = (playerOwner.table.MonstersOnTable.Count < 8);
+        bool TableNotFull = (playerOwner.table.MonstersOnTable.Count < 3);
 
         return TableVisual.CursorOverSomeTable && TableNotFull;
     }
+
 }

@@ -7,16 +7,6 @@ public class OneCardManager : MonoBehaviour {
 
     public CardAsset cardAsset;
     public OneCardManager PreviewManager;
-    [Header("Text Component References")]
-    public Text NameText;
-    public Text TypeText;
-    public Text DescriptionText;
-    public Text Attack;
-    public Text Defence;
-    public Text Attribute;
-    public Text Rank;
-/*    [Header("GameObject Refrences")]
-    public GameObject AttackIcon;*/
     [Header("Image References")]
     public Image CardImageFront;
     public Image CardImageBack;
@@ -25,6 +15,17 @@ public class OneCardManager : MonoBehaviour {
     {
         if (cardAsset != null)
             ReadCardFromAsset();
+        if (transform.Find("StatesBalloon"))
+        {
+            SelectStateToTable StatesBalloon = transform.Find("StatesBalloon").transform.Find("Panel").GetComponent<SelectStateToTable>();
+            StatesBalloon.monsterInHand = this;
+        }
+    }
+
+    private void OnMouseDown()
+    {
+        if (PreviewManager == null)
+            HoverPreview.StopAllPreviews();
     }
 
     private bool canBePlayedNow = false;
@@ -41,23 +42,36 @@ public class OneCardManager : MonoBehaviour {
         }
     }
 
+    private bool ToLoop = false;
+    public bool toLoop
+    {
+        get
+        {
+            return ToLoop;
+        }
+
+        set
+        {
+            ToLoop = value;
+        }
+    }
+
+    private FieldPosition MonsterState;
+    public FieldPosition monsterState
+    {
+        get
+        {
+            return MonsterState;
+        }
+
+        set
+        {
+            MonsterState = value;
+        }
+    }
+
     public void ReadCardFromAsset()
     {
-        // 2) add card name
-        /*        NameText.text = cardAsset.Name;
-                // 4) add description
-
-                DescriptionText.text = cardAsset.Description;*/
-
-
-        /*if (cardAsset.Attack != -1)
-        {
-            Attack.text = cardAsset.Attack.ToString();
-            Defence.text = cardAsset.Defence.ToString();
-            Rank.text = cardAsset.Rank.ToString();
-            Attribute.text = cardAsset.Attribute;
-            TypeText.text = cardAsset.Type;
-        }*/
 
         CardImageFront.sprite = cardAsset.CardImage;
 

@@ -59,12 +59,12 @@ public class WhereIsTheCardOrMonster : MonoBehaviour {
                 case VisualStates.TopTable:
                     hover.ThisPreviewEnabled = true;
                     break;
-                case VisualStates.Transition:
-                    hover.ThisPreviewEnabled = false;
-                    break;
-                case VisualStates.Dragging:
-                    hover.ThisPreviewEnabled = false;
-                    break;
+                //case VisualStates.Transition:
+                //    hover.ThisPreviewEnabled = false;
+                //    break;
+                //case VisualStates.Dragging:
+                //    hover.ThisPreviewEnabled = false;
+                    //break;
                 case VisualStates.TopHand:
                     hover.ThisPreviewEnabled = false;
                     break;

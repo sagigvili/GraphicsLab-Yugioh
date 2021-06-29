@@ -97,10 +97,14 @@ public class TableVisual : MonoBehaviour
         var tempColor = manager.MonsterGraphicImage.color;
         tempColor.a = 255;
         manager.MonsterGraphicImage.color = tempColor;
-
+        if (manager.monsterState == FieldPosition.Set)
+        {
+            monster.transform.Rotate(0, 0, 90);
+            monster.transform.localScale = new Vector3(monster.transform.localScale.x, monster.transform.localScale.y, -1);
+        }
         // add tag according to owner
         foreach (Transform t in monster.GetComponentsInChildren<Transform>())
-            t.tag = owner.ToString()+"Monster";
+            t.tag = owner.ToString() + "Monster";
 
         // parent a new monster gameObject to table slots
         GameObject.Destroy(MonstersSlots.Children[index].GetChild(0).gameObject);
@@ -121,7 +125,7 @@ public class TableVisual : MonoBehaviour
         // after a new monster is added update placing of all the other monsters
         //ShiftSlotsGameObjectAccordingToNumberOfMonsters();
         //PlaceMonstersOnNewSlots();
-
+        monster.GetComponentInChildren<StatesChanger>().panel.canChangeState = true;
         // end command execution
         Command.CommandExecutionComplete();
     }

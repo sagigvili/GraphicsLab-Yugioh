@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -7,7 +8,8 @@ using System.Collections.Generic;
 public enum FieldPosition
 {
     Attack,
-    Defence
+    Defence,
+    Set
 }
 
 public class MonsterLogic : ICharacter
@@ -21,7 +23,13 @@ public class MonsterLogic : ICharacter
     {
         get{ return UniqueMonsterID; }
     }
-    public FieldPosition MonsterPosition;
+    private FieldPosition MonsterPosition;
+    public FieldPosition monsterPosition
+    {
+        get { return MonsterPosition; }
+        set { MonsterPosition = value; }
+
+    }
 
     public bool CanAttack
     {
@@ -57,14 +65,12 @@ public class MonsterLogic : ICharacter
     // CONSTRUCTOR
     public MonsterLogic(Player owner, CardAsset ca)
     {
-        //UniqueMonsterID = ++monstersLogicCounter;
-        //this.ca = ca;
-        //MonstersCreatedThisGame.Add(UniqueMonsterID, this);
         this.ca = ca;
         baseAttack = ca.Attack;
         baseDefence = ca.Defence;
         attacksForOneTurn = ca.AttacksForOneTurn;
         this.owner = owner;
+        monsterPosition = ca.state;
         UniqueMonsterID = IDFactory.GetUniqueID();
         //if (ca.MonsterScriptName != null && ca.MonsterScriptName != "")
         //{
@@ -76,7 +82,6 @@ public class MonsterLogic : ICharacter
 
     public void OnTurnStart()
     {
-        Debug.Log("In OnTurnStart attacksForOneTurn = " + attacksForOneTurn);
         AttacksLeftThisTurn = attacksForOneTurn;
     }
 
@@ -84,7 +89,6 @@ public class MonsterLogic : ICharacter
     {
         // TODO send to graveyard
         owner.table.MonstersOnTable.Remove(this);
-        //GameObject monster = GameObject.Instantiate(GlobalSettings.Instance.MonsterFieldPrefab, owner.PArea.tableVisual.MonstersSlots.Children[this].transform.position, Quaternion.identity) as GameObject;
         new MonsterDieCommand(UniqueMonsterID, owner).AddToQueue();
     }
 
@@ -100,29 +104,38 @@ public class MonsterLogic : ICharacter
     {
         AttacksLeftThisTurn--;
         // calculate the values so that the monster does not fire the DIE command before the Attack command is sent
+        Debug.Log("target.MonsterPosition " + target.MonsterPosition);
+        if (target.monsterPosition == FieldPosition.Set)
+        {
+            GameObject target_visual = IDHolder.GetGameObjectWithID(target.UniqueMonsterID);
+            target_visual.transform.DOScaleZ(1, 1f);
+            target.MonsterPosition = FieldPosition.Defence;
+        }
         if (target.MonsterPosition == FieldPosition.Defence)
         {
             if (Attack > target.Defence)
             {
                 new MonsterAttackCommand(target.UniqueMonsterID, UniqueMonsterID, 0, 0, owner.otherPlayer.Health).AddToQueue();
                 target.Die();
+                return 1;
             } else if ( Attack == target.Defence)
             {
                 new MonsterAttackCommand(target.UniqueMonsterID, UniqueMonsterID, 0, 0, owner.otherPlayer.Health).AddToQueue();
+                return 0;
             } else
             {
-                new MonsterAttackCommand(target.UniqueMonsterID, UniqueMonsterID, 0, 0, owner.otherPlayer.Health).AddToQueue();
+                new MonsterAttackCommand(target.UniqueMonsterID, UniqueMonsterID, target.Defence - Attack, 0, owner.otherPlayer.Health).AddToQueue();
                 owner.Health -= target.Defence - Attack;
                 if (owner.Health < 0)
                 {
                     owner.Health = 0;
                 }
                 owner.PArea.Portrait.HealthText.text = owner.Health.ToString();
+                return 3;
             }
-            return 0;
+            
 
-        } else
-        {
+        } else {
             if (Attack > target.Attack)
             {
                 int Damage = Attack - target.Attack;

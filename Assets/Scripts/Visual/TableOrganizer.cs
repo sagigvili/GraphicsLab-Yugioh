@@ -22,7 +22,7 @@ public class TableOrganizer : MonoBehaviour {
         float XDist = (lastElementPos.x - firstElementPos.x) / (float)(Children.Length - 1);
         float YDist = (lastElementPos.y - firstElementPos.y) / (float)(Children.Length - 1);
         float ZDist = (lastElementPos.z - firstElementPos.z) / (float)(Children.Length - 1);
-        Vector3 Dist = new Vector3(1431, 0, 0);
+        Vector3 Dist = new Vector3(2000, 0, 0);
 
         foreach (Transform t in Children[0].GetComponentsInChildren<Transform>())
         {

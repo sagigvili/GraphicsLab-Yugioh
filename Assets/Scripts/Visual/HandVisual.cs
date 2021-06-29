@@ -61,7 +61,13 @@ public class HandVisual : MonoBehaviour
     {
         return CardsInHand[index];
     }
-        
+
+    public void ReCalculateCards()
+    {
+        UpdatePlacementOfSlots();
+        PlaceCardsOnNewSlots();
+    }
+
     // MANAGING CARDS AND SLOTS
 
     // move Slots GameObject according to the number of cards in hand
@@ -92,6 +98,8 @@ public class HandVisual : MonoBehaviour
             w.SetHandSortingOrder();
         }
     }
+
+
 
     // CARD DRAW METHODS
 
@@ -175,7 +183,7 @@ public class HandVisual : MonoBehaviour
             s.Append(card.transform.DOMove(DrawPreviewSpot.position, GlobalSettings.Instance.CardTransitionTime));
             if (TakeCardsOpenly)
                 s.Insert(0f, card.transform.DORotate(Vector3.zero, GlobalSettings.Instance.CardTransitionTime));
-            
+
             s.AppendInterval(GlobalSettings.Instance.CardPreviewTime);
             // displace the card so that we can select it in the scene easier.
             s.Append(card.transform.DOMove(slots.Children[0].transform.position, GlobalSettings.Instance.CardTransitionTime));

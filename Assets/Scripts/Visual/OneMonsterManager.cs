@@ -30,12 +30,27 @@ public class OneMonsterManager : MonoBehaviour
         }
     }
 
+    private FieldPosition MonsterState;
+    public FieldPosition monsterState
+    {
+        get
+        {
+            return MonsterState;
+        }
+
+        set
+        {
+            MonsterState = value;
+            cardAsset.state = value;
+        }
+    }
+
     public void ReadMonsterFromAsset()
     {
         // Change the card graphic sprite
         MonsterGraphicImage.sprite = cardAsset.CardImage;
 
-
+        monsterState = cardAsset.state;
         if (PreviewManager != null)
         {
             PreviewManager.cardAsset = cardAsset;

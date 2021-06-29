@@ -27,12 +27,14 @@ public class PhasesActions : MonoBehaviour
     public void EndTurn()
     {
         TurnManager.Instance.EndTurn();
+        TurnManager.Instance.whoseTurn.table.InAttackPhase = false;
     }
 
     public void OnAttackPhase()
     {
         TurnManager.Instance.whoseTurn.AddAttackToAllMonstersOnTable();
         TurnManager.Instance.whoseTurn.HighlightPlayableCards();
+        TurnManager.Instance.whoseTurn.table.InAttackPhase = true;
     }
 
 }

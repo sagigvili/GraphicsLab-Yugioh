@@ -38,17 +38,20 @@ public class DragMonsterAttack : DraggingActions {
             // we can drag this card if 
             // a) we can control this our player (this is checked in base.canDrag)
             // b) monster "CanAttackNow" - this info comes from logic part of our code into each monster`s manager script
-            return base.CanDrag && manager.CanAttackNow;
+            return base.CanDrag && manager.CanAttackNow && manager.monsterState == FieldPosition.Attack;
         }
     }
 
     public override void OnStartDrag()
     {
-        whereIsThisMonster.VisualState = VisualStates.Dragging;
-        // enable target graphic
-        sr.enabled = true;
-        // enable line renderer to start drawing the line.
-        lr.enabled = true;
+        if (TurnManager.Instance.whoseTurn.table.InAttackPhase)
+        {
+            whereIsThisMonster.VisualState = VisualStates.Dragging;
+            // enable target graphic
+            sr.enabled = true;
+            // enable line renderer to start drawing the line.
+            lr.enabled = true;
+        }
     }
 
     public override void OnDraggingInUpdate()
@@ -107,15 +110,17 @@ public class DragMonsterAttack : DraggingActions {
 
         bool targetValid = false;
 
-        if (Target != null)
+        if (Target != null && TurnManager.Instance.whoseTurn.table.InAttackPhase)
         {
             int targetID = Target.GetComponent<IDHolder>().UniqueID;
             if (targetID == GlobalSettings.Instance.LowPlayer.PlayerID || targetID == GlobalSettings.Instance.TopPlayer.PlayerID)
             {
                 // attack character
-
-                MonsterLogic.MonstersCreatedThisGame[GetComponentInParent<IDHolder>().UniqueID].GoFace();
-                targetValid = true;
+                if (TurnManager.Instance.whoseTurn.otherPlayer.PArea.tableVisual.getMonstersOnTableCount() == 0)
+                {
+                    MonsterLogic.MonstersCreatedThisGame[GetComponentInParent<IDHolder>().UniqueID].GoFace();
+                    targetValid = true;
+                }
             }
             else if (MonsterLogic.MonstersCreatedThisGame[targetID] != null)
             {

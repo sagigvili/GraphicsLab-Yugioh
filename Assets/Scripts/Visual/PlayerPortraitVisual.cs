@@ -36,7 +36,7 @@ public class PlayerPortraitVisual : MonoBehaviour {
 
     public void Explode()
     {
-        Instantiate(GlobalSettings.Instance.ExplosionPrefab, transform.position, Quaternion.identity);
+        //Instantiate(GlobalSettings.Instance.ExplosionPrefab, new Vector3(0,0,600), Quaternion.identity);
         Sequence s = DOTween.Sequence();
         s.PrependInterval(2f);
         s.OnComplete(() => GlobalSettings.Instance.GameOverCanvas.SetActive(true));

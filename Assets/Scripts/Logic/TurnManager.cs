@@ -20,7 +20,10 @@ public class TurnManager : MonoBehaviour {
         set
         {
             _whoseTurn = value;
-
+            foreach (Transform t in value.PArea.tableVisual.MonstersSlots.Children)
+            {
+                t.GetComponentInChildren<StatesChanger>().CanChangeState = true;
+            }
             GlobalSettings.Instance.EnableEndTurnButtonOnStart(_whoseTurn);
             TurnMaker tm = whoseTurn.GetComponent<TurnMaker>();
             // player`s method OnTurnStart() will be called in tm.OnTurnStart();

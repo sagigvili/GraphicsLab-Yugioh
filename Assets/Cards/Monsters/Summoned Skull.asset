@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87e63ff8efc667841a720372373b65e0, type: 3}
+  m_Name: Summoned Skull
+  m_EditorClassIdentifier: 
+  Name: Summoned Skull
+  characterAsset: {fileID: 0}
+  Description: 'A fiend with dark powers for confusing the enemy. Among the Fiend-Type
+    monsters, this monster boasts considerable force.
+
+    
+
+    (This card is
+    always treated as an "Archfiend" card.)'
+  CardImage: {fileID: 21300000, guid: 97353466929972a458e31ccc791cb805, type: 3}
+  Attack: 2500
+  Defence: 1200
+  Attribute: 5
+  AttacksForOneTurn: 1
+  Type: 1
+  Rank: 6

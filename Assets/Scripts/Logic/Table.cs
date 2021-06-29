@@ -10,6 +10,15 @@ public class Table : MonoBehaviour
 
     //public List<TrapLogic> TrapsOnTable = new List<TrapLogic>();
 
+    public bool PlayedACard = false;
+
+    public bool InAttackPhase = false;
+
+    public void ResetPlayedACard()
+    {
+        PlayedACard = false;
+    }
+
     public void PlaceMonstereAt(int index, MonsterLogic monster)
     {
         MonstersOnTable.Insert(index, monster);

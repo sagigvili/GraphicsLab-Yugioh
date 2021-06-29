@@ -20,34 +20,6 @@ public class Player : MonoBehaviour, ICharacter
         get{ return PlayerID; }
     }
 
-    //private int manaThisTurn;
-    //public int ManaThisTurn
-    //{
-    //    get{ return manaThisTurn;}
-    //    set
-    //    {
-    //        manaThisTurn = value;
-    //        //PArea.ManaBar.TotalCrystals = manaThisTurn;
-    //        new UpdateManaCrystalsCommand(this, manaThisTurn, manaLeft).AddToQueue();
-    //    }
-    //}
-
-    //private int manaLeft;
-    //public int ManaLeft
-    //{
-    //    get
-    //    { return manaLeft;}
-    //    set
-    //    {
-    //        manaLeft = value;
-    //        //PArea.ManaBar.AvailableCrystals = manaLeft;
-    //        new UpdateManaCrystalsCommand(this, ManaThisTurn, manaLeft).AddToQueue();
-    //        //Debug.Log(ManaLeft);
-    //        if (TurnManager.Instance.whoseTurn == this)
-    //            HighlightPlayableCards();
-    //    }
-    //}
-
     public Player otherPlayer
     {
         get
@@ -103,21 +75,14 @@ public class Player : MonoBehaviour, ICharacter
         {
             DrawACard();
         }
-            
+
     }
-    //public void GetBonusMana(int amount)
-    //{
-    //    bonusManaThisTurn += amount;
-    //    ManaThisTurn += amount;
-    //    ManaLeft += amount;
-    //}   
+
 
     public void OnTurnEnd()
     {
         if(EndTurnEvent != null)
             EndTurnEvent.Invoke();
-        //ManaThisTurn -= bonusManaThisTurn;
-        //bonusManaThisTurn = 0;
         GetComponent<TurnMaker>().StopAllCoroutines();
     }
 
@@ -127,15 +92,13 @@ public class Player : MonoBehaviour, ICharacter
         {
             if (hand.CardsInHand.Count < PArea.handVisual.slots.Children.Length)
             {
-                // 1) save index to place a visual card into visual hand
-                /*int indexToPlaceACard = hand.CardsInHand.Count;*/
-                // 2) logic: add card to hand
+                // 1) logic: add card to hand
                 CardLogic newCard = new CardLogic(deck.cards[0]);
                 newCard.owner = this;
                 hand.CardsInHand.Add(newCard);
-                // 3) logic: remove the card from the deck
+                // 2) logic: remove the card from the deck
                 deck.cards.RemoveAt(0);
-                // 4) create a command
+                // 3) create a command
                 new DrawACardCommand(hand.CardsInHand[hand.CardsInHand.Count - 1], this, fast, fromDeck: true).AddToQueue(); 
             }
         }
@@ -200,13 +163,22 @@ public class Player : MonoBehaviour, ICharacter
         // block both players from taking new moves 
         PArea.ControlsON = false;
         otherPlayer.PArea.ControlsON = false;
+        if (PlayerID == 0)
+        {
+            GlobalSettings.Instance.WhoWins.text = "Player 2 Wins";
+        } else
+        {
+            GlobalSettings.Instance.WhoWins.text = "Player 1 Wins";
+        }
+        
         new GameOverCommand(this).AddToQueue();
+
+
     }
 
     // METHODS TO SHOW GLOW HIGHLIGHTS
     public void HighlightPlayableCards()
     {
-        //Debug.Log("HighlightPlayable remove: "+ removeAllHighlights);
         foreach (CardLogic cl in hand.CardsInHand)
         {
             GameObject g = IDHolder.GetGameObjectWithID(cl.UniqueCardID);
@@ -223,9 +195,6 @@ public class Player : MonoBehaviour, ICharacter
             }
                                 
         }
-            
-        //// highlight hero power
-        //PArea.HeroPower.Highlighted = (!usedHeroPowerThisTurn) && (ManaLeft > 1) && !removeAllHighlights;
     }
 
     // START GAME METHODS
