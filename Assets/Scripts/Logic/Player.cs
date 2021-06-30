@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class Player : MonoBehaviour, ICharacter
 {
@@ -99,7 +100,7 @@ public class Player : MonoBehaviour, ICharacter
                 // 2) logic: remove the card from the deck
                 deck.cards.RemoveAt(0);
                 // 3) create a command
-                new DrawACardCommand(hand.CardsInHand[hand.CardsInHand.Count - 1], this, fast, fromDeck: true).AddToQueue(); 
+                new DrawACardCommand(hand.CardsInHand[hand.CardsInHand.Count - 1], this, fast, fromDeck: true).AddToQueue();
             }
         }
         else

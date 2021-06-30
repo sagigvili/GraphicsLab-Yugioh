@@ -8,6 +8,8 @@ public class OneMonsterManager : MonoBehaviour
     public OneCardManager PreviewManager;
     [Header("Image References")]
     public Image MonsterGraphicImage;
+    public TMPro.TextMeshProUGUI ATK;
+    public TMPro.TextMeshProUGUI DEF;
 
 
     void Awake()
@@ -51,6 +53,8 @@ public class OneMonsterManager : MonoBehaviour
         MonsterGraphicImage.sprite = cardAsset.CardImage;
 
         monsterState = cardAsset.state;
+        ATK.text = cardAsset.Attack.ToString();
+        DEF.text = cardAsset.Defence.ToString();
         if (PreviewManager != null)
         {
             PreviewManager.cardAsset = cardAsset;

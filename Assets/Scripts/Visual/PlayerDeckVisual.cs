@@ -10,10 +10,12 @@ public class PlayerDeckVisual : MonoBehaviour {
     public AreaPosition owner;
     public float HeightOfOneCard = 670;
     public GameObject Cube;
+    public TMPro.TextMeshPro CardsCounter;
 
     void Start()
     {
         CardsInDeck = GlobalSettings.Instance.Players[owner].deck.cards.Count;
+        CardsCounter.text = CardsInDeck.ToString();
     }
 
     private int cardsInDeck = 0;
@@ -24,6 +26,7 @@ public class PlayerDeckVisual : MonoBehaviour {
         set
         {
             cardsInDeck = value;
+            CardsCounter.text = CardsInDeck.ToString();
             if (value == 3)
                 Cube.transform.position = new Vector3(0, 0, -8040);
             else

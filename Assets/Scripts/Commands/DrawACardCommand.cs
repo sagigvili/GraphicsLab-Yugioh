@@ -23,5 +23,6 @@ public class DrawACardCommand : Command {
     {
         p.PArea.PDeck.CardsInDeck--;
         p.PArea.handVisual.GivePlayerACard(cl.ca, cl.UniqueCardID, fast, fromDeck);
+        
     }
 }

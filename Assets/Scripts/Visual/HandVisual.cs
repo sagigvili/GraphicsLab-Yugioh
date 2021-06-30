@@ -211,7 +211,6 @@ public class HandVisual : MonoBehaviour
         {
             w.VisualState = VisualStates.TopHand;
         }
-
         card.transform.localPosition = new Vector3(card.transform.localPosition.x, card.transform.localPosition.y, -1f);
         card.GetComponent<HoverPreview>().SetPreviewing();
         // set correct sorting order

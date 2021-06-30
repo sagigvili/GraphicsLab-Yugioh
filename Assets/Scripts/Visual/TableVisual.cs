@@ -94,6 +94,10 @@ public class TableVisual : MonoBehaviour
         OneMonsterManager manager = monster.GetComponent<OneMonsterManager>();
         manager.cardAsset = ca;
         manager.ReadMonsterFromAsset();
+        Transform monsterInfo = monster.transform.GetChild(5);
+        monsterInfo.gameObject.SetActive(true);
+        if (owner == AreaPosition.Top)
+            monsterInfo.localPosition = new Vector3(monsterInfo.localPosition.x, -1355.72f, monsterInfo.localPosition.z);
         var tempColor = manager.MonsterGraphicImage.color;
         tempColor.a = 255;
         manager.MonsterGraphicImage.color = tempColor;
@@ -122,9 +126,6 @@ public class TableVisual : MonoBehaviour
         IDHolder id = monster.AddComponent<IDHolder>();
         id.UniqueID = UniqueID;
 
-        // after a new monster is added update placing of all the other monsters
-        //ShiftSlotsGameObjectAccordingToNumberOfMonsters();
-        //PlaceMonstersOnNewSlots();
         monster.GetComponentInChildren<StatesChanger>().panel.canChangeState = true;
         // end command execution
         Command.CommandExecutionComplete();
