@@ -18,7 +18,7 @@ public class OneCardManager : MonoBehaviour {
         if (transform.Find("StatesBalloon"))
         {
             SelectStateToTable StatesBalloon = transform.Find("StatesBalloon").transform.Find("Panel").GetComponent<SelectStateToTable>();
-            StatesBalloon.monsterInHand = this;
+            StatesBalloon.cardInHand = this;
         }
     }
 
@@ -53,20 +53,6 @@ public class OneCardManager : MonoBehaviour {
         set
         {
             ToLoop = value;
-        }
-    }
-
-    private FieldPosition MonsterState;
-    public FieldPosition monsterState
-    {
-        get
-        {
-            return MonsterState;
-        }
-
-        set
-        {
-            MonsterState = value;
         }
     }
 

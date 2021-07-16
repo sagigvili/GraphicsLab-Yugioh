@@ -70,7 +70,7 @@ public class MonsterLogic : ICharacter
         baseDefence = ca.Defence;
         attacksForOneTurn = ca.AttacksForOneTurn;
         this.owner = owner;
-        monsterPosition = ca.state;
+        monsterPosition = ca.MonsterState;
         UniqueMonsterID = IDFactory.GetUniqueID();
         //if (ca.MonsterScriptName != null && ca.MonsterScriptName != "")
         //{
@@ -104,7 +104,6 @@ public class MonsterLogic : ICharacter
     {
         AttacksLeftThisTurn--;
         // calculate the values so that the monster does not fire the DIE command before the Attack command is sent
-        Debug.Log("target.MonsterPosition " + target.MonsterPosition);
         if (target.monsterPosition == FieldPosition.Set)
         {
             GameObject target_visual = IDHolder.GetGameObjectWithID(target.UniqueMonsterID);
@@ -176,7 +175,7 @@ public class MonsterLogic : ICharacter
     public int AttackMonsterWithID(int uniqueMonsterID)
     {
         
-        MonsterLogic target = MonsterLogic.MonstersCreatedThisGame[uniqueMonsterID];
+       MonsterLogic target = MonsterLogic.MonstersCreatedThisGame[uniqueMonsterID];
        return AttackMonster(target);
     }
 

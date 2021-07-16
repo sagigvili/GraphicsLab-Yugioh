@@ -2,12 +2,9 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class OneMonsterManager : MonoBehaviour 
+public class OneMonsterManager : OneCardManager 
 {
-    public CardAsset cardAsset;
-    public OneCardManager PreviewManager;
     [Header("Image References")]
-    public Image MonsterGraphicImage;
     public TMPro.TextMeshProUGUI ATK;
     public TMPro.TextMeshProUGUI DEF;
 
@@ -32,27 +29,10 @@ public class OneMonsterManager : MonoBehaviour
         }
     }
 
-    private FieldPosition MonsterState;
-    public FieldPosition monsterState
-    {
-        get
-        {
-            return MonsterState;
-        }
-
-        set
-        {
-            MonsterState = value;
-            cardAsset.state = value;
-        }
-    }
-
     public void ReadMonsterFromAsset()
     {
         // Change the card graphic sprite
-        MonsterGraphicImage.sprite = cardAsset.CardImage;
-
-        monsterState = cardAsset.state;
+        CardImageFront.sprite = cardAsset.CardImage;
         ATK.text = cardAsset.Attack.ToString();
         DEF.text = cardAsset.Defence.ToString();
         if (PreviewManager != null)
@@ -60,10 +40,5 @@ public class OneMonsterManager : MonoBehaviour
             PreviewManager.cardAsset = cardAsset;
             PreviewManager.ReadCardFromAsset();
         }
-    }	
-
-    public void TakeDamage(int amount, int healthAfter)
-    {
-
     }
 }

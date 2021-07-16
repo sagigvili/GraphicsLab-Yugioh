@@ -20,11 +20,11 @@ public class GlobalSettings: MonoBehaviour
     [Header("Prefabs and Assets")]
     public GameObject MonsterCardPrefab;
     public GameObject MonsterFieldPrefab;
-    public GameObject SpellCardPrefab;
-    public GameObject TrapCardPrefab;
+    public GameObject SpellTrapCardPrefab;
     public GameObject SpellTrapFieldPrefab;
     public GameObject DamageEffectPrefab;
     public GameObject ExplosionPrefab;
+    public GameObject TargetSelectorPrefab;
     public Text WhoWins;
     [Header("Other")]
     public Button EndTurnButton;

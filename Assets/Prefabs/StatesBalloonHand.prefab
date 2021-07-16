@@ -638,7 +638,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a6f3be11b5a6244e8af2a421295e916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterInHand: {fileID: 0}
+  cardInHand: {fileID: 0}
+  setState: {fileID: 1889549635834221648}
+  summonState: {fileID: 704302849290568272}
 --- !u!1 &6081346001869391280
 GameObject:
   m_ObjectHideFlags: 0

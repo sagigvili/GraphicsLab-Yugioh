@@ -64,6 +64,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\EffectOperator.cs" />
+    <Compile Include="Assets\Scripts\Commands\ActivateTrapCommand.cs" />
     <Compile Include="Assets\Scripts\Commands\Command.cs" />
     <Compile Include="Assets\Scripts\Commands\DealDamageCommand.cs" />
     <Compile Include="Assets\Scripts\Commands\DelayCommand.cs" />
@@ -74,12 +76,12 @@
     <Compile Include="Assets\Scripts\Commands\PlayAMonsterCommand.cs" />
     <Compile Include="Assets\Scripts\Commands\PlayASpellCardCommand.cs" />
     <Compile Include="Assets\Scripts\Commands\ShowMessageCommand.cs" />
+    <Compile Include="Assets\Scripts\Commands\SpellTrapDieCommand.cs" />
     <Compile Include="Assets\Scripts\Commands\StartATurnCommand.cs" />
     <Compile Include="Assets\Scripts\Dragging\DragMonsterAttack.cs" />
     <Compile Include="Assets\Scripts\Dragging\DragMonsterOnTable.cs" />
     <Compile Include="Assets\Scripts\Dragging\DragPlayerPowerActions.cs" />
-    <Compile Include="Assets\Scripts\Dragging\DragSpellNoTarget.cs" />
-    <Compile Include="Assets\Scripts\Dragging\DragSpellOnTarget.cs" />
+    <Compile Include="Assets\Scripts\Dragging\DragSpellTrapOnTable.cs" />
     <Compile Include="Assets\Scripts\Dragging\Draggable.cs" />
     <Compile Include="Assets\Scripts\Dragging\DraggingActions.cs" />
     <Compile Include="Assets\Scripts\Dragging\DraggingTest\DragOnTargetTest.cs" />
@@ -101,12 +103,11 @@
     <Compile Include="Assets\Scripts\Logic\MovesHighlighter.cs" />
     <Compile Include="Assets\Scripts\Logic\Player.cs" />
     <Compile Include="Assets\Scripts\Logic\RopeTimer.cs" />
-    <Compile Include="Assets\Scripts\Logic\SpellScripts\DamageAllCreatures.cs" />
-    <Compile Include="Assets\Scripts\Logic\SpellScripts\DealDamageToTarget.cs" />
-    <Compile Include="Assets\Scripts\Logic\SpellScripts\GiveManaBonus.cs" />
+    <Compile Include="Assets\Scripts\Logic\SpellScripts\DamageAllMonsters.cs" />
     <Compile Include="Assets\Scripts\Logic\SpellScripts\HeroPower2Face.cs" />
     <Compile Include="Assets\Scripts\Logic\SpellScripts\HeroPowerDrawCardTakeDamage.cs" />
     <Compile Include="Assets\Scripts\Logic\SpellScripts\SpellEffect.cs" />
+    <Compile Include="Assets\Scripts\Logic\SpellTrapLogic.cs" />
     <Compile Include="Assets\Scripts\Logic\Table.cs" />
     <Compile Include="Assets\Scripts\Logic\TurnManager.cs" />
     <Compile Include="Assets\Scripts\Logic\TurnsAndAI\AITurnMaker.cs" />
@@ -150,6 +151,7 @@
     <Compile Include="Assets\Scripts\Visual\SameDistanceChildren.cs" />
     <Compile Include="Assets\Scripts\Visual\TableOrganizer.cs" />
     <Compile Include="Assets\Scripts\Visual\TableVisual.cs" />
+    <Compile Include="Assets\TargetSlot.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />

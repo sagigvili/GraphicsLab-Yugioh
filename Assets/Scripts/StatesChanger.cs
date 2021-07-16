@@ -1,6 +1,5 @@
 ﻿using DG.Tweening;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,17 +10,10 @@ public class StatesChanger : MonoBehaviour
     public Button AttackSummonButton;
     public Text AttackSummonText;
     public Button ExitButton;
-    public BoxCollider MonsterCol;
+    public BoxCollider Col;
     public float mTime = 1f;
 
     private Transform Parent;
-
-    private bool canChangeState = false;
-    public bool CanChangeState
-    {
-        get { return canChangeState; }
-        set { canChangeState = value; }
-    }
 
     void Awake()
     {
@@ -38,27 +30,29 @@ public class StatesChanger : MonoBehaviour
         foreach (RaycastHit h in hits)
         {
             // check if the collider that we hit is the collider on this GameObject
-            if (h.collider == MonsterCol)
-                if (Input.GetMouseButtonDown(1) && canChangeState)
+            if (h.collider == Col)
+            {
+                if (Input.GetMouseButtonDown(1) && panel.canChangeState)
                 {
                     ShowSelector();
                     return;
                 }
+            }
 
         }
     }
 
     private void ShowSelector()
     {
-        if (panel.canChangeState)
-        {
-
-            if (((SelectStateOnTable)panel).monsterInTable.monsterState == FieldPosition.Attack)
+        Debug.Log(this.transform.parent);
+        if (this.transform.parent.name.StartsWith("MonsterField")) {
+            
+            if (((SelectStateOnTable)panel).cardInTable.cardAsset.MonsterState == FieldPosition.Attack)
             {
                 AttackSummonButton.gameObject.SetActive(false);
                 DefenceButton.gameObject.SetActive(true);
             }
-            else if (((SelectStateOnTable)panel).monsterInTable.monsterState == FieldPosition.Set)
+            else if (((SelectStateOnTable)panel).cardInTable.cardAsset.MonsterState == FieldPosition.Set)
             {
                 DefenceButton.gameObject.SetActive(false);
                 AttackSummonButton.gameObject.SetActive(true);
@@ -72,6 +66,33 @@ public class StatesChanger : MonoBehaviour
             }
             panel.gameObject.SetActive(true);
         }
+        else if (this.transform.parent.name.StartsWith("SpellTrapField")) {
+            OneCardManager card = ((SelectStateOnTable)panel).cardInTable;
+            Effects effect = card.cardAsset.Effect;
+            if (card.cardAsset.SpellTrapState == SpellTrapPosition.Set)
+            {
+                if (TurnManager.Instance.whoseTurn.otherPlayer.PArea.tableVisual.getMonstersOnTableCount() > 0)
+                {
+                    Debug.Log("GOT HERE!");
+                    Debug.Log(TurnManager.Instance.whoseTurn.otherPlayer.table.AnyAttackOrDefenceMonsters(effect));
+                    if (((effect == Effects.ChangeToAttack || effect == Effects.ChangeToDefence) && TurnManager.Instance.whoseTurn.otherPlayer.table.AnyAttackOrDefenceMonsters(effect)) || effect == Effects.DestoryMonster)
+                    {
+                        DefenceButton.gameObject.SetActive(false);
+                        AttackSummonButton.gameObject.SetActive(true);
+                        AttackSummonText.text = "Activate";
+                        panel.gameObject.SetActive(true);
+                    }
+
+                } else if (effect == Effects.DestorySpellTrap && TurnManager.Instance.whoseTurn.otherPlayer.PArea.tableVisual.getSpellsTrapsOnTableCount() > 0)
+                {
+                    DefenceButton.gameObject.SetActive(false);
+                    AttackSummonButton.gameObject.SetActive(true);
+                    AttackSummonText.text = "Activate";
+                    panel.gameObject.SetActive(true);
+                }
+
+            }
+        }
     }
 
     public void ChangeMonsterStateOnTable(int state)
@@ -79,26 +100,41 @@ public class StatesChanger : MonoBehaviour
         panel.gameObject.SetActive(false);
         if (state == 1)
         {
-            // In case we're flip summon a monster
-            if (((SelectStateOnTable)this.panel).monsterInTable.monsterState == FieldPosition.Set)
+            // In case we flip summon a monster
+            if (((SelectStateOnTable)this.panel).cardInTable.cardAsset.MonsterState == FieldPosition.Set)
             {
                 Parent = this.transform.parent.transform;
-                Parent.localScale = new Vector3(this.transform.localScale.x, this.transform.localScale.y, 1);
+                Transform monsterInfo = this.transform.parent.GetChild(5).transform;
+                monsterInfo.gameObject.SetActive(true);
+                if (TurnManager.Instance.whoseTurn.PArea.tableVisual.owner == AreaPosition.Top)
+                    monsterInfo.localPosition = new Vector3(monsterInfo.localPosition.x, -1355.72f, monsterInfo.localPosition.z);
+                this.transform.parent.transform.localScale = new Vector3(this.transform.parent.transform.localScale.x, this.transform.parent.transform.localScale.y, 1);
                 StartCoroutine(ToAttackPosition());
             }
             else // In case we're changing from Defence to Attack
             {
-                Parent = this.transform.parent.transform;
+                Parent = this.transform.parent.GetChild(3).GetChild(0).transform;
                 StartCoroutine(ToAttackPosition());
             }
 
         }
         else if (state == 2) // In case we're changing from Attack to Defence
         {
-            Parent = this.transform.parent.transform;
+            Parent = this.transform.parent.GetChild(3).GetChild(0).transform;
             StartCoroutine(ToDefencePosition());
         }
-        canChangeState = false;
+        panel.canChangeState = false;
+    }
+
+    public void ChangeSpellTrapStateOnTable(int state)
+    {
+        panel.gameObject.SetActive(false);
+        // In case we flip activate a spell or a trap
+        Parent = this.transform.parent.transform;
+        Parent.localScale = new Vector3(this.transform.localScale.x, this.transform.localScale.y, 1);
+        StartCoroutine(ToAttackPosition());
+        panel.canChangeState = false;
+        SpellTrapEffect.ActivateEffect(((SelectStateOnTable)this.panel).cardInTable.cardAsset);
     }
 
     /// <summary>

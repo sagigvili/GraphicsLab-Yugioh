@@ -24,7 +24,6 @@ public class MonsterAttackCommand : Command
     {
         GameObject Attacker = IDHolder.GetGameObjectWithID(AttackerUniqueID);
 
-        //Debug.Log(TargetUniqueID);
         Attacker.GetComponent<MonsterAttackVisual>().AttackTarget(TargetUniqueID, DamageTakenByTarget, DamageTakenByAttacker, TargetHPAfter);
     }
 }

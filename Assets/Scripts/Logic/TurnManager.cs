@@ -22,7 +22,11 @@ public class TurnManager : MonoBehaviour {
             _whoseTurn = value;
             foreach (Transform t in value.PArea.tableVisual.MonstersSlots.Children)
             {
-                t.GetComponentInChildren<StatesChanger>().CanChangeState = true;
+                t.GetComponentInChildren<StatesChanger>().panel.canChangeState = true;
+            }
+            foreach (Transform t in value.PArea.tableVisual.SpellsTrapsSlots.Children)
+            {
+                t.GetComponentInChildren<StatesChanger>().panel.canChangeState = true;
             }
             GlobalSettings.Instance.EnableEndTurnButtonOnStart(_whoseTurn);
             TurnMaker tm = whoseTurn.GetComponent<TurnMaker>();
@@ -54,6 +58,7 @@ public class TurnManager : MonoBehaviour {
 
         CardLogic.CardsCreatedThisGame.Clear();
         MonsterLogic.MonstersCreatedThisGame.Clear();
+        SpellTrapLogic.SpellTrapsCreatedThisGame.Clear();
         // TODO: later add SpellLogic and TrapLogic
 
         foreach (Player p in Player.Players)

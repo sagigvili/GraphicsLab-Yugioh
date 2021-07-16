@@ -2,7 +2,8 @@
 using System.Collections;
 using DG.Tweening;
 
-public class DragMonsterOnTable : DraggingActions {
+public class DragMonsterOnTable : DraggingActions
+{
 
     private int savedHandSlot;
     private WhereIsTheCardOrMonster whereIsCard;
@@ -17,7 +18,8 @@ public class DragMonsterOnTable : DraggingActions {
             if (playerOwner.PArea.tableVisual.getMonstersOnTableCount() < 3)
             {
                 return base.CanDrag && manager.CanBePlayedNow;
-            } else
+            }
+            else
             {
                 return false;
             }
@@ -57,12 +59,11 @@ public class DragMonsterOnTable : DraggingActions {
             // Set old sorting order 
             whereIsCard.SetHandSortingOrder();
             whereIsCard.VisualState = tempState;
-            // TODO : Currenty returning to wrong place (slot place not like on drawing), fix it
             // Move this card back to its slot position
             Vector3 oldCardPos = transform.parent.localPosition;
             transform.DOLocalMove(oldCardPos, 0.3f);
             playerOwner.PArea.handVisual.ReCalculateCards();
-        } 
+        }
     }
 
 
@@ -73,7 +74,7 @@ public class DragMonsterOnTable : DraggingActions {
         // determine table position
         int tablePos = playerOwner.PArea.tableVisual.getMonstersOnTableCount();
         // play this card
-        CardLogic.CardsCreatedThisGame[GetComponent<IDHolder>().UniqueID].ca.state = manager.monsterState;
+        CardLogic.CardsCreatedThisGame[GetComponent<IDHolder>().UniqueID].ca.MonsterState = manager.cardAsset.MonsterState;
         playerOwner.PlayAMonsterFromHand(GetComponent<IDHolder>().UniqueID, tablePos);
     }
     protected override bool DragSuccessful()

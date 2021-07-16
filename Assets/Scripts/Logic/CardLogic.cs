@@ -12,8 +12,6 @@ public class CardLogic: IIdentifiable
     public CardAsset ca;
     public GameObject VisualRepresentation;
 
-    public SpellEffect effect;
-
     public int ID
     {
         get{ return UniqueCardID; }

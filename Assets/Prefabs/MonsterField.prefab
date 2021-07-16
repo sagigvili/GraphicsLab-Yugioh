@@ -705,7 +705,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: -1085460623
+  m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &883065498250426523
@@ -847,7 +847,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardAsset: {fileID: 0}
   PreviewManager: {fileID: 883065497768808595}
-  MonsterGraphicImage: {fileID: 883065498495298994}
+  CardImageFront: {fileID: 883065498495298994}
+  CardImageBack: {fileID: 883065497416470871}
   ATK: {fileID: 8345217933009512227}
   DEF: {fileID: 4141673151823740040}
 --- !u!114 &5647349693813952200
@@ -1929,14 +1930,34 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5988506248330870582, guid: 176c886e25ece84499024a83381df983,
         type: 3}
+      propertyPath: Col
+      value: 
+      objectReference: {fileID: 6275143645768607211}
+    - target: {fileID: 5988506248330870582, guid: 176c886e25ece84499024a83381df983,
+        type: 3}
       propertyPath: MonsterCol
       value: 
       objectReference: {fileID: 6275143645768607211}
     - target: {fileID: 7516043204276526356, guid: 176c886e25ece84499024a83381df983,
         type: 3}
+      propertyPath: cardInTable
+      value: 
+      objectReference: {fileID: 2297874956141867600}
+    - target: {fileID: 7516043204276526356, guid: 176c886e25ece84499024a83381df983,
+        type: 3}
       propertyPath: monsterInTable
       value: 
       objectReference: {fileID: 2297874956141867600}
+    - target: {fileID: 7862012874876364889, guid: 176c886e25ece84499024a83381df983,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862012875108779318, guid: 176c886e25ece84499024a83381df983,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7862012875161484225, guid: 176c886e25ece84499024a83381df983,
         type: 3}
       propertyPath: m_Pivot.x

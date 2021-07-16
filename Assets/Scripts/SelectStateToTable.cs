@@ -4,25 +4,39 @@ using UnityEngine;
 
 public class SelectStateToTable : SelectState
 {
-    public OneCardManager monsterInHand;
+    public OneCardManager cardInHand;
+    public Transform setState;
+    public Transform summonState;
 
     private void Update()
     {
-        if (monsterInHand)
+        if (cardInHand)
         {
-            if (!monsterInHand.toLoop)
-                monsterInHand.GetComponent<DragMonsterOnTable>().AfterStateSelected();
+            if (!cardInHand.toLoop)
+                if (cardInHand.cardAsset.Attack == -1)
+                    cardInHand.GetComponent<DragSpellTrapOnTable>().AfterStateSelected();
+                else
+                    cardInHand.GetComponent<DragMonsterOnTable>().AfterStateSelected();
         }
     }
     // state = 0 - Set
     // state = 1 - Attack
-    public void SetState(int state)
+    public void SetMonsterState(int state)
     {
         if (state == 1)
-            monsterInHand.monsterState = FieldPosition.Attack;
+            cardInHand.cardAsset.MonsterState = FieldPosition.Attack;
         else
-            monsterInHand.monsterState = FieldPosition.Set;
-        monsterInHand.toLoop = false;
+            cardInHand.cardAsset.MonsterState = FieldPosition.Set;
+        cardInHand.toLoop = false;
+    }
+
+    public void SetSpellTrapState(int state)
+    {
+        if (state == 1)
+            cardInHand.cardAsset.SpellTrapState = SpellTrapPosition.FaceUp;
+        else
+            cardInHand.cardAsset.SpellTrapState = SpellTrapPosition.Set;
+        cardInHand.toLoop = false;
     }
 
 }

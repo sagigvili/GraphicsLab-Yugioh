@@ -7,7 +7,7 @@ public class Player : MonoBehaviour, ICharacter
     public int PlayerID;
     public CharacterAsset charAsset;
     public PlayerArea PArea;
-    public SpellEffect PlayerPowerEffect;
+    public SpellTrapEffect PlayerPowerEffect;
 
     public Deck deck;
     public Hand hand;
@@ -110,35 +110,21 @@ public class Player : MonoBehaviour, ICharacter
        
     }
 
-    public void PlayASpellFromHand(int SpellCardUniqueID, int TargetUniqueID)
+    public void PlayASpellFromHand(int UniqueID, int tablePos)
     {
-        // TODO: !!!
-        // if TargetUnique ID < 0 , for example = -1, there is no target.
-        if (TargetUniqueID < 0)
-            PlayASpellFromHand(CardLogic.CardsCreatedThisGame[SpellCardUniqueID], null);
-        else if (TargetUniqueID == ID)
-        {
-            PlayASpellFromHand(CardLogic.CardsCreatedThisGame[SpellCardUniqueID], this);
-        }
-        else if (TargetUniqueID == otherPlayer.ID)
-        {
-            PlayASpellFromHand(CardLogic.CardsCreatedThisGame[SpellCardUniqueID], this.otherPlayer);
-        }
-        else
-        {
-            // target is a monster
-            PlayASpellFromHand(CardLogic.CardsCreatedThisGame[SpellCardUniqueID], MonsterLogic.MonstersCreatedThisGame[TargetUniqueID]);
-        }
-          
+        PlayASpellFromHand(CardLogic.CardsCreatedThisGame[UniqueID], tablePos);
     }
 
-    public void PlayASpellFromHand(CardLogic playedCard, ICharacter target)
+    public void PlayASpellFromHand(CardLogic playedCard, int tablePos)
     {
+        // create a new spell or trap object and add it to Table
+        SpellTrapLogic newSpellTrap = new SpellTrapLogic(this, playedCard.ca);
+        table.SpellsTrapsOnTable.Insert(tablePos, newSpellTrap);
         // no matter what happens, move this card to PlayACardSpot
-        new PlayASpellCardCommand(this, playedCard).AddToQueue();
+        new PlayASpellCardCommand(playedCard, this, tablePos, newSpellTrap.UniqueSpellTrapID).AddToQueue();
         // remove this card from hand
         hand.CardsInHand.Remove(playedCard);
-        // check if this is a monster or a spell
+        HighlightPlayableCards();
     }
 
     public void PlayAMonsterFromHand(int UniqueID, int tablePos)
@@ -236,6 +222,6 @@ public class Player : MonoBehaviour, ICharacter
     {
         //ManaLeft -= 2;
         //usedHeroPowerThisTurn = true;
-        PlayerPowerEffect.ActivateEffect();
+        //PlayerPowerEffect.ActivateEffect();
     }
 }

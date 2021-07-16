@@ -904,6 +904,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1183866819894907771}
     m_Modifications:
+    - target: {fileID: 1356250842899406228, guid: 7eaa34b18bdd2c541a2e4d959eeb1d08,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1356250842899406228, guid: 7eaa34b18bdd2c541a2e4d959eeb1d08,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1356250842899406228, guid: 7eaa34b18bdd2c541a2e4d959eeb1d08,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1356250842899406228, guid: 7eaa34b18bdd2c541a2e4d959eeb1d08,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1356250842899406228, guid: 7eaa34b18bdd2c541a2e4d959eeb1d08,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4699934157933268358, guid: 7eaa34b18bdd2c541a2e4d959eeb1d08,
+        type: 3}
+      propertyPath: cardInHand
+      value: 
+      objectReference: {fileID: 4494493472452051129}
+    - target: {fileID: 5600396053649473900, guid: 7eaa34b18bdd2c541a2e4d959eeb1d08,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMonsterState
+      objectReference: {fileID: 0}
     - target: {fileID: 6081346001584215595, guid: 7eaa34b18bdd2c541a2e4d959eeb1d08,
         type: 3}
       propertyPath: m_IsActive
@@ -1023,6 +1058,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440786266651546627, guid: 7eaa34b18bdd2c541a2e4d959eeb1d08,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMonsterState
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7eaa34b18bdd2c541a2e4d959eeb1d08, type: 3}

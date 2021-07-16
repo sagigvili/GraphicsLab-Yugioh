@@ -38,7 +38,7 @@ public class DragMonsterAttack : DraggingActions {
             // we can drag this card if 
             // a) we can control this our player (this is checked in base.canDrag)
             // b) monster "CanAttackNow" - this info comes from logic part of our code into each monster`s manager script
-            return base.CanDrag && manager.CanAttackNow && manager.monsterState == FieldPosition.Attack;
+            return base.CanDrag && manager.CanAttackNow && manager.cardAsset.MonsterState == FieldPosition.Attack;
         }
     }
 
@@ -86,7 +86,6 @@ public class DragMonsterAttack : DraggingActions {
     {
         Target = null;
         RaycastHit[] hits;
-        // TODO: raycast here anyway, store the results in 
 
         hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition), 30000f);
         foreach (RaycastHit h in hits)

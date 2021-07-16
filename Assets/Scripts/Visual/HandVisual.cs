@@ -117,7 +117,7 @@ public class HandVisual : MonoBehaviour
         {
             // this is a spell: checking for targeted or non-targeted spell
             // TODO Implement a spell card and trap card prefabs
-            card = GameObject.Instantiate(GlobalSettings.Instance.MonsterCardPrefab, position, Quaternion.Euler(eulerAngles)) as GameObject;
+            card = GameObject.Instantiate(GlobalSettings.Instance.SpellTrapCardPrefab, position, Quaternion.Euler(eulerAngles)) as GameObject;
         }
 
         //if (owner == AreaPosition.Top)
@@ -232,7 +232,6 @@ public class HandVisual : MonoBehaviour
     public void PlayASpellFromHand(GameObject CardVisual)
     {
         Command.CommandExecutionComplete();
-        CardVisual.GetComponent<WhereIsTheCardOrMonster>().VisualState = VisualStates.Transition;
         RemoveCard(CardVisual);
 
         CardVisual.transform.SetParent(null);

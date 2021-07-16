@@ -53,6 +53,9 @@ public class HoverPreview: MonoBehaviour
     void OnMouseEnter()
     {
         OverCollider = true;
+        //Debug.Log("PreviewsAllowed " + PreviewsAllowed);
+        //Debug.Log("ToPreview " + ToPreview);
+        //Debug.Log("ThisPreviewEnabled " + ThisPreviewEnabled);
         if (PreviewsAllowed && ThisPreviewEnabled && ToPreview)
             PreviewThisObject();
     }
@@ -60,8 +63,10 @@ public class HoverPreview: MonoBehaviour
     void OnMouseExit()
     {
         OverCollider = false;
-        if (previewGameObject.GetComponentInParent<OneMonsterManager>() && previewGameObject.GetComponentInParent<OneMonsterManager>().monsterState == FieldPosition.Set)
-            previewGameObject.transform.Rotate(0, 0, 90);
+        if (previewGameObject.GetComponentInParent<OneMonsterManager>() && previewGameObject.GetComponentInParent<OneMonsterManager>().cardAsset)
+            if (previewGameObject.GetComponentInParent<OneMonsterManager>().cardAsset.MonsterState == FieldPosition.Set)
+                previewGameObject.transform.Rotate(0, 0, 90);
+
         if (!PreviewingSomeCard())
             StopAllPreviews();
     }
@@ -88,7 +93,7 @@ public class HoverPreview: MonoBehaviour
         // 5) tween to target position
         previewGameObject.transform.localPosition = Vector3.zero;
         previewGameObject.transform.localScale = Vector3.one;
-        if (previewGameObject.GetComponentInParent<OneMonsterManager>() && previewGameObject.GetComponentInParent<OneMonsterManager>().monsterState == FieldPosition.Set)
+        if (previewGameObject.GetComponentInParent<OneMonsterManager>() && previewGameObject.GetComponentInParent<OneMonsterManager>().cardAsset.MonsterState == FieldPosition.Set)
             previewGameObject.transform.Rotate(0, 0, -90);
         previewGameObject.transform.DOLocalMove(TargetPosition, 1f).SetEase(Ease.OutQuint);
         previewGameObject.transform.DOScale(TargetScale, 1f).SetEase(Ease.OutQuint);

@@ -6,9 +6,7 @@ public class Table : MonoBehaviour
 {
     public List<MonsterLogic> MonstersOnTable = new List<MonsterLogic>();
 
-    //public List<SpellLogic> SpellsOnTable = new List<SpellLogic>();
-
-    //public List<TrapLogic> TrapsOnTable = new List<TrapLogic>();
+    public List<SpellTrapLogic> SpellsTrapsOnTable = new List<SpellTrapLogic>();
 
     public bool PlayedACard = false;
 
@@ -24,16 +22,33 @@ public class Table : MonoBehaviour
         MonstersOnTable.Insert(index, monster);
     }
 
-    
 
-    //public void PlaceSpellAt(int index, SpellLogic spell)
-    //{
-    //    SpellsOnTable.Insert(index, spell);
-    //}
 
-    //public void PlaceTrapAt(int index, TrapLogic trap)
-    //{
-    //    TrapsOnTable.Insert(index, trap);
-    //}
+    public void PlaceSpellTrapAt(int index, SpellTrapLogic spelltrap)
+    {
+        SpellsTrapsOnTable.Insert(index, spelltrap);
+    }
+
+    public bool AnyAttackOrDefenceMonsters(Effects effect)
+    {
+        if (effect == Effects.ChangeToAttack)
+        {
+            foreach (MonsterLogic ml in MonstersOnTable)
+            {
+                if (ml.monsterPosition == FieldPosition.Defence)
+                    return true;
+            }
+            return false;
+        } else if (effect == Effects.ChangeToDefence)
+        {
+            foreach (MonsterLogic ml in MonstersOnTable)
+            {
+                if (ml.monsterPosition == FieldPosition.Attack)
+                    return true;
+            }
+            return false;
+        }
+        return false;
+    }
 
 }

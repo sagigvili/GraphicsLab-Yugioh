@@ -28,6 +28,19 @@ public enum MonsterType
     Insect,
     Beast_Warrior
 }
+
+public enum Effects
+{
+    DestoryMonster,
+    DestorySpellTrap,
+    ChangeToAttack,
+    ChangeToDefence,
+    Heal,
+    DirectAttack,
+    Revive,
+    Negate,
+    Draw
+}
 public class CardAsset : ScriptableObject
 {
     // this object will hold the info about the most general card
@@ -45,17 +58,22 @@ public class CardAsset : ScriptableObject
     public int AttacksForOneTurn = 1;
     public MonsterType Type;
     public int Rank;
-    private FieldPosition State;
-    public FieldPosition state
+    public FieldPosition monsterState;
+    public FieldPosition MonsterState
     {
-        get
-        {
-            return State;
-        }
-        set
-        {
-            State = value;
-        }
+        get { return monsterState; }
+        set { monsterState = value; }
+    }
+
+    [Header("Spell and Trap Info")]
+    public SpellOrTrap SpellTrap;
+    public Effects Effect;
+    public int amount = 0;
+    private SpellTrapPosition spellTrapState;
+    public SpellTrapPosition SpellTrapState
+    {
+        get { return spellTrapState; }
+        set { spellTrapState = value; }
     }
 
 }
