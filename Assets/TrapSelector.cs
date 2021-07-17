@@ -10,6 +10,11 @@ public class TrapSelector : MonoBehaviour
     public Effects CurrentEffect;
     private bool isFinished = false;
 
+    public void Start()
+    {
+        getTraps();
+    }
+
     public void getTraps()
     {
         TableVisual tabVis = TurnManager.Instance.whoseTurn.otherPlayer.PArea.tableVisual;
@@ -20,6 +25,7 @@ public class TrapSelector : MonoBehaviour
             if(table.SpellsTrapsOnTable[i].Type == SpellOrTrap.Trap)
             {
                 Traps[i].getTargetDetails(tabVis.getSpellTrapOnTable(i));
+                Traps[i].gameObject.SetActive(true);
                 // TODO: EFFECT BY THE TYPE OF THE TRAP
             }
             
@@ -48,12 +54,12 @@ public class TrapSelector : MonoBehaviour
                 break;
             case Effects.Negate:
                 ((MonsterAttackCommand)Command.CommandQueue.Peek()).canAttack = false;
+                Command.ClearQueue();
                 break;
         }
         panel.gameObject.SetActive(false);
         GameObject newSpellTrapField = GameObject.Instantiate(GlobalSettings.Instance.SpellTrapFieldPrefab, this.transform.position, Quaternion.identity) as GameObject;
         newSpellTrapField.transform.SetParent(this.transform.parent);
-        Destroy(this.gameObject);
         isFinished = true;
     }
 

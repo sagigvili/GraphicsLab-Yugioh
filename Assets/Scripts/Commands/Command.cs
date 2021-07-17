@@ -38,6 +38,12 @@ public class Command
         CommandQueue.Dequeue().StartCommandExecution();
     }
 
+    public static void ClearQueue()
+    {
+        playingQueue = false;
+        CommandQueue.Clear();
+    }
+
     public static bool CardDrawPending()
     {
         foreach (Command c in CommandQueue)
