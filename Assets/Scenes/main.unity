@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.037999906, g: 0.35188067, b: 0.53326225, a: 1}
+  m_IndirectSpecularColor: {r: 0.03800005, g: 0.35188106, b: 0.53326297, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2499,6 +2499,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8b661736ce71c0f45af0e571bb2b422d, type: 2}
   - {fileID: 11400000, guid: 38e6ce7a7522b3b4abe1aa6ee7fe2c19, type: 2}
   - {fileID: 11400000, guid: df8664d9fc08d474695b40b637431495, type: 2}
+  - {fileID: 11400000, guid: 6cc3b5684702f5843bd13244eb24601a, type: 2}
+  - {fileID: 11400000, guid: 6cc3b5684702f5843bd13244eb24601a, type: 2}
+  - {fileID: 11400000, guid: 6cc3b5684702f5843bd13244eb24601a, type: 2}
+  - {fileID: 11400000, guid: 6cc3b5684702f5843bd13244eb24601a, type: 2}
 --- !u!1 &1023437107
 GameObject:
   m_ObjectHideFlags: 0
@@ -3639,6 +3643,8 @@ MonoBehaviour:
   ExplosionPrefab: {fileID: 1362924196}
   TargetSelectorPrefab: {fileID: 1468359182022840108, guid: 2e729c71970adb54d9f71bd9f49e69fb,
     type: 3}
+  TrapSelectorPrefab: {fileID: 9024294149513546852, guid: 1152736c31a7a674e8b85f7fbad869a3,
+    type: 3}
   WhoWins: {fileID: 2097116512}
   EndTurnButton: {fileID: 1023624048}
   GameOverCanvas: {fileID: 1310324298}
@@ -4506,6 +4512,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8b661736ce71c0f45af0e571bb2b422d, type: 2}
   - {fileID: 11400000, guid: 38e6ce7a7522b3b4abe1aa6ee7fe2c19, type: 2}
   - {fileID: 11400000, guid: df8664d9fc08d474695b40b637431495, type: 2}
+  - {fileID: 11400000, guid: 6cc3b5684702f5843bd13244eb24601a, type: 2}
+  - {fileID: 11400000, guid: 6cc3b5684702f5843bd13244eb24601a, type: 2}
+  - {fileID: 11400000, guid: 6cc3b5684702f5843bd13244eb24601a, type: 2}
+  - {fileID: 11400000, guid: 6cc3b5684702f5843bd13244eb24601a, type: 2}
 --- !u!114 &2097116512 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7735333443496132955, guid: 8724191e7d031fb4f98c80978e87376f,

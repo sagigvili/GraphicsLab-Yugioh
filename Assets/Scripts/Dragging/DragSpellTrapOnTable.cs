@@ -51,9 +51,11 @@ public class DragSpellTrapOnTable : DraggingActions {
         {
             Effects effect = GetComponent<OneCardManager>().cardAsset.Effect;
             transform.Find("StatesBalloon").transform.Find("Panel").gameObject.SetActive(true);
-            if (AreThereSetMonstersInField() && (effect == Effects.DestoryMonster || effect == Effects.ChangeToDefence || effect == Effects.ChangeToAttack))
+            if (AreThereNoSetMonstersInField() && (effect == Effects.DestoryMonster || effect == Effects.ChangeToDefence || effect == Effects.ChangeToAttack))
                 transform.Find("StatesBalloon").transform.Find("Panel").GetComponent<SelectStateToTable>().summonState.gameObject.SetActive(false);
             if (playerOwner.otherPlayer.table.SpellsTrapsOnTable.Count == 0 && effect == Effects.DestorySpellTrap)
+                transform.Find("StatesBalloon").transform.Find("Panel").GetComponent<SelectStateToTable>().summonState.gameObject.SetActive(false);
+            if (GetComponent<OneCardManager>().cardAsset.SpellTrap == SpellOrTrap.Trap)
                 transform.Find("StatesBalloon").transform.Find("Panel").GetComponent<SelectStateToTable>().summonState.gameObject.SetActive(false);
             manager.toLoop = true;
         }
@@ -80,7 +82,7 @@ public class DragSpellTrapOnTable : DraggingActions {
         playerOwner.PlayASpellFromHand(GetComponent<IDHolder>().UniqueID, tablePos);
     }
 
-    public bool AreThereSetMonstersInField()
+    public bool AreThereNoSetMonstersInField()
     {
         if (playerOwner.otherPlayer.table.MonstersOnTable.Count == 0)
             return true;

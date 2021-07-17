@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class MonsterAttackCommand : Command 
 {
     // position of creature on enemy`s table that will be attacked
@@ -10,6 +11,7 @@ public class MonsterAttackCommand : Command
     private int TargetHPAfter;
     private int DamageTakenByAttacker;
     private int DamageTakenByTarget;
+    public bool canAttack = true;
 
     public MonsterAttackCommand(int targetID, int attackerID, int damageTakenByAttacker, int damageTakenByTarget, int targetHPAfter)
     {
@@ -22,8 +24,17 @@ public class MonsterAttackCommand : Command
 
     public override void StartCommandExecution()
     {
-        GameObject Attacker = IDHolder.GetGameObjectWithID(AttackerUniqueID);
 
-        Attacker.GetComponent<MonsterAttackVisual>().AttackTarget(TargetUniqueID, DamageTakenByTarget, DamageTakenByAttacker, TargetHPAfter);
+        if (canAttack)
+        {
+            GameObject Attacker = IDHolder.GetGameObjectWithID(AttackerUniqueID);
+
+            Attacker.GetComponent<MonsterAttackVisual>().AttackTarget(TargetUniqueID, DamageTakenByTarget, DamageTakenByAttacker, TargetHPAfter);
+        }
+        else
+        {
+            CommandExecutionComplete();
+        }
+
     }
 }

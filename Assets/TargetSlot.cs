@@ -8,6 +8,7 @@ public class TargetSlot : MonoBehaviour
     public Transform target;
     public Image targetImage;
     public Text targetName;
+    private Effects effect;
 
     public void getTargetDetails(GameObject g)
     {
@@ -15,6 +16,12 @@ public class TargetSlot : MonoBehaviour
         OneCardManager targetManager = g.transform.GetComponentInChildren<OneCardManager>();
         targetImage.sprite = targetManager.CardImageFront.sprite;
         targetName.text = targetManager.cardAsset.Name;
+        effect = targetManager.cardAsset.Effect;
+    }
+
+    public Effects getEffect()
+    {
+        return effect;
     }
 
 }

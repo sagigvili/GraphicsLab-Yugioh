@@ -25,6 +25,7 @@ public class GlobalSettings: MonoBehaviour
     public GameObject DamageEffectPrefab;
     public GameObject ExplosionPrefab;
     public GameObject TargetSelectorPrefab;
+    public GameObject TrapSelectorPrefab;
     public Text WhoWins;
     [Header("Other")]
     public Button EndTurnButton;

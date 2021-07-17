@@ -103,6 +103,10 @@ public class MonsterLogic : ICharacter
     public int AttackMonster (MonsterLogic target)
     {
         AttacksLeftThisTurn--;
+        if (IsThereAnyTrapOnOpponentsField())
+        {
+            new ActivateTrapCommand().AddToQueue();
+        }
         // calculate the values so that the monster does not fire the DIE command before the Attack command is sent
         if (target.monsterPosition == FieldPosition.Set)
         {
@@ -177,6 +181,14 @@ public class MonsterLogic : ICharacter
         
        MonsterLogic target = MonsterLogic.MonstersCreatedThisGame[uniqueMonsterID];
        return AttackMonster(target);
+    }
+
+    public bool IsThereAnyTrapOnOpponentsField()
+    {
+        foreach (SpellTrapLogic st in TurnManager.Instance.whoseTurn.otherPlayer.table.SpellsTrapsOnTable)
+            if (st.Type == SpellOrTrap.Trap)
+                return true;
+        return false;
     }
 
     // STATIC For managing IDs
