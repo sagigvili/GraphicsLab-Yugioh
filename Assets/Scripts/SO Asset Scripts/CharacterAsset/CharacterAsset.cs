@@ -7,5 +7,5 @@ public class CharacterAsset : ScriptableObject
 	public string Name;
 	public int MaxHealth = 4000;
 	// TODO public string CharPowerName;
-	public Sprite AvatarImage;
+	public GameObject AvatarModel;
 }

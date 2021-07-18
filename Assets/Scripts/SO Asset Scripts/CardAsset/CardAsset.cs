@@ -26,7 +26,8 @@ public enum MonsterType
     Zombie,
     Winged_Beast,
     Insect,
-    Beast_Warrior
+    Beast_Warrior,
+    Aqua
 }
 
 public enum Effects

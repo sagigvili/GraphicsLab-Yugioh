@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87e63ff8efc667841a720372373b65e0, type: 3}
+  m_Name: Swordsman of Landstar
+  m_EditorClassIdentifier: 
+  Name: Swordsman of Landstar
+  characterAsset: {fileID: 0}
+  Description: "An amateur with a sword, this fairy warrior relies on its mysterious
+    powers.\r"
+  CardImage: {fileID: 21300000, guid: 9a15f19c53a5b8240b242b14b6dffb1d, type: 3}
+  Attack: 500
+  Defence: 1200
+  Attribute: 5
+  AttacksForOneTurn: 1
+  Type: 5
+  Rank: 3
+  monsterState: 0
+  SpellTrap: 0
+  Effect: 0
+  amount: 0

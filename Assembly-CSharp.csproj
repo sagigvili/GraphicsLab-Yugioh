@@ -400,6 +400,12 @@
     <Reference Include="UnityEditor">
       <HintPath>F:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>F:/Repos/GraphicsLab-Yugioh/Assets/Piglet/Dependencies/Json.NET/Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>F:/Repos/GraphicsLab-Yugioh/Assets/Piglet/Dependencies/SharpZipLib/ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="DOTween">
       <HintPath>F:/Repos/GraphicsLab-Yugioh/Assets/Scripts/DOTween/DOTween.dll</HintPath>
     </Reference>
@@ -788,7 +794,16 @@
       <HintPath>F:/Repos/GraphicsLab-Yugioh/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup></ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="PigletEditor.csproj">
+      <Project>{17693178-3FD7-CAB0-E4B7-22425E16490C}</Project>
+      <Name>PigletEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Piglet.csproj">
+      <Project>{FA3DF80F-9EAD-913E-E95A-29FB1D23C367}</Project>
+      <Name>Piglet</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

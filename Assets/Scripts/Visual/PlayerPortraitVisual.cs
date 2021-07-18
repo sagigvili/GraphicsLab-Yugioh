@@ -11,8 +11,6 @@ public class PlayerPortraitVisual : MonoBehaviour {
     [Header("Text Component References")]
     //public Text NameText;
     public TextMeshPro HealthText;
-    [Header("Image References")]
-    public Image PortraitImage;
 
     private void Awake()
     {
@@ -22,7 +20,11 @@ public class PlayerPortraitVisual : MonoBehaviour {
     public void ApplyLookFromAsset()
     {
         HealthText.text = charAsset.MaxHealth.ToString();
-        PortraitImage.sprite = charAsset.AvatarImage;
+        if (charAsset.Name == "Seto Kaiba")
+            this.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+        else if (charAsset.Name == "Yami Yugi")
+            this.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
+
     }
 
     public void TakeDamage(int amount, int healthAfter)

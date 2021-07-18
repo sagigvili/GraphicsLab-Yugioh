@@ -265,6 +265,12 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>F:/Repos/GraphicsLab-Yugioh/Assets/Piglet/Dependencies/Json.NET/Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>F:/Repos/GraphicsLab-Yugioh/Assets/Piglet/Dependencies/SharpZipLib/ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="DOTween">
       <HintPath>F:/Repos/GraphicsLab-Yugioh/Assets/Scripts/DOTween/DOTween.dll</HintPath>
     </Reference>
@@ -678,6 +684,14 @@
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{A0D1E66B-AE70-2511-164C-64A15BFE8BB5}</Project>
       <Name>Assembly-CSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="PigletEditor.csproj">
+      <Project>{17693178-3FD7-CAB0-E4B7-22425E16490C}</Project>
+      <Name>PigletEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Piglet.csproj">
+      <Project>{FA3DF80F-9EAD-913E-E95A-29FB1D23C367}</Project>
+      <Name>Piglet</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

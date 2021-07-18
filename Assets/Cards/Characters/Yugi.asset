@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Yami Yugi
   MaxHealth: 4000
-  AvatarImage: {fileID: 21300000, guid: 6e401fb66fb40574889fb35db30e53ee, type: 3}
+  AvatarModel: {fileID: 919132149155446097, guid: 790e1a0b3782a5c4e8c36a20bd45f7db,
+    type: 3}
