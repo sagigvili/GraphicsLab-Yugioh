@@ -11,6 +11,7 @@ public class PlayerPortraitVisual : MonoBehaviour {
     [Header("Text Component References")]
     //public Text NameText;
     public TextMeshPro HealthText;
+    public GameObject Model;
 
     private void Awake()
     {
@@ -20,10 +21,7 @@ public class PlayerPortraitVisual : MonoBehaviour {
     public void ApplyLookFromAsset()
     {
         HealthText.text = charAsset.MaxHealth.ToString();
-        if (charAsset.Name == "Seto Kaiba")
-            this.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
-        else if (charAsset.Name == "Yami Yugi")
-            this.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
+        Model.SetActive(true);
 
     }
 

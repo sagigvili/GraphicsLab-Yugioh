@@ -24,24 +24,22 @@ public class MonsterAttackVisual : MonoBehaviour
         w.VisualState = VisualStates.Transition;
         transform.DOMove(target.transform.position, 0.5f).SetLoops(2, LoopType.Yoyo).SetEase(Ease.InCubic).OnComplete(() =>
             {
-                if(damageTakenByTarget>0)
+                if (targetUniqueID == GlobalSettings.Instance.LowPlayer.PlayerID || targetUniqueID == GlobalSettings.Instance.TopPlayer.PlayerID)
+                {
+                    // target is a player
+                    target.GetComponent<PlayerPortraitVisual>().Model.GetComponent<Animator>().SetTrigger("GetDamaged");
+                    target.GetComponent<PlayerPortraitVisual>().HealthText.text = targetHPAfter.ToString();
+                }
+
+                 
+                if (damageTakenByTarget>0)
                     DamageEffect.CreateDamageEffect(target.transform.position, damageTakenByTarget);
                 if(damageTakenByAttacker>0)
                     DamageEffect.CreateDamageEffect(transform.position, damageTakenByAttacker);
 
 
                 if (targetHPAfter < 0)
-                {
                     targetHPAfter = 0;
-                }
-                if (targetUniqueID == GlobalSettings.Instance.LowPlayer.PlayerID || targetUniqueID == GlobalSettings.Instance.TopPlayer.PlayerID)
-                {
-                    // target is a player
-         
-                    target.GetComponent<PlayerPortraitVisual>().HealthText.text = targetHPAfter.ToString();
-                    
-
-                }
 
                 w.SetTableSortingOrder();
                 w.VisualState = tempState;
@@ -52,5 +50,5 @@ public class MonsterAttackVisual : MonoBehaviour
                 //Command.CommandExecutionComplete();
             });
     }
-        
+
 }

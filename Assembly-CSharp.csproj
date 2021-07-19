@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Assets\EffectOperator.cs" />
     <Compile Include="Assets\ExitBalloon.cs" />
+    <Compile Include="Assets\Kevin Iglesias\Archer Animations\Scripts\BowLoadScript.cs" />
     <Compile Include="Assets\Scripts\Commands\ActivateTrapCommand.cs" />
     <Compile Include="Assets\Scripts\Commands\Command.cs" />
     <Compile Include="Assets\Scripts\Commands\DealDamageCommand.cs" />
@@ -208,6 +209,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\Scripts\DOTween\DOTween50.xml" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\Shinabro\Platform_Animation\Readme.txt" />
     <None Include="Assets\Scripts\DOTween\readme.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />

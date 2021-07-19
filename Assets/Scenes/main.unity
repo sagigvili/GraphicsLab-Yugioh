@@ -2692,6 +2692,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1039717335 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9031950629712053835, guid: 8df13aaee2aa499489f7a303c2a47f1b,
+    type: 3}
+  m_PrefabInstance: {fileID: 5941737233262629196}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1083562587 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000010283960674, guid: baf8269037814fc4bab81e1480f5e42a,
@@ -4055,6 +4061,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5941737231769647755, guid: 8df13aaee2aa499489f7a303c2a47f1b,
         type: 3}
+      propertyPath: Model
+      value: 
+      objectReference: {fileID: 2126856873}
+    - target: {fileID: 5941737231769647755, guid: 8df13aaee2aa499489f7a303c2a47f1b,
+        type: 3}
       propertyPath: charAsset
       value: 
       objectReference: {fileID: 11400000, guid: cc4d5fc3e99d4f2449327c995150680e,
@@ -4577,6 +4588,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayedACard: 0
   InAttackPhase: 0
+--- !u!1 &2126856873 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1322559172741891969, guid: 8df13aaee2aa499489f7a303c2a47f1b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1735710100}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &36033330088626460
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5333,6 +5350,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player2
       objectReference: {fileID: 0}
+    - target: {fileID: 5941737231769647755, guid: 8df13aaee2aa499489f7a303c2a47f1b,
+        type: 3}
+      propertyPath: Model
+      value: 
+      objectReference: {fileID: 1039717335}
     - target: {fileID: 5941737231769647755, guid: 8df13aaee2aa499489f7a303c2a47f1b,
         type: 3}
       propertyPath: charAsset

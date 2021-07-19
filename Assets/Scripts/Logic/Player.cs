@@ -13,7 +13,6 @@ public class Player : MonoBehaviour, ICharacter
     public Hand hand;
     public Table table;
 
-    //private int bonusManaThisTurn = 0;
     public bool usedPlayerPowerThisTurn = false;
 
     public int ID
@@ -72,9 +71,10 @@ public class Player : MonoBehaviour, ICharacter
     }
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.D))
         {
-            DrawACard();
+            PArea.Portrait.Model.GetComponent<Animator>().SetTrigger("GetDamaged");
         }
 
     }
