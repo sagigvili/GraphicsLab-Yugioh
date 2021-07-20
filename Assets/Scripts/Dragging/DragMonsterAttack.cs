@@ -112,6 +112,10 @@ public class DragMonsterAttack : DraggingActions {
 
         if (Target != null && TurnManager.Instance.whoseTurn.table.InAttackPhase)
         {
+            if (IsThereAnyTrapOnOpponentsField())
+            {
+                new ActivateTrapCommand().AddToQueue();
+            }
             int targetID = Target.GetComponent<IDHolder>().UniqueID;
             if (targetID == GlobalSettings.Instance.LowPlayer.PlayerID || targetID == GlobalSettings.Instance.TopPlayer.PlayerID)
             {
@@ -176,4 +180,14 @@ public class DragMonsterAttack : DraggingActions {
     {
         return true;
     }
+
+    public bool IsThereAnyTrapOnOpponentsField()
+    {
+        foreach (SpellTrapLogic st in TurnManager.Instance.whoseTurn.otherPlayer.table.SpellsTrapsOnTable)
+            if (st.Type == SpellOrTrap.Trap)
+                return true;
+        return false;
+    }
+
 }
+

@@ -44,7 +44,7 @@ public class StatesChanger : MonoBehaviour
 
     private void ShowSelector()
     {
-        Debug.Log(this.transform.parent);
+        
         if (this.transform.parent.name.StartsWith("MonsterField")) {
             
             if (((SelectStateOnTable)panel).cardInTable.cardAsset.MonsterState == FieldPosition.Attack)
@@ -73,8 +73,6 @@ public class StatesChanger : MonoBehaviour
             {
                 if (TurnManager.Instance.whoseTurn.otherPlayer.PArea.tableVisual.getMonstersOnTableCount() > 0)
                 {
-                    Debug.Log("GOT HERE!");
-                    Debug.Log(TurnManager.Instance.whoseTurn.otherPlayer.table.AnyAttackOrDefenceMonsters(effect));
                     if (((effect == Effects.ChangeToAttack || effect == Effects.ChangeToDefence) && TurnManager.Instance.whoseTurn.otherPlayer.table.AnyAttackOrDefenceMonsters(effect)) || effect == Effects.DestoryMonster)
                     {
                         DefenceButton.gameObject.SetActive(false);

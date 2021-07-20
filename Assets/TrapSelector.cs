@@ -36,11 +36,11 @@ public class TrapSelector : MonoBehaviour
 
     public void ActivateEffect(TargetSlot t)
     {
-        Transform target = t.target;
-        int targetID = target.gameObject.GetComponent<IDHolder>().UniqueID;
+        Transform trap = t.target;
+        int trapID = trap.gameObject.GetComponent<IDHolder>().UniqueID;
         switch (t.getEffect())
         {
-            case Effects.DestoryMonster:
+/*            case Effects.DestoryMonster:
                 MonsterLogic targetedMonster = MonsterLogic.MonstersCreatedThisGame[targetID];
                 targetedMonster.Die();
                 GameObject newMonsterOppField = GameObject.Instantiate(GlobalSettings.Instance.MonsterFieldPrefab, target.parent.transform.position, Quaternion.identity) as GameObject;
@@ -51,16 +51,17 @@ public class TrapSelector : MonoBehaviour
                 targetedSpellTrap.Die();
                 GameObject newSpellOppTrapField = GameObject.Instantiate(GlobalSettings.Instance.SpellTrapFieldPrefab, target.parent.transform.position, Quaternion.identity) as GameObject;
                 newSpellOppTrapField.transform.SetParent(target.parent.transform);
-                break;
+                break;*/
             case Effects.Negate:
                 ((MonsterAttackCommand)Command.CommandQueue.Peek()).canAttack = false;
                 Command.ClearQueue();
                 break;
         }
         panel.gameObject.SetActive(false);
-        GameObject newSpellTrapField = GameObject.Instantiate(GlobalSettings.Instance.SpellTrapFieldPrefab, this.transform.position, Quaternion.identity) as GameObject;
-        newSpellTrapField.transform.SetParent(this.transform.parent);
+        GameObject newSpellTrapField = GameObject.Instantiate(GlobalSettings.Instance.SpellTrapFieldPrefab, trap.position, Quaternion.identity) as GameObject;
+        newSpellTrapField.transform.SetParent(trap.parent);
         isFinished = true;
+        TurnManager.Instance.whoseTurn.otherPlayer.PArea.tableVisual.RemoveSpellTrapWithID(trapID);
     }
 
     public bool getFinished()

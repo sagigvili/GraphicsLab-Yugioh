@@ -73,7 +73,8 @@ public class EffectOperator : MonoBehaviour
         panel.gameObject.SetActive(false);
         GameObject newSpellTrapField = GameObject.Instantiate(GlobalSettings.Instance.SpellTrapFieldPrefab, this.transform.position, Quaternion.identity) as GameObject;
         newSpellTrapField.transform.SetParent(this.transform.parent);
-        Destroy(this.gameObject);
+        int spellID = this.gameObject.GetComponent<IDHolder>().UniqueID;
+        TurnManager.Instance.whoseTurn.otherPlayer.PArea.tableVisual.RemoveSpellTrapWithID(spellID);
     }
 
     /// <summary>
