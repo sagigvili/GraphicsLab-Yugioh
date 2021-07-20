@@ -39,7 +39,9 @@ public class Player : MonoBehaviour, ICharacter
         {
             health = value;
             if (value <= 0)
-                Die(); 
+            {
+                Die();
+            }
         }
     }
 
@@ -74,7 +76,7 @@ public class Player : MonoBehaviour, ICharacter
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            PArea.Portrait.Model.GetComponent<Animator>().SetTrigger("GetDamaged");
+            PArea.Portrait.Model.GetComponent<Animator>().SetTrigger("Lose");
         }
 
     }
@@ -150,16 +152,17 @@ public class Player : MonoBehaviour, ICharacter
         // block both players from taking new moves 
         PArea.ControlsON = false;
         otherPlayer.PArea.ControlsON = false;
-        if (PlayerID == 0)
+        
+        if (PlayerID == 1)
         {
             GlobalSettings.Instance.WhoWins.text = "Player 2 Wins";
+
         } else
         {
             GlobalSettings.Instance.WhoWins.text = "Player 1 Wins";
+            
         }
-        
         new GameOverCommand(this).AddToQueue();
-
 
     }
 

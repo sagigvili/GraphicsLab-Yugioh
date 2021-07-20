@@ -88,6 +88,7 @@ public class DragMonsterAttack : DraggingActions {
         RaycastHit[] hits;
 
         hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition), 30000f);
+
         foreach (RaycastHit h in hits)
         {
 

@@ -22,8 +22,12 @@ public class MonsterAttackVisual : MonoBehaviour
         w.BringToFront();
         VisualStates tempState = w.VisualState;
         w.VisualState = VisualStates.Transition;
+        TurnManager.Instance.whoseTurn.PArea.Portrait.Model.GetComponent<Animator>().SetTrigger("Attack");
         transform.DOMove(target.transform.position, 0.5f).SetLoops(2, LoopType.Yoyo).SetEase(Ease.InCubic).OnComplete(() =>
             {
+                if (targetHPAfter < 0)
+                    targetHPAfter = 0;
+
                 if (targetUniqueID == GlobalSettings.Instance.LowPlayer.PlayerID || targetUniqueID == GlobalSettings.Instance.TopPlayer.PlayerID)
                 {
                     // target is a player
@@ -38,8 +42,7 @@ public class MonsterAttackVisual : MonoBehaviour
                     DamageEffect.CreateDamageEffect(transform.position, damageTakenByAttacker);
 
 
-                if (targetHPAfter < 0)
-                    targetHPAfter = 0;
+
 
                 w.SetTableSortingOrder();
                 w.VisualState = tempState;
