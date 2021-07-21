@@ -36,9 +36,9 @@ public class AITurnMaker: TurnMaker {
         if (Command.CardDrawPending())
             return true;
         else if (attackFirst)
-            return AttackWithAMonster() || PlayACardFromHand() || UsePlayerPower();
+            return AttackWithAMonster() || PlayACardFromHand();
         else 
-            return PlayACardFromHand() || AttackWithAMonster() || UsePlayerPower();
+            return PlayACardFromHand() || AttackWithAMonster();
     }
 
     bool PlayACardFromHand()
@@ -47,16 +47,23 @@ public class AITurnMaker: TurnMaker {
         {
             if (c.CanBePlayed)
             {
+                if(c.ca.Attack != -1)
+                {
+                    // it is a monster card
+                    int tablePos = p.PArea.tableVisual.getMonstersOnTableCount();
+                    p.PlayAMonsterFromHand(c, tablePos);
+                    InsertDelay(1.5f);
+                    return true;
+                }
 
             }
-            //Debug.Log("Card: " + c.ca.name + " can NOT be played");
         }
         return false;
     }
 
-    bool UsePlayerPower()
+    bool UseHeroPower()
     {
-        if (!p.usedPlayerPowerThisTurn)
+        if (!p.usedPlayerPower)
         {
             // use HP
             p.UsePlayerPower();
@@ -73,7 +80,7 @@ public class AITurnMaker: TurnMaker {
         {
             if (cl.AttacksLeftThisTurn > 0)
             {
-                // attack a random target with a monster
+                // attack a random target with a creature
                 if (p.otherPlayer.table.MonstersOnTable.Count > 0)
                 {
                     int index = Random.Range(0, p.otherPlayer.table.MonstersOnTable.Count);
@@ -84,7 +91,7 @@ public class AITurnMaker: TurnMaker {
                     cl.GoFace();
                 
                 InsertDelay(1f);
-                //Debug.Log("AI attacked with monster");
+                //Debug.Log("AI attacked with creature");
                 return true;
             }
         }

@@ -31,18 +31,21 @@ public class MonsterAttackVisual : MonoBehaviour
                 if (targetUniqueID == GlobalSettings.Instance.LowPlayer.PlayerID || targetUniqueID == GlobalSettings.Instance.TopPlayer.PlayerID)
                 {
                     // target is a player
-                    target.GetComponent<PlayerPortraitVisual>().Model.GetComponent<Animator>().SetTrigger("GetDamaged");
                     target.GetComponent<PlayerPortraitVisual>().HealthText.text = targetHPAfter.ToString();
                 }
 
                  
-                if (damageTakenByTarget>0)
+                if (damageTakenByTarget > 0)
+                {
+                    TurnManager.Instance.whoseTurn.otherPlayer.PArea.Portrait.Model.GetComponent<Animator>().SetTrigger("GetDamaged");
                     DamageEffect.CreateDamageEffect(target.transform.position, damageTakenByTarget);
+                }
+                    
                 if(damageTakenByAttacker>0)
+                {
+                    TurnManager.Instance.whoseTurn.PArea.Portrait.Model.GetComponent<Animator>().SetTrigger("GetDamaged");
                     DamageEffect.CreateDamageEffect(transform.position, damageTakenByAttacker);
-
-
-
+                }
 
                 w.SetTableSortingOrder();
                 w.VisualState = tempState;
@@ -50,7 +53,6 @@ public class MonsterAttackVisual : MonoBehaviour
                 Sequence s = DOTween.Sequence();
                 s.AppendInterval(1f);
                 s.OnComplete(Command.CommandExecutionComplete);
-                //Command.CommandExecutionComplete();
             });
     }
 

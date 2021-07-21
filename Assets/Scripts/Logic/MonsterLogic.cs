@@ -100,7 +100,7 @@ public class MonsterLogic : ICharacter
         owner.otherPlayer.Health -= Attack;
     }
 
-    public int AttackMonster (MonsterLogic target)
+    public void AttackMonster(MonsterLogic target)
     {
         AttacksLeftThisTurn--;
   
@@ -109,19 +109,21 @@ public class MonsterLogic : ICharacter
         {
             GameObject target_visual = IDHolder.GetGameObjectWithID(target.UniqueMonsterID);
             target_visual.transform.DOScaleZ(1, 1f);
-            target.MonsterPosition = FieldPosition.Defence;
+            target.monsterPosition = FieldPosition.Defence;
+            Transform monsterInfo = target_visual.transform.GetChild(5);
+            monsterInfo.gameObject.SetActive(true);
+            if (TurnManager.Instance.whoseTurn.otherPlayer.PArea.tableVisual.owner == AreaPosition.Top)
+                monsterInfo.localPosition = new Vector3(monsterInfo.localPosition.x, -1355.72f, monsterInfo.localPosition.z);
         }
-        if (target.MonsterPosition == FieldPosition.Defence)
+        if (target.monsterPosition == FieldPosition.Defence)
         {
             if (Attack > target.Defence)
             {
                 new MonsterAttackCommand(target.UniqueMonsterID, UniqueMonsterID, 0, 0, owner.otherPlayer.Health).AddToQueue();
                 target.Die();
-                return 1;
             } else if ( Attack == target.Defence)
             {
                 new MonsterAttackCommand(target.UniqueMonsterID, UniqueMonsterID, 0, 0, owner.otherPlayer.Health).AddToQueue();
-                return 0;
             } else
             {
                 new MonsterAttackCommand(target.UniqueMonsterID, UniqueMonsterID, target.Defence - Attack, 0, owner.otherPlayer.Health).AddToQueue();
@@ -131,7 +133,6 @@ public class MonsterLogic : ICharacter
                     owner.Health = 0;
                 }
                 owner.PArea.Portrait.HealthText.text = owner.Health.ToString();
-                return 3;
             }
             
 
@@ -147,14 +148,12 @@ public class MonsterLogic : ICharacter
                     owner.otherPlayer.Health = 0;
                 }
                 owner.otherPlayer.PArea.Portrait.HealthText.text = owner.otherPlayer.Health.ToString();
-                return 1;
             }
             else if (Attack == target.Attack)
             {
                 new MonsterAttackCommand(target.UniqueMonsterID, UniqueMonsterID, 0, 0, owner.otherPlayer.Health).AddToQueue();
                 Die();
                 target.Die();
-                return 2;
             }
             else
             {
@@ -167,17 +166,15 @@ public class MonsterLogic : ICharacter
                     owner.Health = 0;
                 }
                 owner.PArea.Portrait.HealthText.text = owner.Health.ToString();
-                return 3;
             }
         }
 
     }
 
-    public int AttackMonsterWithID(int uniqueMonsterID)
+    public void AttackMonsterWithID(int uniqueMonsterID)
     {
-        
-       MonsterLogic target = MonsterLogic.MonstersCreatedThisGame[uniqueMonsterID];
-       return AttackMonster(target);
+       MonsterLogic target = MonstersCreatedThisGame[uniqueMonsterID];
+       AttackMonster(target);
     }
 
   

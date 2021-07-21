@@ -43,38 +43,30 @@ public class EffectOperator : MonoBehaviour
 
     public void ActivateEffect(TargetSlot t)
     {
-        Transform target = t.target;
-        int targetID = target.gameObject.GetComponent<IDHolder>().UniqueID;
+        int targetID = t.target.gameObject.GetComponent<IDHolder>().UniqueID;
         switch (CurrentEffect)
         {
             case Effects.DestoryMonster:
                 MonsterLogic targetedMonster = MonsterLogic.MonstersCreatedThisGame[targetID];
                 targetedMonster.Die();
-                GameObject newMonsterOppField = GameObject.Instantiate(GlobalSettings.Instance.MonsterFieldPrefab, target.parent.transform.position, Quaternion.identity) as GameObject;
-                newMonsterOppField.transform.SetParent(target.parent.transform);
                 break;
             case Effects.DestorySpellTrap:
                 SpellTrapLogic targetedSpellTrap = SpellTrapLogic.SpellTrapsCreatedThisGame[targetID];
                 targetedSpellTrap.Die();
-                GameObject newSpellOppTrapField = GameObject.Instantiate(GlobalSettings.Instance.SpellTrapFieldPrefab, target.parent.transform.position, Quaternion.identity) as GameObject;
-                newSpellOppTrapField.transform.SetParent(target.parent.transform);
                 break;
             case Effects.ChangeToAttack:
                 MonsterLogic.MonstersCreatedThisGame[targetID].monsterPosition = FieldPosition.Attack;
                 //t.transform.GetComponent<OneMonsterManager>().cardAsset.MonsterState = FieldPosition.Defence;
-                ToAttackPosition(target);
+                StartCoroutine(ToAttackPosition(t.target.GetComponent<OneMonsterManager>().CardImageFront.transform.parent));
                 break;
             case Effects.ChangeToDefence:
+                Debug.Log(t.target.GetComponent<OneMonsterManager>().cardAsset.name);
                 MonsterLogic.MonstersCreatedThisGame[targetID].monsterPosition = FieldPosition.Defence;
                 //t.transform.GetComponent<OneMonsterManager>().cardAsset.MonsterState = FieldPosition.Attack;
-                ToDefencePosition(target);
+                StartCoroutine(ToDefencePosition(t.target.GetComponent<OneMonsterManager>().CardImageFront.transform.parent));
                 break;
         }
         panel.gameObject.SetActive(false);
-        GameObject newSpellTrapField = GameObject.Instantiate(GlobalSettings.Instance.SpellTrapFieldPrefab, this.transform.position, Quaternion.identity) as GameObject;
-        newSpellTrapField.transform.SetParent(this.transform.parent);
-        int spellID = this.gameObject.GetComponent<IDHolder>().UniqueID;
-        TurnManager.Instance.whoseTurn.otherPlayer.PArea.tableVisual.RemoveSpellTrapWithID(spellID);
     }
 
     /// <summary>

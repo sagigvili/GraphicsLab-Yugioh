@@ -58,10 +58,8 @@ public class TrapSelector : MonoBehaviour
                 break;
         }
         panel.gameObject.SetActive(false);
-        GameObject newSpellTrapField = GameObject.Instantiate(GlobalSettings.Instance.SpellTrapFieldPrefab, trap.position, Quaternion.identity) as GameObject;
-        newSpellTrapField.transform.SetParent(trap.parent);
         isFinished = true;
-        TurnManager.Instance.whoseTurn.otherPlayer.PArea.tableVisual.RemoveSpellTrapWithID(trapID);
+        SpellTrapLogic.SpellTrapsCreatedThisGame[trap.gameObject.GetComponent<IDHolder>().UniqueID].Die();
     }
 
     public bool getFinished()

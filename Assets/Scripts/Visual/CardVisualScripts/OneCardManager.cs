@@ -10,6 +10,7 @@ public class OneCardManager : MonoBehaviour {
     [Header("Image References")]
     public Image CardImageFront;
     public Image CardImageBack;
+    public bool isFieldOnly = true; // Indicates whether it's just an empty field or actually a card on field
 
     void Awake()
     {

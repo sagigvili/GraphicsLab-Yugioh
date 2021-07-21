@@ -51,7 +51,7 @@ public class DragSpellTrapOnTable : DraggingActions {
         {
             Effects effect = GetComponent<OneCardManager>().cardAsset.Effect;
             transform.Find("StatesBalloon").transform.Find("Panel").gameObject.SetActive(true);
-            if (AreThereNoSetMonstersInField() && (effect == Effects.DestoryMonster || effect == Effects.ChangeToDefence || effect == Effects.ChangeToAttack))
+            if (AreThereNoSetMonstersInField() && (effect == Effects.DestoryMonster || ((effect == Effects.ChangeToAttack || effect == Effects.ChangeToDefence) && TurnManager.Instance.whoseTurn.otherPlayer.table.AnyAttackOrDefenceMonsters(effect))))
                 transform.Find("StatesBalloon").transform.Find("Panel").GetComponent<SelectStateToTable>().summonState.gameObject.SetActive(false);
             if (playerOwner.otherPlayer.table.SpellsTrapsOnTable.Count == 0 && effect == Effects.DestorySpellTrap)
                 transform.Find("StatesBalloon").transform.Find("Panel").GetComponent<SelectStateToTable>().summonState.gameObject.SetActive(false);

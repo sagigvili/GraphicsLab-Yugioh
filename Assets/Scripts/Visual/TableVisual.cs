@@ -46,7 +46,13 @@ public class TableVisual : MonoBehaviour
 
     public int getMonstersOnTableCount()
     {
-        return MonstersOnTable.Count;
+        for(int i=0; i < 3; i++)
+        {
+            if (MonstersSlots.GetAChildInTable(i).gameObject.GetComponent<OneMonsterManager>().isFieldOnly)
+                return i;
+        }
+
+        return 0;
     }
 
     public GameObject getMonsterOnTable(int index)
@@ -56,7 +62,10 @@ public class TableVisual : MonoBehaviour
 
     public int getSpellsTrapsOnTableCount()
     {
-        return SpellsTrapsOnTable.Count;
+        for (int i = 0; i < 3; i++)
+            if (SpellsTrapsSlots.GetAChildInTable(i).GetComponent<OneCardManager>().isFieldOnly)
+                return i;
+        return 0;
     }
 
     public GameObject getSpellTrapOnTable(int index)
@@ -98,11 +107,10 @@ public class TableVisual : MonoBehaviour
         passedThroughTrapsSpellsCollider = false;
         foreach (RaycastHit h in hits)
         {
+            
             // check if the collider that we hit is the collider on this GameObject
             if (h.collider == MonstersCol)
-            {
                 passedThroughMonstersCollider = true;
-            }
             else if (h.collider == SpellsTrapsCol)
                 passedThroughTrapsSpellsCollider = true;
         }
@@ -116,6 +124,7 @@ public class TableVisual : MonoBehaviour
 
         // apply the look from CardAsset
         OneMonsterManager manager = monster.GetComponent<OneMonsterManager>();
+        manager.isFieldOnly = false;
         manager.cardAsset = ca;
         manager.ReadMonsterFromAsset();
         var tempColor = manager.CardImageFront.color;
@@ -123,7 +132,8 @@ public class TableVisual : MonoBehaviour
         manager.CardImageFront.color = tempColor;
         if (manager.cardAsset.MonsterState == FieldPosition.Set)
         {
-            monster.transform.Rotate(0, 0, 90);
+            Transform t = monster.transform.GetChild(3).GetChild(0);
+            t.Rotate(0, 0, 90);
             monster.transform.localScale = new Vector3(monster.transform.localScale.x, monster.transform.localScale.y, -1);
         } else
         {
@@ -170,11 +180,32 @@ public class TableVisual : MonoBehaviour
 
         // apply the look from CardAsset
         OneCardManager manager = spelltrap.GetComponent<OneCardManager>();
+        manager.isFieldOnly = false;
         manager.cardAsset = ca;
         manager.ReadCardFromAsset();
         var tempColor = manager.CardImageFront.color;
         tempColor.a = 255;
         manager.CardImageFront.color = tempColor;
+
+        // add tag according to owner
+        foreach (Transform t in spelltrap.GetComponentsInChildren<Transform>())
+            t.tag = owner.ToString() + "Monster";
+
+        // add a new spell or trap to the list
+        SpellsTrapsOnTable.Insert(index, spelltrap);
+
+        // let this spell or trap know about its position
+        WhereIsTheCardOrMonster w = spelltrap.GetComponent<WhereIsTheCardOrMonster>();
+        w.Slot = index;
+        if (manager.cardAsset.SpellTrapState == SpellTrapPosition.Set && owner == AreaPosition.Top)
+            w.VisualState = VisualStates.TopTable;
+        else
+            w.VisualState = VisualStates.LowTable;
+
+        // add our unique ID to this spell or trap
+        IDHolder id = spelltrap.AddComponent<IDHolder>();
+        id.UniqueID = UniqueID;
+
         if (manager.cardAsset.SpellTrapState == SpellTrapPosition.Set)
         {
             spelltrap.transform.localScale = new Vector3(spelltrap.transform.localScale.x, spelltrap.transform.localScale.y, -1);
@@ -182,28 +213,7 @@ public class TableVisual : MonoBehaviour
         if (ca.SpellTrapState == SpellTrapPosition.FaceUp)
         {
             SpellTrapEffect.ActivateEffect(ca);
-            Destroy(spelltrap.gameObject);
-            GameObject newSpellTrapField = GameObject.Instantiate(GlobalSettings.Instance.SpellTrapFieldPrefab, SpellsTrapsSlots.Children[index].transform.position, Quaternion.identity) as GameObject;
-            newSpellTrapField.transform.SetParent(SpellsTrapsSlots.Children[index].transform);
-        } else {
-            // add tag according to owner
-            foreach (Transform t in spelltrap.GetComponentsInChildren<Transform>())
-                t.tag = owner.ToString() + "Monster";
-
-            // add a new spell or trap to the list
-            SpellsTrapsOnTable.Insert(index, spelltrap);
-
-            // let this spell or trap know about its position
-            WhereIsTheCardOrMonster w = spelltrap.GetComponent<WhereIsTheCardOrMonster>();
-            w.Slot = index;
-            if (manager.cardAsset.SpellTrapState == SpellTrapPosition.Set && owner == AreaPosition.Top)
-                w.VisualState = VisualStates.TopTable;
-            else
-                w.VisualState = VisualStates.LowTable;
-
-            // add our unique ID to this spell or trap
-            IDHolder id = spelltrap.AddComponent<IDHolder>();
-            id.UniqueID = UniqueID;
+            SpellTrapLogic.SpellTrapsCreatedThisGame[UniqueID].Die();
         }
 
         // end command execution
@@ -228,9 +238,11 @@ public class TableVisual : MonoBehaviour
         //s.AppendInterval(1f);
         //s.OnComplete(() =>
         //   {
-                
+
         //    });
         GameObject monsterToRemove = IDHolder.GetGameObjectWithID(IDToRemove);
+        GameObject newMonsterField = GameObject.Instantiate(GlobalSettings.Instance.MonsterFieldPrefab, monsterToRemove.transform.position, Quaternion.identity) as GameObject;
+        newMonsterField.transform.SetParent(monsterToRemove.transform.parent);
         MonstersOnTable.Remove(monsterToRemove);
         Destroy(monsterToRemove);
 
@@ -251,6 +263,8 @@ public class TableVisual : MonoBehaviour
 
         //    });
         GameObject spellTrapToRemove = IDHolder.GetGameObjectWithID(IDToRemove);
+        GameObject newSpellTrapField = GameObject.Instantiate(GlobalSettings.Instance.SpellTrapFieldPrefab, spellTrapToRemove.transform.position, Quaternion.identity) as GameObject;
+        newSpellTrapField.transform.SetParent(spellTrapToRemove.transform.parent);
         SpellsTrapsOnTable.Remove(spellTrapToRemove);
         Destroy(spellTrapToRemove);
 

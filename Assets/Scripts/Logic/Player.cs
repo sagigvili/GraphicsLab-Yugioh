@@ -7,13 +7,13 @@ public class Player : MonoBehaviour, ICharacter
     public int PlayerID;
     public CharacterAsset charAsset;
     public PlayerArea PArea;
-    public SpellTrapEffect PlayerPowerEffect;
+    public HeroPowerEffect PlayerPowerEffect;
 
     public Deck deck;
     public Hand hand;
     public Table table;
 
-    public bool usedPlayerPowerThisTurn = false;
+    public bool usedPlayerPower = false;
 
     public int ID
     {
@@ -62,8 +62,6 @@ public class Player : MonoBehaviour, ICharacter
     public virtual void OnTurnStart()
     {
         //Debug.Log("In ONTURNSTART for "+ gameObject.name);
-        usedPlayerPowerThisTurn = false;
-        PArea.HeroPower.WasUsedThisTurn = false;
     }
 
     public void AddAttackToAllMonstersOnTable()
@@ -194,16 +192,6 @@ public class Player : MonoBehaviour, ICharacter
         // change the visuals for portrait, hero power, etc...
         PArea.Portrait.charAsset = charAsset;
         PArea.Portrait.ApplyLookFromAsset();
-        // TODO: insert the code to attach hero power script here. 
-        /*
-        if (charAsset.CharPowerName != null && charAsset.CharPowerName != "")
-        {
-            HeroPowerEffect = System.Activator.CreateInstance(System.Type.GetType(charAsset.CharPowerName)) as SpellEffect;
-        }
-        else
-        {
-            Debug.LogWarning("Check hero powr name for character " + charAsset.Name);
-        }*/
     }
 
     public void TransmitInfoAboutPlayerToVisual()
@@ -223,8 +211,7 @@ public class Player : MonoBehaviour, ICharacter
 
     public void UsePlayerPower()
     {
-        //ManaLeft -= 2;
-        //usedHeroPowerThisTurn = true;
-        //PlayerPowerEffect.ActivateEffect();
+        usedPlayerPower = true;
+        PlayerPowerEffect.ActivateEffect(this);
     }
 }

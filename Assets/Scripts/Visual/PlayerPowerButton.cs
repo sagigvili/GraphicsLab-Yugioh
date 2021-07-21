@@ -7,7 +7,7 @@ public class PlayerPowerButton : MonoBehaviour {
 
 
     private bool wasUsed = false;
-    public bool WasUsedThisTurn
+    public bool WasUsed
     { 
         get
         {
@@ -21,10 +21,9 @@ public class PlayerPowerButton : MonoBehaviour {
 
     void OnMouseDown()
     {
-        if (!WasUsedThisTurn)
+        if (!WasUsed && TurnManager.Instance.whoseTurn.PArea.owner == owner)
         {
-            GlobalSettings.Instance.Players[owner].UsePlayerPower();
-            WasUsedThisTurn= !WasUsedThisTurn;
+            new PlayerPowerCommand(this).AddToQueue();
         }
     }
 }

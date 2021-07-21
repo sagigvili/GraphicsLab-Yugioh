@@ -6,7 +6,6 @@ public class ExitBalloon : MonoBehaviour
 {
     public void ExitNow()
     {
-        Debug.Log(this);
         Destroy(this.gameObject);
     }
 }

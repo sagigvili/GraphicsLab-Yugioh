@@ -40,6 +40,9 @@ public class TableOrganizer : MonoBehaviour {
     }
 
 
-
+    public Transform GetAChildInTable(int index)
+    {
+        return Children[index].GetChild(0);
+    }
 
 }

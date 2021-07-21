@@ -131,30 +131,7 @@ public class DragMonsterAttack : DraggingActions {
                 // if targeted monster is still alive, attack monster
 
                 targetValid = true;
-                GameObject parentSlotTarget = Target.transform.parent.gameObject;
-                GameObject parentSlotSource = this.transform.parent.gameObject.transform.parent.gameObject;
-                int flag = MonsterLogic.MonstersCreatedThisGame[GetComponentInParent<IDHolder>().UniqueID].AttackMonsterWithID(targetID);
-                switch (flag)
-                {
-                    case (0): // No one dies, so nothing should be done
-                        break;
-                    case (1): //player2's monster dies. need to create a new MonsterField
-                        GameObject monster = GameObject.Instantiate(GlobalSettings.Instance.MonsterFieldPrefab, parentSlotTarget.transform.position, Quaternion.identity) as GameObject;
-                        monster.transform.SetParent(parentSlotTarget.transform);
-                        break;
-                    case (2)://both players monsters dies. need to create a new MonsterField for both of them
-                        GameObject monster1 = GameObject.Instantiate(GlobalSettings.Instance.MonsterFieldPrefab, parentSlotTarget.transform.position, Quaternion.identity) as GameObject;
-                        monster1.transform.SetParent(parentSlotTarget.transform);
-
-                        GameObject monster2 = GameObject.Instantiate(GlobalSettings.Instance.MonsterFieldPrefab, parentSlotSource.transform.position, Quaternion.identity) as GameObject;
-                        monster2.transform.SetParent(parentSlotSource.transform);
-                        break;
-                    case (3): //player1's monster dies. need to create a new MonsterField
-                        GameObject monster3 = GameObject.Instantiate(GlobalSettings.Instance.MonsterFieldPrefab, parentSlotSource.transform.position, Quaternion.identity) as GameObject;
-                        monster3.transform.SetParent(parentSlotSource.transform);
-                        break;
-                    
-                }
+                MonsterLogic.MonstersCreatedThisGame[GetComponentInParent<IDHolder>().UniqueID].AttackMonsterWithID(targetID);
 
             }
                 
@@ -184,8 +161,11 @@ public class DragMonsterAttack : DraggingActions {
     public bool IsThereAnyTrapOnOpponentsField()
     {
         foreach (SpellTrapLogic st in TurnManager.Instance.whoseTurn.otherPlayer.table.SpellsTrapsOnTable)
+        {
+            Debug.Log("Card in oppent field " + st.ca.name);
             if (st.Type == SpellOrTrap.Trap)
                 return true;
+        }
         return false;
     }
 

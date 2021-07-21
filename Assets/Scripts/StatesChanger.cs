@@ -44,15 +44,15 @@ public class StatesChanger : MonoBehaviour
 
     private void ShowSelector()
     {
-        
         if (this.transform.parent.name.StartsWith("MonsterField")) {
-            
-            if (((SelectStateOnTable)panel).cardInTable.cardAsset.MonsterState == FieldPosition.Attack)
+            int targetID = ((SelectStateOnTable)panel).cardInTable.gameObject.GetComponent<IDHolder>().UniqueID;
+            MonsterLogic monster = MonsterLogic.MonstersCreatedThisGame[targetID];
+            if (monster.monsterPosition == FieldPosition.Attack)
             {
                 AttackSummonButton.gameObject.SetActive(false);
                 DefenceButton.gameObject.SetActive(true);
             }
-            else if (((SelectStateOnTable)panel).cardInTable.cardAsset.MonsterState == FieldPosition.Set)
+            else if (monster.monsterPosition == FieldPosition.Set)
             {
                 DefenceButton.gameObject.SetActive(false);
                 AttackSummonButton.gameObject.SetActive(true);
@@ -71,7 +71,14 @@ public class StatesChanger : MonoBehaviour
             Effects effect = card.cardAsset.Effect;
             if (card.cardAsset.SpellTrapState == SpellTrapPosition.Set)
             {
-                if (TurnManager.Instance.whoseTurn.otherPlayer.PArea.tableVisual.getMonstersOnTableCount() > 0)
+                if (effect == Effects.Heal || effect == Effects.Draw)
+                {
+                    DefenceButton.gameObject.SetActive(false);
+                    AttackSummonButton.gameObject.SetActive(true);
+                    AttackSummonText.text = "Activate";
+                    panel.gameObject.SetActive(true);
+                }
+                else if (TurnManager.Instance.whoseTurn.otherPlayer.PArea.tableVisual.getMonstersOnTableCount() > 0)
                 {
                     if (((effect == Effects.ChangeToAttack || effect == Effects.ChangeToDefence) && TurnManager.Instance.whoseTurn.otherPlayer.table.AnyAttackOrDefenceMonsters(effect)) || effect == Effects.DestoryMonster)
                     {
@@ -98,10 +105,12 @@ public class StatesChanger : MonoBehaviour
         panel.gameObject.SetActive(false);
         if (state == 1)
         {
+            int targetID = ((SelectStateOnTable)panel).cardInTable.gameObject.GetComponent<IDHolder>().UniqueID;
+            MonsterLogic monster = MonsterLogic.MonstersCreatedThisGame[targetID];
             // In case we flip summon a monster
-            if (((SelectStateOnTable)this.panel).cardInTable.cardAsset.MonsterState == FieldPosition.Set)
+            if (monster.monsterPosition == FieldPosition.Set)
             {
-                Parent = this.transform.parent.transform;
+                Parent = this.transform.parent.GetChild(3).GetChild(0).transform;
                 Transform monsterInfo = this.transform.parent.GetChild(5).transform;
                 monsterInfo.gameObject.SetActive(true);
                 if (TurnManager.Instance.whoseTurn.PArea.tableVisual.owner == AreaPosition.Top)
@@ -111,7 +120,7 @@ public class StatesChanger : MonoBehaviour
             }
             else // In case we're changing from Defence to Attack
             {
-                Parent = this.transform.parent.GetChild(3).GetChild(0).transform;
+                Parent = this.transform.parent.GetChild(3).GetChild(0);
                 StartCoroutine(ToAttackPosition());
             }
 
@@ -133,6 +142,8 @@ public class StatesChanger : MonoBehaviour
         StartCoroutine(ToAttackPosition());
         panel.canChangeState = false;
         SpellTrapEffect.ActivateEffect(((SelectStateOnTable)this.panel).cardInTable.cardAsset);
+        SpellTrapLogic.SpellTrapsCreatedThisGame[((SelectStateOnTable)this.panel).cardInTable.gameObject.GetComponent<IDHolder>().UniqueID].Die();
+        
     }
 
     /// <summary>
