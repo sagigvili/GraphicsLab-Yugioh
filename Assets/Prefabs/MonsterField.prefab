@@ -473,6 +473,7 @@ MonoBehaviour:
   PreviewManager: {fileID: 0}
   CardImageFront: {fileID: 883065496883616160}
   CardImageBack: {fileID: 883065497790593067}
+  isFieldOnly: 1
 --- !u!1 &883065497790593069
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,8 +850,10 @@ MonoBehaviour:
   PreviewManager: {fileID: 883065497768808595}
   CardImageFront: {fileID: 883065498495298994}
   CardImageBack: {fileID: 883065497416470871}
+  isFieldOnly: 1
   ATK: {fileID: 8345217933009512227}
   DEF: {fileID: 4141673151823740040}
+  prati: {fileID: 0}
 --- !u!114 &5647349693813952200
 MonoBehaviour:
   m_ObjectHideFlags: 0

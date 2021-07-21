@@ -21,9 +21,16 @@ public class PlayerPowerButton : MonoBehaviour {
 
     void OnMouseDown()
     {
-        if (!WasUsed && TurnManager.Instance.whoseTurn.PArea.owner == owner)
+        try
         {
-            new PlayerPowerCommand(this).AddToQueue();
+            if (!WasUsed && TurnManager.Instance.whoseTurn.PArea.owner == owner)
+            {
+                new PlayerPowerCommand(this).AddToQueue();
+            }
+        } catch
+        {
+
         }
+
     }
 }

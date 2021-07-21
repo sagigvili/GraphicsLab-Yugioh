@@ -64,6 +64,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Mirza Beig\Editor Extensions\Utilities\Multi-Asset Renamer\Editor\MultiAssetRenamer.cs" />
+    <Compile Include="Assets\Mirza Beig\Editor Extensions\Utilities\Particle Playback\Editor\ParticlePlayback.cs" />
+    <Compile Include="Assets\Mirza Beig\Editor Extensions\Utilities\Particle Playback\Editor\ParticlePlaybackEditorWindow.cs" />
+    <Compile Include="Assets\Mirza Beig\Editor Extensions\Utilities\Particle Playback\Editor\ParticlePlaybackExtensions.cs" />
+    <Compile Include="Assets\Mirza Beig\Editor Extensions\Utilities\Particle Scaler\Editor\ParticleScalerEditorWindow.cs" />
+    <Compile Include="Assets\Mirza Beig\Editor Extensions\Utilities\Particle Scaler\Editor\ParticleScalerExtensions.cs" />
+    <Compile Include="Assets\Mirza Beig\Editor Extensions\_Common\Editor\ParticleEditorUtility.cs" />
     <Compile Include="Assets\Scripts\SO Asset Scripts\CardAsset\Editor\CardUnityIntegration.cs" />
     <Compile Include="Assets\Scripts\SO Asset Scripts\CharacterAsset\Editor\CharacterUnityIntegration.cs" />
     <Compile Include="Assets\Scripts\SO Asset Scripts\Editor\ScriptableObjectUtility2.cs" />

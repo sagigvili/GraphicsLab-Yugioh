@@ -1131,6 +1131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39fdcdbb8c9d65e488d8521d737ef0c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  partEffect: {fileID: 4370713415926309960, guid: f6b2b9ed3efe9ba48aa1b1102317c5a3,
+    type: 3}
 --- !u!114 &686773034 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6480547812903457196, guid: f72103fd84205d842ab91eddde31cb6d,
@@ -2755,6 +2757,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39fdcdbb8c9d65e488d8521d737ef0c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  partEffect: {fileID: 4370713415926309960, guid: f6b2b9ed3efe9ba48aa1b1102317c5a3,
+    type: 3}
 --- !u!1 &1165651434
 GameObject:
   m_ObjectHideFlags: 0
