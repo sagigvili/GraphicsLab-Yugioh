@@ -16,6 +16,8 @@ public class TableVisual : MonoBehaviour
 
     public TableOrganizer SpellsTrapsSlots;
 
+    public PlayerGraveyardVisual graveyard;
+
     // are we hovering over this table`s collider with a mouse
     public bool passedThroughMonstersCollider = false;
     public bool passedThroughTrapsSpellsCollider = false;
@@ -31,6 +33,7 @@ public class TableVisual : MonoBehaviour
     private BoxCollider MonstersCol;
 
     private BoxCollider SpellsTrapsCol;
+
 
     // PROPERTIES
 
@@ -141,6 +144,22 @@ public class TableVisual : MonoBehaviour
             monsterInfo.gameObject.SetActive(true);
             if (owner == AreaPosition.Top)
                 monsterInfo.localPosition = new Vector3(monsterInfo.localPosition.x, -1355.72f, monsterInfo.localPosition.z);
+
+            // create model above the card
+            GameObject model = GameObject.Instantiate(manager.model, manager.transform.position, Quaternion.identity) as GameObject;
+            if (owner == AreaPosition.Top)
+            {
+                Vector3 modelPos = new Vector3(model.transform.localPosition.x + manager.transXOffset, model.transform.localPosition.y + manager.transYOffset, model.transform.localPosition.z + manager.transZOffset);
+                model.transform.localPosition = modelPos;
+                model.transform.rotation = new Quaternion(model.transform.rotation.x, 180.0f, model.transform.rotation.z, model.transform.rotation.w);
+            }
+            else
+            {
+                Vector3 modelPos = new Vector3(model.transform.localPosition.x + manager.transXOffset, model.transform.localPosition.y + manager.transYOffset, model.transform.localPosition.z + manager.transZOffset);
+                model.transform.localPosition = modelPos;
+            }
+
+            model.transform.SetParent(monster.transform);
         }
         // add tag according to owner
         foreach (Transform t in monster.GetComponentsInChildren<Transform>())
@@ -241,15 +260,28 @@ public class TableVisual : MonoBehaviour
 
         //    });
         GameObject monsterToRemove = IDHolder.GetGameObjectWithID(IDToRemove);
+        if (monsterToRemove.transform.childCount > 6)  // In case card was destroied while Set, we don't have a model so we don't need to call Die trigger
+            monsterToRemove.transform.GetChild(6).GetComponent<Animator>().SetTrigger("Die");
+        if (monsterToRemove.transform.childCount > 6)
+            Destroy(monsterToRemove.transform.GetChild(6).gameObject);
         GameObject newMonsterField = GameObject.Instantiate(GlobalSettings.Instance.MonsterFieldPrefab, monsterToRemove.transform.position, Quaternion.identity) as GameObject;
         newMonsterField.transform.SetParent(monsterToRemove.transform.parent);
         MonstersOnTable.Remove(monsterToRemove);
+        GameObject temp = graveyard.AddCardToGraveyard(monsterToRemove);
         Destroy(monsterToRemove);
+        //Sequence s = DOTween.Sequence();
+        //s.AppendInterval(1f);
+        //s.Append(temp.transform.DOMove(graveyard.transform.position, 1).SetEase(Ease.InOutSine));
+        //s.AppendInterval(1f);
+        //s.OnComplete(() =>
+        //   {
 
+        //   });
         ShiftSlotsGameObjectAccordingToNumberOfMonsters();
         PlaceMonstersOnNewSlots();
         Command.CommandExecutionComplete();
     }
+
 
     public void RemoveSpellTrapWithID(int IDToRemove)
     {

@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87e63ff8efc667841a720372373b65e0, type: 3}
+  m_Name: Vampire Lord
+  m_EditorClassIdentifier: 
+  Name: Vampire Lord
+  characterAsset: {fileID: 0}
+  Description: 'If this card inflicts battle damage to your opponent: Declare 1 type
+    of card (Monster, Spell, or Trap); your opponent sends 1 card of that type from
+    their Deck to the GY. Once per turn, during your next Standby Phase after this
+    card in your possession was destroyed and sent to your GY by an opponent''s card
+    effect: Special Summon this card from the GY.'
+  CardImage: {fileID: 21300000, guid: 378eb58d7a6b897488ca5d9ce9a91aa3, type: 3}
+  Model: {fileID: 7084454713813688514, guid: 43f7ca40757584943b6228ee3772a5c5, type: 3}
+  LoadEffect: {fileID: 3911854415461569565, guid: 3d2a495131cb34a48aac014ce457667a,
+    type: 3}
+  ShotAttack: {fileID: 0}
+  AttackEffect: {fileID: 4370713415926309960, guid: f6b2b9ed3efe9ba48aa1b1102317c5a3,
+    type: 3}
+  xTransOffset: 1400
+  yTransOffset: -559
+  zTransOffset: -100
+  Attack: 2000
+  Defence: 1500
+  Attribute: 5
+  AttacksForOneTurn: 1
+  Type: 8
+  Rank: 5
+  monsterState: 0
+  SpellTrap: 0
+  Effect: 0
+  amount: 0

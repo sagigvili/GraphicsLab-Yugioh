@@ -6,6 +6,6 @@ public class ExitBalloon : MonoBehaviour
 {
     public void ExitNow()
     {
-        Destroy(this.gameObject);
+        GetComponent<TrapSelector>().setFinished(true);
     }
 }

@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87e63ff8efc667841a720372373b65e0, type: 3}
+  m_Name: Injection Fairy Lily
+  m_EditorClassIdentifier: 
+  Name: Injection Fairy Lily
+  characterAsset: {fileID: 0}
+  Description: 'If this card attacks or is attacked, during damage calculation (in
+    either player''s turn): You can pay 2000 LP once per battle; this card gains
+    3000 ATK during that damage calculation only.
+
+'
+  CardImage: {fileID: 21300000, guid: 22b8a4d90550b1845aa7068cdc3b744c, type: 3}
+  Model: {fileID: 8415417755417948722, guid: 1161fa56d3d0b834ebe0f30a6c31d67b, type: 3}
+  LoadEffect: {fileID: 3911854415461569565, guid: 3d2a495131cb34a48aac014ce457667a,
+    type: 3}
+  ShotAttack: {fileID: 6379335799971204364, guid: 91865e340f9846445ae1bc507c3b04a7,
+    type: 3}
+  AttackEffect: {fileID: 4370713415926309960, guid: f6b2b9ed3efe9ba48aa1b1102317c5a3,
+    type: 3}
+  xTransOffset: 0
+  yTransOffset: 0
+  zTransOffset: 0
+  Attack: 400
+  Defence: 1500
+  Attribute: 3
+  AttacksForOneTurn: 1
+  Type: 2
+  Rank: 3
+  monsterState: 0
+  SpellTrap: 0
+  Effect: 0
+  amount: 0

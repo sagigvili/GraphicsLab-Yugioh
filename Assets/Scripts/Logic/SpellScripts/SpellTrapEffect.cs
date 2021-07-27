@@ -47,6 +47,7 @@ public class SpellTrapEffect
                 tsPCB.SetActive(true);
                 break;
             case Effects.Revive:
+                TurnManager.Instance.whoseTurn.PArea.graveyardVisual.CardsCanvas.SetActive(true);
                 break;
 
         }

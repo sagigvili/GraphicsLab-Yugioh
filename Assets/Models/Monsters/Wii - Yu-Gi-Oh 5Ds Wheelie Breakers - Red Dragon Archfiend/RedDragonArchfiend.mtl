@@ -1,0 +1,46 @@
+# Blender MTL File: 'RedDragonArchfiend.blend'
+# Material Count: 4
+newmtl m05_RedDD_A.png_m05_RedDD_A.png
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd m05_RedDD_A.png
+
+
+newmtl m05_RedDD_A.png_m05_RedDD_B.png
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd m05_RedDD_B.png
+
+
+newmtl m05_RedDD_B.png_m05_RedDD_B.png
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd m05_RedDD_B.png
+
+
+newmtl m05_RedDD_C.png_m05_RedDD_C.png
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd m05_RedDD_C.png
+
+

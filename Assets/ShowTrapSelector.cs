@@ -22,7 +22,7 @@ public class ShowTrapSelector : MonoBehaviour
             yield return null;
         newTarpSelector.SetActive(false);
         Destroy(newTarpSelector.gameObject);
-
         Command.CommandExecutionComplete();
+        Destroy(gameObject);
     }
 }

@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87e63ff8efc667841a720372373b65e0, type: 3}
+  m_Name: Elemental HERO Flame Wingman
+  m_EditorClassIdentifier: 
+  Name: Elemental HERO Flame Wingman
+  characterAsset: {fileID: 0}
+  Description: '"Elemental HERO Avian" + "Elemental HERO Burstinatrix"
+
+    Must
+    be Fusion Summoned and cannot be Special Summoned by other ways. When this card
+    destroys a monster by battle and sends it to the Graveyard: Inflict damage to
+    your opponent equal to the ATK of the destroyed monster in the Graveyard.'
+  CardImage: {fileID: 21300000, guid: 5f5be2c036f57e54a8872049f6cb310f, type: 3}
+  Model: {fileID: 1307687708874710718, guid: bde92562717041a46869a58f311d20b4, type: 3}
+  LoadEffect: {fileID: 3911854415461569565, guid: 3d2a495131cb34a48aac014ce457667a,
+    type: 3}
+  ShotAttack: {fileID: 0}
+  AttackEffect: {fileID: 4370713415926309960, guid: f6b2b9ed3efe9ba48aa1b1102317c5a3,
+    type: 3}
+  xTransOffset: 0
+  yTransOffset: -680
+  zTransOffset: -100
+  Attack: 2100
+  Defence: 1200
+  Attribute: 2
+  AttacksForOneTurn: 1
+  Type: 5
+  Rank: 6
+  monsterState: 0
+  SpellTrap: 0
+  Effect: 0
+  amount: 0

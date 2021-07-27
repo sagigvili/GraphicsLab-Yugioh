@@ -19,7 +19,7 @@ public class PlayerPowerButton : MonoBehaviour {
         }
     }
 
-    void OnMouseDown()
+    public void ActivatePower()
     {
         try
         {

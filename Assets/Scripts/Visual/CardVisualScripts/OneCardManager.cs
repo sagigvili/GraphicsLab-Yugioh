@@ -70,4 +70,12 @@ public class OneCardManager : MonoBehaviour {
             PreviewManager.ReadCardFromAsset();
         }
     }
+
+    public void NewCardFromGraveYard()
+    {
+        CardLogic newCard = new CardLogic(cardAsset);
+        newCard.owner = TurnManager.Instance.whoseTurn;
+        TurnManager.Instance.whoseTurn.hand.CardsInHand.Add(newCard);
+        new ReviveACardCommand(newCard, TurnManager.Instance.whoseTurn).AddToQueue();
+    }
 }

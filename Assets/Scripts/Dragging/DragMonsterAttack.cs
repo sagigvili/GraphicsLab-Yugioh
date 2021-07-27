@@ -103,6 +103,7 @@ public class DragMonsterAttack : DraggingActions {
                     (h.transform.tag == "LowMonster" && this.tag == "TopMonster"))
             {
                 // hit a monster, save parent transform
+                Debug.Log(h.transform.parent.gameObject);
                 Target = h.transform.parent.gameObject;
             }
                
@@ -162,7 +163,6 @@ public class DragMonsterAttack : DraggingActions {
     {
         foreach (SpellTrapLogic st in TurnManager.Instance.whoseTurn.otherPlayer.table.SpellsTrapsOnTable)
         {
-            Debug.Log("Card in oppent field " + st.ca.name);
             if (st.Type == SpellOrTrap.Trap)
                 return true;
         }

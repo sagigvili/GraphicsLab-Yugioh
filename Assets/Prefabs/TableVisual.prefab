@@ -63,8 +63,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5162, y: 1856.8291, z: 0.1}
-  m_Center: {x: 1996, y: -30.019043, z: 1}
+  m_Size: {x: 9482, y: 1856.8291, z: 0.1}
+  m_Center: {x: 3998, y: -30.019043, z: 1}
 --- !u!1 &2219415876508487824
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,8 +221,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5162, y: 1717.3291, z: 0.1}
-  m_Center: {x: 1996, y: -0.10888672, z: 1}
+  m_Size: {x: 9482, y: 1717.3291, z: 0.1}
+  m_Center: {x: 3998, y: -0.10888672, z: 1}
 --- !u!1 &2219415877614300219
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,6 +303,8 @@ MonoBehaviour:
   setsPerTurn: 1
   MonstersSlots: {fileID: 2219415877605473740}
   SpellsTrapsSlots: {fileID: 2219415876310649398}
+  passedThroughMonstersCollider: 0
+  passedThroughTrapsSpellsCollider: 0
 --- !u!1 &2219415877922951402
 GameObject:
   m_ObjectHideFlags: 0

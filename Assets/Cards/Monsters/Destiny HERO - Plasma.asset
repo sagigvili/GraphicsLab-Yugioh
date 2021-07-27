@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87e63ff8efc667841a720372373b65e0, type: 3}
+  m_Name: Destiny HERO - Plasma
+  m_EditorClassIdentifier: 
+  Name: Destiny HERO - Plasma
+  characterAsset: {fileID: 0}
+  Description: 'Cannot be Normal Summoned/Set. Must be Special Summoned (from your
+    hand) by Tributing 3 monsters. Negate the effects of face-up monsters while your
+    opponent controls them. Once per turn: You can target 1 monster your opponent
+    controls; equip that target to this card (max. 1). This card gains ATK equal
+    to half the original ATK of the monster equipped to it by this effect.'
+  CardImage: {fileID: 21300000, guid: 6e3be0ed4e8c09640b599e02be17b579, type: 3}
+  Model: {fileID: 2051780704953637967, guid: c08649a5b2325a049bf55f2b6348cc79, type: 3}
+  LoadEffect: {fileID: 3911854415461569565, guid: 3d2a495131cb34a48aac014ce457667a,
+    type: 3}
+  ShotAttack: {fileID: 0}
+  AttackEffect: {fileID: 4370713415926309960, guid: f6b2b9ed3efe9ba48aa1b1102317c5a3,
+    type: 3}
+  xTransOffset: 0
+  yTransOffset: -500
+  zTransOffset: -100
+  Attack: 1900
+  Defence: 600
+  Attribute: 5
+  AttacksForOneTurn: 1
+  Type: 5
+  Rank: 8
+  monsterState: 0
+  SpellTrap: 0
+  Effect: 0
+  amount: 0

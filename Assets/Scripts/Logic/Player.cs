@@ -12,6 +12,7 @@ public class Player : MonoBehaviour, ICharacter
     public Deck deck;
     public Hand hand;
     public Table table;
+    public Graveyard graveyard;
 
     public bool usedPlayerPower = false;
 

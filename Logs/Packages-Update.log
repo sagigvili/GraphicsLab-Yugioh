@@ -1,0 +1,10 @@
+
+=== Fri Jul 23 09:31:34 2021
+
+Packages were changed.
+Update Mode: mergeDefaultDependencies
+
+The following packages were added:
+  com.unity.cinemachine@2.6.3
+  com.unity.mathematics@1.2.1
+  com.unity.xr.legacyinputhelpers@2.1.4

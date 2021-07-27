@@ -64,13 +64,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Mirza Beig\Editor Extensions\Utilities\Multi-Asset Renamer\Editor\MultiAssetRenamer.cs" />
-    <Compile Include="Assets\Mirza Beig\Editor Extensions\Utilities\Particle Playback\Editor\ParticlePlayback.cs" />
-    <Compile Include="Assets\Mirza Beig\Editor Extensions\Utilities\Particle Playback\Editor\ParticlePlaybackEditorWindow.cs" />
-    <Compile Include="Assets\Mirza Beig\Editor Extensions\Utilities\Particle Playback\Editor\ParticlePlaybackExtensions.cs" />
-    <Compile Include="Assets\Mirza Beig\Editor Extensions\Utilities\Particle Scaler\Editor\ParticleScalerEditorWindow.cs" />
-    <Compile Include="Assets\Mirza Beig\Editor Extensions\Utilities\Particle Scaler\Editor\ParticleScalerExtensions.cs" />
-    <Compile Include="Assets\Mirza Beig\Editor Extensions\_Common\Editor\ParticleEditorUtility.cs" />
+    <Compile Include="Assets\AnimationConverter\Scripts\Editor\AnimationConverterLogWindow.cs" />
+    <Compile Include="Assets\AnimationConverter\Scripts\Editor\AnimationConverterWindow.cs" />
+    <Compile Include="Assets\Packages\Mirza Beig\Editor Extensions\Utilities\Multi-Asset Renamer\Editor\MultiAssetRenamer.cs" />
+    <Compile Include="Assets\Packages\Mirza Beig\Editor Extensions\Utilities\Particle Playback\Editor\ParticlePlayback.cs" />
+    <Compile Include="Assets\Packages\Mirza Beig\Editor Extensions\Utilities\Particle Playback\Editor\ParticlePlaybackEditorWindow.cs" />
+    <Compile Include="Assets\Packages\Mirza Beig\Editor Extensions\Utilities\Particle Playback\Editor\ParticlePlaybackExtensions.cs" />
+    <Compile Include="Assets\Packages\Mirza Beig\Editor Extensions\Utilities\Particle Scaler\Editor\ParticleScalerEditorWindow.cs" />
+    <Compile Include="Assets\Packages\Mirza Beig\Editor Extensions\Utilities\Particle Scaler\Editor\ParticleScalerExtensions.cs" />
+    <Compile Include="Assets\Packages\Mirza Beig\Editor Extensions\_Common\Editor\ParticleEditorUtility.cs" />
     <Compile Include="Assets\Scripts\SO Asset Scripts\CardAsset\Editor\CardUnityIntegration.cs" />
     <Compile Include="Assets\Scripts\SO Asset Scripts\CharacterAsset\Editor\CharacterUnityIntegration.cs" />
     <Compile Include="Assets\Scripts\SO Asset Scripts\Editor\ScriptableObjectUtility2.cs" />
@@ -272,11 +274,17 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
+    <Reference Include="AnimationConverterApplication">
+      <HintPath>F:/Repos/GraphicsLab-Yugioh/Assets/AnimationConverter/Plugins/Application/AnimationConverterApplication.dll</HintPath>
+    </Reference>
+    <Reference Include="AnimationConverterEditor">
+      <HintPath>F:/Repos/GraphicsLab-Yugioh/Assets/AnimationConverter/Plugins/Editor/AnimationConverterEditor.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>F:/Repos/GraphicsLab-Yugioh/Assets/Piglet/Dependencies/Json.NET/Newtonsoft.Json.dll</HintPath>
+      <HintPath>F:/Repos/GraphicsLab-Yugioh/Assets/Packages/Piglet/Dependencies/Json.NET/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>F:/Repos/GraphicsLab-Yugioh/Assets/Piglet/Dependencies/SharpZipLib/ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>F:/Repos/GraphicsLab-Yugioh/Assets/Packages/Piglet/Dependencies/SharpZipLib/ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="DOTween">
       <HintPath>F:/Repos/GraphicsLab-Yugioh/Assets/Scripts/DOTween/DOTween.dll</HintPath>
@@ -659,6 +667,9 @@
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>F:/Repos/GraphicsLab-Yugioh/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Cinemachine">
+      <HintPath>F:/Repos/GraphicsLab-Yugioh/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>F:/Repos/GraphicsLab-Yugioh/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
@@ -674,14 +685,35 @@
     <Reference Include="Unity.CollabProxy.Editor">
       <HintPath>F:/Repos/GraphicsLab-Yugioh/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.XR.LegacyInputHelpers">
+      <HintPath>F:/Repos/GraphicsLab-Yugioh/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>F:/Repos/GraphicsLab-Yugioh/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>F:/Repos/GraphicsLab-Yugioh/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
       <HintPath>F:/Repos/GraphicsLab-Yugioh/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.SpatialTracking">
+      <HintPath>F:/Repos/GraphicsLab-Yugioh/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+      <HintPath>F:/Repos/GraphicsLab-Yugioh/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpatialTracking">
+      <HintPath>F:/Repos/GraphicsLab-Yugioh/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics.Editor">
+      <HintPath>F:/Repos/GraphicsLab-Yugioh/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>F:/Repos/GraphicsLab-Yugioh/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.XR.LegacyInputHelpers">
+      <HintPath>F:/Repos/GraphicsLab-Yugioh/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>F:/Repos/GraphicsLab-Yugioh/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>

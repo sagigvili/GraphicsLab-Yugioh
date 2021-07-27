@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87e63ff8efc667841a720372373b65e0, type: 3}
+  m_Name: Cyber Blader
+  m_EditorClassIdentifier: 
+  Name: Cyber Blader
+  characterAsset: {fileID: 0}
+  Description: '"Etoile Cyber" + "Blade Skater"
+
+    A Fusion Summon of this card
+    can only be conducted with the above Fusion Material Monsters. While your opponent
+    controls only 1 monster, this card cannot be destroyed by battle. While your
+    opponent controls only 2 monsters, double this card''s ATK. While your opponent
+    controls only 3 monsters, negate the effects of your opponent''s Spell, Trap,
+    and Effect Monster Cards.'
+  CardImage: {fileID: 21300000, guid: a763864683e8ecd42a16abf6277cc1de, type: 3}
+  Model: {fileID: 234196726484352582, guid: b39d88dfd23e42a4e827cd743f5643b1, type: 3}
+  LoadEffect: {fileID: 3911854415461569565, guid: 3d2a495131cb34a48aac014ce457667a,
+    type: 3}
+  ShotAttack: {fileID: 0}
+  AttackEffect: {fileID: 4370713415926309960, guid: f6b2b9ed3efe9ba48aa1b1102317c5a3,
+    type: 3}
+  xTransOffset: 0
+  yTransOffset: -537
+  zTransOffset: -100
+  Attack: 2100
+  Defence: 800
+  Attribute: 3
+  AttacksForOneTurn: 1
+  Type: 5
+  Rank: 7
+  monsterState: 0
+  SpellTrap: 0
+  Effect: 0
+  amount: 0

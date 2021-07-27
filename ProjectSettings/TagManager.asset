@@ -4,6 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Stair
+  - Climb
   - TopCard
   - Monsters
   - LowCard
@@ -13,6 +15,9 @@ TagManager:
   - TopMonster
   - LowTable
   - TopTable
+  - Water
+  - Fly
+  - Animal
   layers:
   - Default
   - TransparentFX
@@ -34,17 +39,17 @@ TagManager:
   - 
   - 
   - 
+  - Animal
+  - 
+  - 
+  - Enemy
   - 
   - 
   - 
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Item
   - 
   m_SortingLayers:
   - name: Default
@@ -61,4 +66,7 @@ TagManager:
     locked: 0
   - name: AboveEverythingPreview
     uniqueID: 3219916235
+    locked: 0
+  - name: CanvasAboveAll
+    uniqueID: 2815447865
     locked: 0

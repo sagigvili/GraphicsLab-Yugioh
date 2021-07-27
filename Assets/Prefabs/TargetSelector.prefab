@@ -538,7 +538,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1468359182022840111
 RectTransform:
   m_ObjectHideFlags: 0
@@ -773,7 +773,6 @@ GameObject:
   - component: {fileID: 216496421533673805}
   - component: {fileID: 2180471916191484375}
   - component: {fileID: 66559190961244882}
-  - component: {fileID: 8261756557922981723}
   m_Layer: 5
   m_Name: CardName
   m_TagString: Untagged
@@ -841,24 +840,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Set
---- !u!114 &8261756557922981723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3275332424724399204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e94bc0e0656d9e4da5a1caf9be84bca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 2, y: -2}
-  m_UseGraphicAlpha: 1
-  m_circleCount: 6
-  m_firstSample: 4
-  m_sampleIncrement: 2
 --- !u!1 &3881930759303732663
 GameObject:
   m_ObjectHideFlags: 0
@@ -986,7 +967,6 @@ GameObject:
   - component: {fileID: 2628374491125092675}
   - component: {fileID: 1245476464501440}
   - component: {fileID: 8991436756311292228}
-  - component: {fileID: 8868208802799628651}
   m_Layer: 5
   m_Name: CardName
   m_TagString: Untagged
@@ -1054,24 +1034,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Set
---- !u!114 &8868208802799628651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3915842294732782179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e94bc0e0656d9e4da5a1caf9be84bca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 2, y: -2}
-  m_UseGraphicAlpha: 1
-  m_circleCount: 6
-  m_firstSample: 4
-  m_sampleIncrement: 2
 --- !u!1 &5422241541005284306
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,7 +1235,6 @@ GameObject:
   - component: {fileID: 3003381472868832271}
   - component: {fileID: 7202774122927372197}
   - component: {fileID: 8808141527484025641}
-  - component: {fileID: 8473454752092330043}
   m_Layer: 5
   m_Name: CardName
   m_TagString: Untagged
@@ -1341,21 +1302,3 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Set
---- !u!114 &8473454752092330043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8988359447762666801}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e94bc0e0656d9e4da5a1caf9be84bca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 2, y: -2}
-  m_UseGraphicAlpha: 1
-  m_circleCount: 6
-  m_firstSample: 4
-  m_sampleIncrement: 2

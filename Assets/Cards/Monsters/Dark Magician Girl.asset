@@ -17,9 +17,23 @@ MonoBehaviour:
   Description: The card gains 300 ATK for every "Dark Magician" or "Magician of Black
     Chaos" in either player's Graveyard.
   CardImage: {fileID: 21300000, guid: 7983d1bf23b798c4cb1a43bacf611457, type: 3}
+  Model: {fileID: 4980109312259728530, guid: 264bec94bc36ccf419f853c1dc222ca5, type: 3}
+  LoadEffect: {fileID: 3848382727898633534, guid: 5d1ad1951e285d140b9deae061bc8b65,
+    type: 3}
+  ShotAttack: {fileID: 6379335799971204364, guid: 91865e340f9846445ae1bc507c3b04a7,
+    type: 3}
+  AttackEffect: {fileID: 4370713415926309960, guid: f6b2b9ed3efe9ba48aa1b1102317c5a3,
+    type: 3}
+  xTransOffset: 180
+  yTransOffset: -458
+  zTransOffset: -100
   Attack: 2000
   Defence: 1700
   Attribute: 5
   AttacksForOneTurn: 1
   Type: 2
   Rank: 6
+  monsterState: 0
+  SpellTrap: 0
+  Effect: 0
+  amount: 0

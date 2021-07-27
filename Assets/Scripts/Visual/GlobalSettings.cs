@@ -23,7 +23,7 @@ public class GlobalSettings: MonoBehaviour
     public GameObject SpellTrapCardPrefab;
     public GameObject SpellTrapFieldPrefab;
     public GameObject DamageEffectPrefab;
-    public GameObject ExplosionPrefab;
+    public GameObject CardInGraveyard;
     public GameObject TargetSelectorPrefab;
     public GameObject TrapSelectorPrefab;
     public Text WhoWins;

@@ -8,7 +8,7 @@ public class Deck : MonoBehaviour {
 
     void Awake()
     {
-        cards.Shuffle();
+        ShufflingExtention.Shuffle(cards);
     }
 	
 }

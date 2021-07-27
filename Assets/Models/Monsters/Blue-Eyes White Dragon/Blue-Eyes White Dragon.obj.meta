@@ -1,0 +1,223 @@
+fileFormatVersion: 2
+guid: f7325a54c3eb69b42bab48fe68462a3c
+ModelImporter:
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: objpolySu0
+  - first:
+      1: 100004
+    second: Regroup02
+  - first:
+      1: 100006
+    second: Regroup27
+  - first:
+      1: 100008
+    second: Regroup28
+  - first:
+      1: 100010
+    second: Regroup29
+  - first:
+      1: 100012
+    second: Regroup30
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: objpolySu0
+  - first:
+      4: 400004
+    second: Regroup02
+  - first:
+      4: 400006
+    second: Regroup27
+  - first:
+      4: 400008
+    second: Regroup28
+  - first:
+      4: 400010
+    second: Regroup29
+  - first:
+      4: 400012
+    second: Regroup30
+  - first:
+      23: 2300000
+    second: objpolySu0
+  - first:
+      23: 2300002
+    second: Regroup02
+  - first:
+      23: 2300004
+    second: Regroup27
+  - first:
+      23: 2300006
+    second: Regroup28
+  - first:
+      23: 2300008
+    second: Regroup29
+  - first:
+      23: 2300010
+    second: Regroup30
+  - first:
+      33: 3300000
+    second: objpolySu0
+  - first:
+      33: 3300002
+    second: Regroup02
+  - first:
+      33: 3300004
+    second: Regroup27
+  - first:
+      33: 3300006
+    second: Regroup28
+  - first:
+      33: 3300008
+    second: Regroup29
+  - first:
+      33: 3300010
+    second: Regroup30
+  - first:
+      43: 4300000
+    second: objpolySu0
+  - first:
+      43: 4300002
+    second: Regroup02
+  - first:
+      43: 4300004
+    second: Regroup27
+  - first:
+      43: 4300006
+    second: Regroup28
+  - first:
+      43: 4300008
+    second: Regroup29
+  - first:
+      43: 4300010
+    second: Regroup30
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Regroup02Mat
+    second: {fileID: 2100000, guid: 42c0c22813b1c6944af810c3d4286e70, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Regroup27Mat
+    second: {fileID: 2100000, guid: f1be117d219250042988b5640c569d19, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Regroup28Mat
+    second: {fileID: 2100000, guid: b2790dbd858e7aa428a73a4faa7b469f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Regroup29Mat
+    second: {fileID: 2100000, guid: 43edac944f4253f45a206d1a79a92d07, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Regroup30Mat
+    second: {fileID: 2100000, guid: feb0e507783ad7a4aa271c0eb4afe30c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: objpolySu0Mat
+    second: {fileID: 2100000, guid: 3fc0e4442ed85524eac98e44e67b8dc2, type: 2}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

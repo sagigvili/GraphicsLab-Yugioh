@@ -360,7 +360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TurnThisOffWhenPreviewing: {fileID: 1183866819739109616}
   TargetPosition: {x: 0, y: 5000, z: 0}
-  TargetScale: 4
+  TargetScale: 6
   previewGameObject: {fileID: 1183866821068639919}
   ActivateInAwake: 1
   ToPreview: 1
@@ -380,6 +380,7 @@ MonoBehaviour:
   PreviewManager: {fileID: 1183866821068639913}
   CardImageFront: {fileID: 1183866819940987784}
   CardImageBack: {fileID: 1183866820984737645}
+  isFieldOnly: 1
 --- !u!114 &6490860413809976247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -793,6 +794,7 @@ MonoBehaviour:
   PreviewManager: {fileID: 0}
   CardImageFront: {fileID: 1183866820476913562}
   CardImageBack: {fileID: 1183866821115454993}
+  isFieldOnly: 1
 --- !u!1 &1183866821115454999
 GameObject:
   m_ObjectHideFlags: 0

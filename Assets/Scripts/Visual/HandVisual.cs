@@ -14,7 +14,7 @@ public class HandVisual : MonoBehaviour
     [Header("Transform References")]
     public Transform DrawPreviewSpot;
     public Transform DeckTransform;
-    public Transform OtherCardDrawSourceTransform;
+    public Transform GraveyardTransform;
 
     // PRIVATE : a list of all card visual representations as GameObjects
     private List<GameObject> CardsInHand = new List<GameObject>();
@@ -153,10 +153,7 @@ public class HandVisual : MonoBehaviour
     public void GivePlayerACard(CardAsset c, int UniqueID, bool fast = false, bool fromDeck = true)
     {
         GameObject card;
-        if (fromDeck)
-            card = CreateACardAtPosition(c, DeckTransform.position, new Vector3(0f, 0f, 0f));
-        else
-            card = CreateACardAtPosition(c, OtherCardDrawSourceTransform.position, new Vector3(0f, -179f, 0f));
+        card = CreateACardAtPosition(c, DeckTransform.position, new Vector3(0f, 0f, 0f));
         // Set a tag to reflect where this card is
         foreach (Transform t in card.GetComponentsInChildren<Transform>())
         {
@@ -195,6 +192,38 @@ public class HandVisual : MonoBehaviour
             if (TakeCardsOpenly)
                 s.Insert(0f, card.transform.DORotate(Vector3.zero, GlobalSettings.Instance.CardTransitionTimeFast));
         }
+
+        s.OnComplete(() => ChangeLastCardStatusToInHand(card, w));
+    }
+
+    // gives player a new card from graveyard
+    public void GivePlayerACardFromGraveyard(CardAsset c, int UniqueID)
+    {
+        GameObject card = CreateACardAtPosition(c, GraveyardTransform.position, new Vector3(0f, 0f, 0f));
+        // Set a tag to reflect where this card is
+        foreach (Transform t in card.GetComponentsInChildren<Transform>())
+        {
+            t.tag = owner.ToString() + "Card";
+        }
+        // pass this card to HandVisual class
+        AddCard(card);
+
+        // Bring card to front while it travels from draw spot to hand
+        WhereIsTheCardOrMonster w = card.GetComponent<WhereIsTheCardOrMonster>();
+        w.BringToFront();
+        w.Slot = 1;
+        slotCounter += 1;
+
+        // pass a unique ID to this card.
+        IDHolder id = card.AddComponent<IDHolder>();
+        id.UniqueID = UniqueID;
+
+        // move card to the hand;
+        Sequence s = DOTween.Sequence();
+        // displace the card so that we can select it in the scene easier.
+        s.Append(card.transform.DOMove(slots.Children[0].transform.position, GlobalSettings.Instance.CardTransitionTimeFast));
+        if (TakeCardsOpenly)
+            s.Insert(0f, card.transform.DORotate(Vector3.zero, GlobalSettings.Instance.CardTransitionTimeFast));
 
         s.OnComplete(() => ChangeLastCardStatusToInHand(card, w));
     }

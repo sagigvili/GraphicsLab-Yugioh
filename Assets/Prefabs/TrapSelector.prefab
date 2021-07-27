@@ -141,7 +141,6 @@ GameObject:
   - component: {fileID: 4679861079505213255}
   - component: {fileID: 768276830971344109}
   - component: {fileID: 1396359284850083937}
-  - component: {fileID: 2074982271291267955}
   m_Layer: 5
   m_Name: CardName
   m_TagString: Untagged
@@ -209,24 +208,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Set
---- !u!114 &2074982271291267955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1576543653909235321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e94bc0e0656d9e4da5a1caf9be84bca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 2, y: -2}
-  m_UseGraphicAlpha: 1
-  m_circleCount: 6
-  m_firstSample: 4
-  m_sampleIncrement: 2
 --- !u!1 &1751504996150518199
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,7 +487,6 @@ GameObject:
   - component: {fileID: 7664340462247602693}
   - component: {fileID: 8583444130201111199}
   - component: {fileID: 7615697373771843994}
-  - component: {fileID: 2016403733893829651}
   m_Layer: 5
   m_Name: CardName
   m_TagString: Untagged
@@ -574,24 +554,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Set
---- !u!114 &2016403733893829651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4911248161336969004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e94bc0e0656d9e4da5a1caf9be84bca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 2, y: -2}
-  m_UseGraphicAlpha: 1
-  m_circleCount: 6
-  m_firstSample: 4
-  m_sampleIncrement: 2
 --- !u!1 &4980329098128239179
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,7 +806,6 @@ GameObject:
   - component: {fileID: 5559078007663366667}
   - component: {fileID: 7590957442267980168}
   - component: {fileID: 1554888960387365388}
-  - component: {fileID: 1319035419368534563}
   m_Layer: 5
   m_Name: CardName
   m_TagString: Untagged
@@ -912,24 +873,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Set
---- !u!114 &1319035419368534563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6848794723616618795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e94bc0e0656d9e4da5a1caf9be84bca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 2, y: -2}
-  m_UseGraphicAlpha: 1
-  m_circleCount: 6
-  m_firstSample: 4
-  m_sampleIncrement: 2
 --- !u!1 &7345539063549455748
 GameObject:
   m_ObjectHideFlags: 0
@@ -1442,6 +1385,7 @@ GameObject:
   - component: {fileID: 9024294149798862846}
   - component: {fileID: 9024294149798862840}
   - component: {fileID: 9024294149798862841}
+  - component: {fileID: 2698545079590395059}
   m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
@@ -1507,6 +1451,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2698545079590395059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9024294149798862847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62055e30eb735b1418b82131c1b4f1f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9024294149863595476
 GameObject:
   m_ObjectHideFlags: 0

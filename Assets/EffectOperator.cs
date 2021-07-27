@@ -56,13 +56,12 @@ public class EffectOperator : MonoBehaviour
                 break;
             case Effects.ChangeToAttack:
                 MonsterLogic.MonstersCreatedThisGame[targetID].monsterPosition = FieldPosition.Attack;
-                //t.transform.GetComponent<OneMonsterManager>().cardAsset.MonsterState = FieldPosition.Defence;
+                t.target.GetChild(6).GetComponent<Animator>().SetTrigger("Attack_State");
                 StartCoroutine(ToAttackPosition(t.target.GetComponent<OneMonsterManager>().CardImageFront.transform.parent));
                 break;
             case Effects.ChangeToDefence:
-                Debug.Log(t.target.GetComponent<OneMonsterManager>().cardAsset.name);
                 MonsterLogic.MonstersCreatedThisGame[targetID].monsterPosition = FieldPosition.Defence;
-                //t.transform.GetComponent<OneMonsterManager>().cardAsset.MonsterState = FieldPosition.Attack;
+                t.target.GetChild(6).GetComponent<Animator>().SetTrigger("Defence_State");
                 StartCoroutine(ToDefencePosition(t.target.GetComponent<OneMonsterManager>().CardImageFront.transform.parent));
                 break;
         }

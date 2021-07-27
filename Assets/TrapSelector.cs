@@ -67,4 +67,9 @@ public class TrapSelector : MonoBehaviour
         return isFinished;
     }
 
+    public void setFinished(bool val)
+    {
+        isFinished = val;
+    }
+
 }

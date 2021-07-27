@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87e63ff8efc667841a720372373b65e0, type: 3}
+  m_Name: Silent Magician LV8
+  m_EditorClassIdentifier: 
+  Name: Silent Magician LV8
+  characterAsset: {fileID: 0}
+  Description: Cannot be Normal Summoned/Set. Must be Special Summoned by "Silent
+    Magician LV4" and cannot be Special Summoned by other ways. Unaffected by your
+    opponent's Spell effects.
+  CardImage: {fileID: 21300000, guid: 50d52bfb33bae0f49a3f3badaeeaf1d9, type: 3}
+  Model: {fileID: 7677847658668840266, guid: fb9ee463363f09c418c81969fd45877b, type: 3}
+  LoadEffect: {fileID: 6919696815746493217, guid: e468561db8d4ac7419fe711248f729fb,
+    type: 3}
+  ShotAttack: {fileID: 6379335799971204364, guid: 91865e340f9846445ae1bc507c3b04a7,
+    type: 3}
+  AttackEffect: {fileID: 4370713415926309960, guid: f6b2b9ed3efe9ba48aa1b1102317c5a3,
+    type: 3}
+  xTransOffset: 1591
+  yTransOffset: -718
+  zTransOffset: -100
+  Attack: 3500
+  Defence: 1000
+  Attribute: 4
+  AttacksForOneTurn: 1
+  Type: 2
+  Rank: 8
+  monsterState: 0
+  SpellTrap: 0
+  Effect: 0
+  amount: 0

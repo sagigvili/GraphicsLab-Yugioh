@@ -262,7 +262,6 @@ GameObject:
   - component: {fileID: 53308230234536077}
   - component: {fileID: 7022982505570799944}
   - component: {fileID: 5701063742241950138}
-  - component: {fileID: 5348352969130065006}
   m_Layer: 5
   m_Name: SummonAttackText
   m_TagString: Untagged
@@ -330,24 +329,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Summon
---- !u!114 &5348352969130065006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5590170918276665288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e94bc0e0656d9e4da5a1caf9be84bca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 2, y: -2}
-  m_UseGraphicAlpha: 1
-  m_circleCount: 6
-  m_firstSample: 4
-  m_sampleIncrement: 2
 --- !u!1 &5952758971747694509
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,7 +806,6 @@ GameObject:
   - component: {fileID: 4829206027597849553}
   - component: {fileID: 6793531282329584459}
   - component: {fileID: 4677436993473675342}
-  - component: {fileID: 3648558652715802055}
   m_Layer: 5
   m_Name: SetText
   m_TagString: Untagged
@@ -893,24 +873,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Set
---- !u!114 &3648558652715802055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7886293803022749432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e94bc0e0656d9e4da5a1caf9be84bca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 2, y: -2}
-  m_UseGraphicAlpha: 1
-  m_circleCount: 6
-  m_firstSample: 4
-  m_sampleIncrement: 2
 --- !u!1 &8682645437761379800
 GameObject:
   m_ObjectHideFlags: 0

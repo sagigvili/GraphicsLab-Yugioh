@@ -10,12 +10,6 @@ using DG.Tweening;
 
 public class DamageEffect : MonoBehaviour {
 
-    // an array of sprites with different blood splash graphics
-    public Sprite[] Splashes;
-
-    // a UI image to show the blood splashes
-    public Image DamageImage;
-
     // CanvasGropup should be attached to the Canvas of this damage effect
     // It is used to fade away the alpha value of this effect
     public CanvasGroup cg;
@@ -23,11 +17,6 @@ public class DamageEffect : MonoBehaviour {
     // The text component to show the amount of damage taken by target like: "-2"
     public Text AmountText;
 
-    void Awake()
-    {
-        // pick a random image
-        DamageImage.sprite = Splashes[Random.Range(0, Splashes.Length)];  
-    }
 
     // A Coroutine to control the fading of this damage effect
     private IEnumerator ShowDamageEffect()

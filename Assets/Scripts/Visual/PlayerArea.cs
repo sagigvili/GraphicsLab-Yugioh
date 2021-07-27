@@ -13,7 +13,9 @@ public class PlayerArea : MonoBehaviour
     public PlayerPowerButton HeroPower;
     //public EndTurnButton EndTurnButton;
     public TableVisual tableVisual;
+    public PlayerGraveyardVisual graveyardVisual;
     public Transform PortraitPosition;
+    public Transform DamageSpot;
 
     public bool AllowedToControlThisPlayer
     {

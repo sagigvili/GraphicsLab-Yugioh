@@ -51,6 +51,13 @@ public class CardAsset : ScriptableObject
     [TextArea(2,3)]
     public string Description;  // Description for spell or character
 	public Sprite CardImage;
+    public GameObject Model;
+    public GameObject LoadEffect;
+    public GameObject ShotAttack;
+    public GameObject AttackEffect;
+    public int xTransOffset;
+    public int yTransOffset;
+    public int zTransOffset;
 
     [Header("Monster Info")]
     public int Attack; // if -1 that is spell

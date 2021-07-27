@@ -103,8 +103,8 @@ public class MonsterLogic : ICharacter
     public void AttackMonster(MonsterLogic target)
     {
         AttacksLeftThisTurn--;
-  
-        // calculate the values so that the monster does not fire the DIE command before the Attack command is sent
+
+        //calculate the values so that the monster does not fire the DIE command before the Attack command is sent
         if (target.monsterPosition == FieldPosition.Set)
         {
             GameObject target_visual = IDHolder.GetGameObjectWithID(target.UniqueMonsterID);
@@ -121,10 +121,12 @@ public class MonsterLogic : ICharacter
             {
                 new MonsterAttackCommand(target.UniqueMonsterID, UniqueMonsterID, 0, 0, owner.otherPlayer.Health).AddToQueue();
                 target.Die();
-            } else if ( Attack == target.Defence)
+            }
+            else if (Attack == target.Defence)
             {
                 new MonsterAttackCommand(target.UniqueMonsterID, UniqueMonsterID, 0, 0, owner.otherPlayer.Health).AddToQueue();
-            } else
+            }
+            else
             {
                 new MonsterAttackCommand(target.UniqueMonsterID, UniqueMonsterID, target.Defence - Attack, 0, owner.otherPlayer.Health).AddToQueue();
                 owner.Health -= target.Defence - Attack;
@@ -134,9 +136,11 @@ public class MonsterLogic : ICharacter
                 }
                 owner.PArea.Portrait.HealthText.text = owner.Health.ToString();
             }
-            
 
-        } else {
+
+        }
+        else
+        {
             if (Attack > target.Attack)
             {
                 int Damage = Attack - target.Attack;

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 309839552477951397}
   - component: {fileID: 2736281663953485624}
   - component: {fileID: 7735333443496132955}
-  - component: {fileID: 7678976555528811371}
   m_Layer: 5
   m_Name: WhoWins
   m_TagString: Untagged
@@ -79,24 +78,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
---- !u!114 &7678976555528811371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 196235823309657009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e94bc0e0656d9e4da5a1caf9be84bca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 2, y: -2}
-  m_UseGraphicAlpha: 1
-  m_circleCount: 6
-  m_firstSample: 4
-  m_sampleIncrement: 2
 --- !u!1 &1077995587717322942
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +172,6 @@ GameObject:
   - component: {fileID: 1077995587754127162}
   - component: {fileID: 1077995587754127165}
   - component: {fileID: 1077995587754127164}
-  - component: {fileID: 655649425642470478}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -259,24 +239,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Start New Game
---- !u!114 &655649425642470478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1077995587754127161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e94bc0e0656d9e4da5a1caf9be84bca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 1, y: -1}
-  m_UseGraphicAlpha: 1
-  m_circleCount: 2
-  m_firstSample: 4
-  m_sampleIncrement: 2
 --- !u!1 &1077995588789311218
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,7 +551,6 @@ GameObject:
   - component: {fileID: 1077995588940729548}
   - component: {fileID: 1077995588940729551}
   - component: {fileID: 1077995588940729550}
-  - component: {fileID: 6515115787790214660}
   m_Layer: 5
   m_Name: GameOverText
   m_TagString: Untagged
@@ -657,24 +618,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: GAME OVER
---- !u!114 &6515115787790214660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1077995588940729547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e94bc0e0656d9e4da5a1caf9be84bca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 2, y: -2}
-  m_UseGraphicAlpha: 1
-  m_circleCount: 6
-  m_firstSample: 4
-  m_sampleIncrement: 2
 --- !u!1 &1077995589571722141
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,9 +17,21 @@ MonoBehaviour:
   Description: This legendary dragon is a powerful engine of destruction. Virtually
     invincible, very few have faced this awesome creature and lived to tell the tale.
   CardImage: {fileID: 21300000, guid: 05febefd28164c74fa361c3caa82d254, type: 3}
+  Model: {fileID: 8688624887276791208, guid: 3b6be68098b5bd745a57f2b9ba6fae60, type: 3}
+  LoadEffect: {fileID: 3911854415461569565, guid: 3d2a495131cb34a48aac014ce457667a,
+    type: 3}
+  AttackEffect: {fileID: 4370713415926309960, guid: f6b2b9ed3efe9ba48aa1b1102317c5a3,
+    type: 3}
+  xTransOffset: 0
+  yTransOffset: 0
+  zTransOffset: -20
   Attack: 3000
   Defence: 2500
   Attribute: 4
   AttacksForOneTurn: 1
   Type: 0
   Rank: 8
+  monsterState: 0
+  SpellTrap: 0
+  Effect: 0
+  amount: 0
