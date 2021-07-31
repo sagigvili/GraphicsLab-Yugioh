@@ -24,6 +24,9 @@ public class AITurnMaker: TurnMaker {
 
         while (MakeOneAIMove(strategyAttackFirst))
         {
+            while (Command.playingQueue) {
+                yield return null;
+            }
             yield return null;
         }
 
@@ -37,19 +40,25 @@ public class AITurnMaker: TurnMaker {
     {
         if (Command.CardDrawPending())
             return true;
-        else if (attackFirst)
-            return AttackWithAMonster() || PlayAMonsterFromHand();
-        else 
-            return PlayATrapFromHand() || PlayASpellFromHand() || PlayAMonsterFromHand() || AttackWithAMonster();
+
+        return UseHeroPower() || PlaySpellOnField() || PlayATrapFromHand() || PlayASpellFromHand() || PlayAMonsterFromHand() || AttackWithAMonster();
     }
 
     bool PlayAMonsterFromHand()
     {
+        int max = 0;
+        foreach (CardLogic c in p.hand.CardsInHand)
+        {
+            if (c.ca.Attack > max)
+            {
+                max = c.ca.Attack;
+            }
+        }
         foreach (CardLogic c in p.hand.CardsInHand)
         {
             if (c.CanBePlayed && p.table.MonstersOnTable.Count < 3)
             {
-                if(c.ca.Attack != -1 && !p.table.PlayedACard)
+                if(c.ca.Attack != -1 && !p.table.PlayedACard && c.ca.Attack == max)
                 {
                     // it is a monster card
                     p.table.PlayedACard = true;
@@ -75,10 +84,11 @@ public class AITurnMaker: TurnMaker {
         {
             if (c.CanBePlayed && p.table.SpellsTrapsOnTable.Count < 3)
             {
-                if (c.ca.SpellTrap == SpellOrTrap.Trap)
+                if (c.ca.SpellTrap == SpellOrTrap.Trap && c.ca.Attack == -1)
                 {
                     // it is a trap card
-                    int tablePos = p.PArea.tableVisual.getSpellsTrapsOnTableCount();
+                    int tablePos = p.PArea.tableVisual.getSpellsTrapsOnTableCountAI();
+                    Debug.Log("Trap Table pos: " + tablePos);
                     p.PlayASpellFromHand(c, tablePos, SpellTrapPosition.Set);
                     InsertDelay(1.5f);
                     return true;
@@ -95,10 +105,11 @@ public class AITurnMaker: TurnMaker {
         {
             if (c.CanBePlayed && p.table.SpellsTrapsOnTable.Count < 3)
             {
-                if (c.ca.SpellTrap == SpellOrTrap.Spell)
+                if (c.ca.SpellTrap == SpellOrTrap.Spell && c.ca.Attack == -1)
                 {
                     // it is a trap card
-                    int tablePos = p.PArea.tableVisual.getSpellsTrapsOnTableCount();
+                    int tablePos = p.PArea.tableVisual.getSpellsTrapsOnTableCountAI();
+                    Debug.Log("Spell Table pos: " + tablePos);
                     if (CanBeFaceUp(c.ca.Effect))
                         p.PlayASpellFromHand(c, tablePos, SpellTrapPosition.FaceUp);
                     else
@@ -158,7 +169,7 @@ public class AITurnMaker: TurnMaker {
 
     bool UseHeroPower()
     {
-        if (!p.usedPlayerPower)
+        if (!p.usedPlayerPower && p.otherPlayer.table.SpellsTrapsOnTable.Count>0)
         {
             p.UsePlayerPower();
             InsertDelay(1.5f);
@@ -172,14 +183,17 @@ public class AITurnMaker: TurnMaker {
     {
         foreach (MonsterLogic cl in p.table.MonstersOnTable)
         {
-            if (cl.AttacksLeftThisTurn > 0)
+            if (cl.AttacksLeftThisTurn > 0 &&  cl.monsterPosition == FieldPosition.Attack)
             {
                 // attack a random target with a monster
                 if (p.otherPlayer.table.MonstersOnTable.Count > 0)
                 {
-                    int index = Random.Range(0, p.otherPlayer.table.MonstersOnTable.Count);
-                    MonsterLogic targetMonster = p.otherPlayer.table.MonstersOnTable[index];
-                    cl.AttackMonster(targetMonster);
+                    
+                    MonsterLogic targetMonster = SelectMonsterToAttack(cl.ca.Attack);
+                    if (targetMonster != null)
+                        cl.AttackMonster(targetMonster);
+                    else
+                        continue;
                 }                    
                 else
                     cl.GoFace();
@@ -190,6 +204,45 @@ public class AITurnMaker: TurnMaker {
         }
         return false;
     }
+
+    public MonsterLogic SelectMonsterToAttack(int attackMonsterATK)
+    {
+        foreach (MonsterLogic cl in p.otherPlayer.table.MonstersOnTable)
+        {
+            if(cl.ca.monsterState == FieldPosition.Attack && cl.ca.Attack <= attackMonsterATK)
+            {
+                return cl;
+            }
+            if (cl.ca.monsterState == FieldPosition.Defence && cl.ca.Defence <= attackMonsterATK)
+            {
+                return cl;
+            }
+            if(cl.ca.monsterState == FieldPosition.Set)
+            {
+                int toAttack = Random.Range(0, 2);
+                Debug.Log("is attack? " + toAttack);
+                if (toAttack == 1)
+                    return cl;
+            }
+        }
+        return null;
+    }
+
+    bool PlaySpellOnField()
+    {
+        foreach (SpellTrapLogic stl in p.table.SpellsTrapsOnTable)
+        {
+            if (stl.ca.SpellTrap == SpellOrTrap.Spell && CanBeFaceUp(stl.Effect))
+            {
+                SpellTrapEffect.ActivateEffectAI(stl.ca);
+                InsertDelay(1f);
+                return true;
+            }
+        }
+        return false;
+    }
+
+   
 
     void InsertDelay(float delay)
     {

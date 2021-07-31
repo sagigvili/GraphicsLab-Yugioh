@@ -181,7 +181,16 @@ public class MonsterLogic : ICharacter
        AttackMonster(target);
     }
 
-  
+    public void ChangeState(FieldPosition fp)
+    {
+        ca.monsterState = fp;
+        owner.PArea.tableVisual.RemoveMonsterWithID(ID);
+    }
+
+    
+    
+
+
     // STATIC For managing IDs
     public static Dictionary<int, MonsterLogic> MonstersCreatedThisGame = new Dictionary<int, MonsterLogic>();
 

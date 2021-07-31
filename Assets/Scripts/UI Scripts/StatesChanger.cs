@@ -81,7 +81,21 @@ public class StatesChanger : MonoBehaviour
                 }
                 else if (TurnManager.Instance.whoseTurn.otherPlayer.PArea.tableVisual.getMonstersOnTableCount() > 0)
                 {
-                    if (((effect == SpellTrapEffects.ChangeToAttack || effect == SpellTrapEffects.ChangeToDefence) && TurnManager.Instance.whoseTurn.otherPlayer.table.AnyAttackOrDefenceMonsters(effect)) || effect == SpellTrapEffects.DestoryMonster)
+                    if (effect == SpellTrapEffects.DestoryMonster)
+                    {
+                        DefenceButton.gameObject.SetActive(false);
+                        AttackSummonButton.gameObject.SetActive(true);
+                        AttackSummonText.text = "Activate";
+                        panel.gameObject.SetActive(true);
+                    }
+                    if ((effect == SpellTrapEffects.ChangeToAttack) && (TurnManager.Instance.whoseTurn.otherPlayer.table.AnyDefenceMonsters()))
+                    {
+                        DefenceButton.gameObject.SetActive(false);
+                        AttackSummonButton.gameObject.SetActive(true);
+                        AttackSummonText.text = "Activate";
+                        panel.gameObject.SetActive(true);
+                    }
+                    if ((effect == SpellTrapEffects.ChangeToDefence) && (TurnManager.Instance.whoseTurn.otherPlayer.table.AnyAttackMonsters()))
                     {
                         DefenceButton.gameObject.SetActive(false);
                         AttackSummonButton.gameObject.SetActive(true);

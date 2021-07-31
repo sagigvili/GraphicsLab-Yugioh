@@ -23,7 +23,7 @@ MonoBehaviour:
   xTransOffset: 0
   yTransOffset: 0
   zTransOffset: 0
-  Attack: 0
+  Attack: -1
   Defence: 0
   Attribute: 0
   AttacksForOneTurn: 1

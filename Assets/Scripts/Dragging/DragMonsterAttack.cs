@@ -113,8 +113,10 @@ public class DragMonsterAttack : DraggingActions {
 
         if (Target != null && TurnManager.Instance.whoseTurn.table.InAttackPhase)
         {
+
             if (IsThereAnyTrapOnOpponentsField())
             {
+                
                 new ActivateTrapCommand().AddToQueue();
             }
             int targetID = Target.GetComponent<IDHolder>().UniqueID;

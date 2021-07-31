@@ -54,7 +54,7 @@ public class TableVisual : MonoBehaviour
             if (MonstersSlots.GetAChildInTable(i).gameObject.GetComponent<OneMonsterManager>().isFieldOnly)
                 return i;
         }
-        return 0;
+        return -1;
     }
 
     public GameObject getMonsterOnTable(int index)
@@ -65,9 +65,30 @@ public class TableVisual : MonoBehaviour
     public int getSpellsTrapsOnTableCount()
     {
         for (int i = 0; i < 3; i++)
+        {
             if (SpellsTrapsSlots.GetAChildInTable(i).GetComponent<OneCardManager>().isFieldOnly)
+            {
                 return i;
-        return 0;
+            }
+                
+        }
+        return -1;
+    }
+
+    public int getSpellsTrapsOnTableCountAI()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+           
+
+            if (SpellsTrapsSlots.GetAChildInTable(i).GetComponent<OneCardManager>().isFieldOnly)
+            {
+                SpellsTrapsSlots.GetAChildInTable(i).GetComponent<OneCardManager>().isFieldOnly = false;
+                return i;
+            }
+
+        }
+        return -1;
     }
 
     public GameObject getSpellTrapOnTable(int index)
@@ -230,12 +251,15 @@ public class TableVisual : MonoBehaviour
         }
         if (ca.SpellTrapState == SpellTrapPosition.FaceUp)
         {
-            SpellTrapEffect.ActivateEffect(ca);
+            if (owner == AreaPosition.Low)
+                SpellTrapEffect.ActivateEffect(ca);
+            else
+                SpellTrapEffect.ActivateEffectAI(ca);
             SpellTrapLogic.SpellTrapsCreatedThisGame[UniqueID].Die();
         }
 
-        // end command execution
-        Command.CommandExecutionComplete();
+            // end command execution
+            Command.CommandExecutionComplete();
     }
 
 
@@ -300,6 +324,34 @@ public class TableVisual : MonoBehaviour
         //ShiftSlotsGameObjectAccordingToNumberOfMonsters();
         //PlaceMonstersOnNewSlots();
         Command.CommandExecutionComplete();
+    }
+
+    public void changeStateByID(int monsterID, FieldPosition fp)
+    {
+        GameObject monsterToRotate = IDHolder.GetGameObjectWithID(monsterID);
+        if(fp == FieldPosition.Attack)
+        {
+            ToAttackPosition(monsterToRotate.GetComponent<OneMonsterManager>().CardImageFront.transform.parent);
+        }
+        else if(fp == FieldPosition.Defence)
+        {
+            ToDefencePosition(monsterToRotate.GetComponent<OneMonsterManager>().CardImageFront.transform.parent);
+        }
+    }
+
+    IEnumerator ToAttackPosition(Transform t)
+    {
+        // displace the card so that we can select it in the scene easier.
+        t.DORotate(new Vector3(0, 0, 0), 1);
+        for (float i = 1; i >= 0; i -= Time.deltaTime)
+            yield return 0;
+    }
+
+    IEnumerator ToDefencePosition(Transform t)
+    {
+        t.DORotate(new Vector3(0, 0, 90), 1);
+        for (float i = 1; i >= 0; i -= Time.deltaTime)
+            yield return 0;
     }
 
 }

@@ -51,14 +51,25 @@ public class DragSpellTrapOnTable : DraggingActions {
         {
             SpellTrapEffects effect = GetComponent<OneCardManager>().cardAsset.Effect;
             transform.Find("StatesBalloon").transform.Find("Panel").gameObject.SetActive(true);
-            if (AreThereNoSetMonstersInField() && (effect == SpellTrapEffects.DestoryMonster || ((effect == SpellTrapEffects.ChangeToAttack || effect == SpellTrapEffects.ChangeToDefence) && TurnManager.Instance.whoseTurn.otherPlayer.table.AnyAttackOrDefenceMonsters(effect))))
+
+            if ((playerOwner.otherPlayer.table.MonstersOnTable.Count == 0) && (effect == SpellTrapEffects.DestoryMonster))
                 transform.Find("StatesBalloon").transform.Find("Panel").GetComponent<SelectStateToTable>().summonState.gameObject.SetActive(false);
+
+            if (AreThereNoSetMonstersInField(effect) && (effect == SpellTrapEffects.ChangeToAttack))
+                transform.Find("StatesBalloon").transform.Find("Panel").GetComponent<SelectStateToTable>().summonState.gameObject.SetActive(false);
+
+            if (AreThereNoSetMonstersInField(effect) && (effect == SpellTrapEffects.ChangeToDefence))
+                transform.Find("StatesBalloon").transform.Find("Panel").GetComponent<SelectStateToTable>().summonState.gameObject.SetActive(false);
+
             if (playerOwner.otherPlayer.table.SpellsTrapsOnTable.Count == 0 && effect == SpellTrapEffects.DestorySpellTrap)
                 transform.Find("StatesBalloon").transform.Find("Panel").GetComponent<SelectStateToTable>().summonState.gameObject.SetActive(false);
+
             if (GetComponent<OneCardManager>().cardAsset.SpellTrap == SpellOrTrap.Trap)
                 transform.Find("StatesBalloon").transform.Find("Panel").GetComponent<SelectStateToTable>().summonState.gameObject.SetActive(false);
+
             if (effect == SpellTrapEffects.Revive && TurnManager.Instance.whoseTurn.graveyard.cards.Count == 0)
                 transform.Find("StatesBalloon").transform.Find("Panel").GetComponent<SelectStateToTable>().summonState.gameObject.SetActive(false);
+
             manager.toLoop = true;
         }
         else
@@ -84,15 +95,29 @@ public class DragSpellTrapOnTable : DraggingActions {
         playerOwner.PlayASpellFromHand(GetComponent<IDHolder>().UniqueID, tablePos);
     }
 
-    public bool AreThereNoSetMonstersInField()
+    public bool AreThereNoSetMonstersInField(SpellTrapEffects effect)
     {
         if (playerOwner.otherPlayer.table.MonstersOnTable.Count == 0)
             return true;
-        foreach(MonsterLogic m in playerOwner.otherPlayer.table.MonstersOnTable)
+        if (effect == SpellTrapEffects.ChangeToAttack)
+        {
+            if (TurnManager.Instance.whoseTurn.otherPlayer.table.AnyAttackMonsters())
+                return true;
+            return false;
+        }
+
+        if (effect == SpellTrapEffects.ChangeToDefence)
+        {
+            if (TurnManager.Instance.whoseTurn.otherPlayer.table.AnyDefenceMonsters())
+                return true;
+            return false;
+        }
+
+/*        foreach (MonsterLogic m in playerOwner.otherPlayer.table.MonstersOnTable)
         {
             if (!(m.monsterPosition == FieldPosition.Set))
                 return false;
-        }
+        }*/
         return true;
     }
     protected override bool DragSuccessful()

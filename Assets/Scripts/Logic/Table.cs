@@ -17,6 +17,16 @@ public class Table : MonoBehaviour
         PlayedACard = false;
     }
 
+    public MonsterLogic GetMonsterAtIndex(int i)
+    {
+        return MonstersOnTable[i];
+    }
+
+    public SpellTrapLogic GetSpellTrapAtIndex(int i)
+    {
+        return SpellsTrapsOnTable[i];
+    }
+
     public void PlaceMonstereAt(int index, MonsterLogic monster)
     {
         MonstersOnTable.Insert(index, monster);
@@ -29,26 +39,26 @@ public class Table : MonoBehaviour
         SpellsTrapsOnTable.Insert(index, spelltrap);
     }
 
-    public bool AnyAttackOrDefenceMonsters(SpellTrapEffects effect)
+    public bool AnyDefenceMonsters()
     {
-        if (effect == SpellTrapEffects.ChangeToAttack)
+        foreach (MonsterLogic ml in MonstersOnTable)
         {
-            foreach (MonsterLogic ml in MonstersOnTable)
-            {
-                if (ml.monsterPosition == FieldPosition.Defence)
-                    return true;
-            }
-            return false;
-        } else if (effect == SpellTrapEffects.ChangeToDefence)
-        {
-            foreach (MonsterLogic ml in MonstersOnTable)
-            {
-                if (ml.monsterPosition == FieldPosition.Attack)
-                    return true;
-            }
-            return false;
+            if (ml.monsterPosition == FieldPosition.Defence)
+                return true;
         }
         return false;
     }
+
+    public bool AnyAttackMonsters()
+    {
+        foreach (MonsterLogic ml in MonstersOnTable)
+        {
+            if (ml.monsterPosition == FieldPosition.Attack)
+                return true;
+        }
+        return false;
+    }
+
+
 
 }
