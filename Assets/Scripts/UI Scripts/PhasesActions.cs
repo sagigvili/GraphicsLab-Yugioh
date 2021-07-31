@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PhasesActions : MonoBehaviour
 {
+    // flag == 1 : we're in Phase 1
+    // flag == 2 : we're in Attack Phase
     private int flag = 1;
 
     public void ClickByFlag()
@@ -27,7 +29,6 @@ public class PhasesActions : MonoBehaviour
     public void EndTurn()
     {
         TurnManager.Instance.EndTurn();
-        TurnManager.Instance.whoseTurn.table.InAttackPhase = false;
     }
 
     public void OnAttackPhase()
@@ -35,6 +36,12 @@ public class PhasesActions : MonoBehaviour
         TurnManager.Instance.whoseTurn.AddAttackToAllMonstersOnTable();
         TurnManager.Instance.whoseTurn.HighlightPlayableCards();
         TurnManager.Instance.whoseTurn.table.InAttackPhase = true;
+    }
+
+    public void SetFlag(int val)
+    {
+        flag = val;
+            
     }
 
 }

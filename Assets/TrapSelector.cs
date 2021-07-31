@@ -7,7 +7,7 @@ public class TrapSelector : MonoBehaviour
 {
     public List<TargetSlot> Traps = new List<TargetSlot>();
     public Transform panel;
-    public Effects CurrentEffect;
+    public SpellTrapEffects CurrentEffect;
     private bool isFinished = false;
 
     public void Start()
@@ -52,7 +52,7 @@ public class TrapSelector : MonoBehaviour
                 GameObject newSpellOppTrapField = GameObject.Instantiate(GlobalSettings.Instance.SpellTrapFieldPrefab, target.parent.transform.position, Quaternion.identity) as GameObject;
                 newSpellOppTrapField.transform.SetParent(target.parent.transform);
                 break;*/
-            case Effects.Negate:
+            case SpellTrapEffects.Negate:
                 ((MonsterAttackCommand)Command.CommandQueue.Peek()).canAttack = false;
                 Command.ClearQueue();
                 break;

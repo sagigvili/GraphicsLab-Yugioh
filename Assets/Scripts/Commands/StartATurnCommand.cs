@@ -13,6 +13,7 @@ public class StartATurnCommand : Command {
     public override void StartCommandExecution()
     {
         TurnManager.Instance.whoseTurn = p;
+        TurnManager.Instance.whoseTurn.table.InAttackPhase = false;
         p.table.ResetPlayedACard();
         // this command is completed instantly
         CommandExecutionComplete();

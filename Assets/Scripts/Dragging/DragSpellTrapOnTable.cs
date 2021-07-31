@@ -49,15 +49,15 @@ public class DragSpellTrapOnTable : DraggingActions {
         // 1) Check if we are holding a card over the table
         if (DragSuccessful() && !playerOwner.table.InAttackPhase)
         {
-            Effects effect = GetComponent<OneCardManager>().cardAsset.Effect;
+            SpellTrapEffects effect = GetComponent<OneCardManager>().cardAsset.Effect;
             transform.Find("StatesBalloon").transform.Find("Panel").gameObject.SetActive(true);
-            if (AreThereNoSetMonstersInField() && (effect == Effects.DestoryMonster || ((effect == Effects.ChangeToAttack || effect == Effects.ChangeToDefence) && TurnManager.Instance.whoseTurn.otherPlayer.table.AnyAttackOrDefenceMonsters(effect))))
+            if (AreThereNoSetMonstersInField() && (effect == SpellTrapEffects.DestoryMonster || ((effect == SpellTrapEffects.ChangeToAttack || effect == SpellTrapEffects.ChangeToDefence) && TurnManager.Instance.whoseTurn.otherPlayer.table.AnyAttackOrDefenceMonsters(effect))))
                 transform.Find("StatesBalloon").transform.Find("Panel").GetComponent<SelectStateToTable>().summonState.gameObject.SetActive(false);
-            if (playerOwner.otherPlayer.table.SpellsTrapsOnTable.Count == 0 && effect == Effects.DestorySpellTrap)
+            if (playerOwner.otherPlayer.table.SpellsTrapsOnTable.Count == 0 && effect == SpellTrapEffects.DestorySpellTrap)
                 transform.Find("StatesBalloon").transform.Find("Panel").GetComponent<SelectStateToTable>().summonState.gameObject.SetActive(false);
             if (GetComponent<OneCardManager>().cardAsset.SpellTrap == SpellOrTrap.Trap)
                 transform.Find("StatesBalloon").transform.Find("Panel").GetComponent<SelectStateToTable>().summonState.gameObject.SetActive(false);
-            if (effect == Effects.Revive && TurnManager.Instance.whoseTurn.graveyard.cards.Count == 0)
+            if (effect == SpellTrapEffects.Revive && TurnManager.Instance.whoseTurn.graveyard.cards.Count == 0)
                 transform.Find("StatesBalloon").transform.Find("Panel").GetComponent<SelectStateToTable>().summonState.gameObject.SetActive(false);
             manager.toLoop = true;
         }

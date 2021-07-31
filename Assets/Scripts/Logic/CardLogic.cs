@@ -22,10 +22,7 @@ public class CardLogic: IIdentifiable
         get
         {
             bool ownersTurn = (TurnManager.Instance.whoseTurn == owner);
-            // for spells the amount of characters on the field does not matter
             bool fieldNotFull = true;
-            // but if this is a creature, we have to check if there is room on board (table)
-            //Debug.Log("Card: " + ca.name + " has params: ownersTurn=" + ownersTurn + "fieldNotFull=" + fieldNotFull + " hasMana=" + (CurrentManaCost <= owner.ManaLeft));
             return ownersTurn && fieldNotFull;
         }
     }

@@ -8,7 +8,7 @@ public class TargetSlot : MonoBehaviour
     public Transform target;
     public Image targetImage;
     public Text targetName;
-    private Effects effect;
+    private SpellTrapEffects effect;
 
     public void getTargetDetails(GameObject g)
     {
@@ -19,7 +19,7 @@ public class TargetSlot : MonoBehaviour
         effect = targetManager.cardAsset.Effect;
     }
 
-    public Effects getEffect()
+    public SpellTrapEffects getEffect()
     {
         return effect;
     }

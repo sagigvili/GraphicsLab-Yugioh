@@ -74,8 +74,7 @@ public class TurnManager : MonoBehaviour {
             {
                 // determine who starts the game.
                 // TODO: flipping coin of choosing which player starts
-                //int rnd = Random.Range(0,2);  // 2 is exclusive boundary
-                int rnd = 0;
+                int rnd = Random.Range(0,2);  // 2 is exclusive boundary
                 //Debug.Log(Player.Players.Length);
                 //Debug.Log("Who is first - " + rnd);
                 Player whoGoesFirst = Player.Players[rnd];

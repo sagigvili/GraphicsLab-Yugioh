@@ -128,6 +128,19 @@ public class Player : MonoBehaviour, ICharacter
         HighlightPlayableCards();
     }
 
+    public void PlayASpellFromHand(CardLogic playedCard, int tablePos, SpellTrapPosition state)
+    {
+        // create a new spell or trap object and add it to Table
+        SpellTrapLogic newSpellTrap = new SpellTrapLogic(this, playedCard.ca);
+        table.SpellsTrapsOnTable.Insert(tablePos, newSpellTrap);
+        newSpellTrap.ca.SpellTrapState = state;
+        // no matter what happens, move this card to PlayACardSpot
+        new PlayASpellCardCommand(playedCard, this, tablePos, newSpellTrap.UniqueSpellTrapID).AddToQueue();
+        // remove this card from hand
+        hand.CardsInHand.Remove(playedCard);
+        HighlightPlayableCards();
+    }
+
     public void PlayAMonsterFromHand(int UniqueID, int tablePos)
     {
         PlayAMonsterFromHand(CardLogic.CardsCreatedThisGame[UniqueID], tablePos);
@@ -138,6 +151,19 @@ public class Player : MonoBehaviour, ICharacter
         // create a new monster object and add it to Table
         MonsterLogic newMonster = new MonsterLogic(this, playedCard.ca);
         table.MonstersOnTable.Insert(tablePos, newMonster);
+        // no matter what happens, move this card to PlayACardSpot
+        new PlayAMonsterCommand(playedCard, this, tablePos, newMonster.UniqueMonsterID).AddToQueue();
+        // remove this card from hand
+        hand.CardsInHand.Remove(playedCard);
+        HighlightPlayableCards();
+    }
+
+    public void PlayAMonsterFromHand(CardLogic playedCard, int tablePos, FieldPosition state)
+    {
+        // create a new monster object and add it to Table
+        MonsterLogic newMonster = new MonsterLogic(this, playedCard.ca);
+        table.MonstersOnTable.Insert(tablePos, newMonster);
+        newMonster.ca.MonsterState = state;
         // no matter what happens, move this card to PlayACardSpot
         new PlayAMonsterCommand(playedCard, this, tablePos, newMonster.UniqueMonsterID).AddToQueue();
         // remove this card from hand

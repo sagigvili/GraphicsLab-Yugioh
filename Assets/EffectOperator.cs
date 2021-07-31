@@ -7,9 +7,9 @@ public class EffectOperator : MonoBehaviour
 {
     public List<TargetSlot> Targets = new List<TargetSlot>();
     public Transform panel;
-    public Effects CurrentEffect;
+    public SpellTrapEffects CurrentEffect;
 
-    public void InitiateEffect(bool TargetType, Effects effect)
+    public void InitiateEffect(bool TargetType, SpellTrapEffects effect)
     {
         CurrentEffect = effect;
         getTargets(TargetType);
@@ -22,7 +22,7 @@ public class EffectOperator : MonoBehaviour
         {
             for (int i = 0; i < tabVis.getMonstersOnTableCount(); i++)
             {
-                if ((CurrentEffect == Effects.ChangeToDefence && table.MonstersOnTable[i].monsterPosition == FieldPosition.Attack) || (CurrentEffect == Effects.ChangeToAttack && table.MonstersOnTable[i].monsterPosition == FieldPosition.Defence) || CurrentEffect == Effects.DestoryMonster)
+                if ((CurrentEffect == SpellTrapEffects.ChangeToDefence && table.MonstersOnTable[i].monsterPosition == FieldPosition.Attack) || (CurrentEffect == SpellTrapEffects.ChangeToAttack && table.MonstersOnTable[i].monsterPosition == FieldPosition.Defence) || CurrentEffect == SpellTrapEffects.DestoryMonster)
                 {
                     Targets[i].getTargetDetails(tabVis.getMonsterOnTable(i));
                     Targets[i].gameObject.SetActive(true);
@@ -46,20 +46,20 @@ public class EffectOperator : MonoBehaviour
         int targetID = t.target.gameObject.GetComponent<IDHolder>().UniqueID;
         switch (CurrentEffect)
         {
-            case Effects.DestoryMonster:
+            case SpellTrapEffects.DestoryMonster:
                 MonsterLogic targetedMonster = MonsterLogic.MonstersCreatedThisGame[targetID];
                 targetedMonster.Die();
                 break;
-            case Effects.DestorySpellTrap:
+            case SpellTrapEffects.DestorySpellTrap:
                 SpellTrapLogic targetedSpellTrap = SpellTrapLogic.SpellTrapsCreatedThisGame[targetID];
                 targetedSpellTrap.Die();
                 break;
-            case Effects.ChangeToAttack:
+            case SpellTrapEffects.ChangeToAttack:
                 MonsterLogic.MonstersCreatedThisGame[targetID].monsterPosition = FieldPosition.Attack;
                 t.target.GetChild(6).GetComponent<Animator>().SetTrigger("Attack_State");
                 StartCoroutine(ToAttackPosition(t.target.GetComponent<OneMonsterManager>().CardImageFront.transform.parent));
                 break;
-            case Effects.ChangeToDefence:
+            case SpellTrapEffects.ChangeToDefence:
                 MonsterLogic.MonstersCreatedThisGame[targetID].monsterPosition = FieldPosition.Defence;
                 t.target.GetChild(6).GetComponent<Animator>().SetTrigger("Defence_State");
                 StartCoroutine(ToDefencePosition(t.target.GetComponent<OneMonsterManager>().CardImageFront.transform.parent));

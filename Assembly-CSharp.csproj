@@ -249,13 +249,11 @@
     <None Include="Assets\Packages\Mirza Beig\Shaders\Particles\No Fog\NoFog-Alpha.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\Packages\Mirza Beig\Shaders\Image Effects\Tests\Screen Rain.shader" />
-    <None Include="Assets\AnimationConverterExamples\Example2_Reuse_Animations\Example2_ReadMe.txt" />
     <None Include="Assets\Scripts\DOTween\DOTween43.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\Packages\Mirza Beig\Shaders\Particles\Intersection Highlight\IntersectionHighlight-Add.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\Packages\Mirza Beig\_DOCS\README - Storm VFX.txt" />
-    <None Include="Assets\AnimationConverterExamples\Example1_MoCap_to_Generic\Example1_ReadMe.txt" />
     <None Include="Assets\Packages\Mirza Beig\Shaders\Particles\Distance Fade\DistanceFade-AnimBlendAlpha.shader" />
     <None Include="Assets\Packages\Mirza Beig\Shaders\Particles\Add Soft\AddSoft-Mult.shader" />
     <None Include="Assets\Packages\Mirza Beig\Shaders\Particles\No Fog\NoFog-Add.shader" />
@@ -478,9 +476,6 @@
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>F:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="AnimationConverterApplication">
-      <HintPath>F:/Repos/GraphicsLab-Yugioh/Assets/AnimationConverter/Plugins/Application/AnimationConverterApplication.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>F:/Repos/GraphicsLab-Yugioh/Assets/Packages/Piglet/Dependencies/Json.NET/Newtonsoft.Json.dll</HintPath>

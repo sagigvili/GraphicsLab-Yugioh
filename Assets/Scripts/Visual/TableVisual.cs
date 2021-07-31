@@ -54,7 +54,6 @@ public class TableVisual : MonoBehaviour
             if (MonstersSlots.GetAChildInTable(i).gameObject.GetComponent<OneMonsterManager>().isFieldOnly)
                 return i;
         }
-
         return 0;
     }
 
@@ -269,19 +268,17 @@ public class TableVisual : MonoBehaviour
         MonstersOnTable.Remove(monsterToRemove);
         GameObject temp = graveyard.AddCardToGraveyard(monsterToRemove);
         Destroy(monsterToRemove);
-        //Sequence s = DOTween.Sequence();
-        //s.AppendInterval(1f);
-        //s.Append(temp.transform.DOMove(graveyard.transform.position, 1).SetEase(Ease.InOutSine));
-        //s.AppendInterval(1f);
-        //s.OnComplete(() =>
-        //   {
+        Sequence s = DOTween.Sequence();
+        s.AppendInterval(1f);
+        s.Append(temp.transform.DOMove(graveyard.transform.position, 1).SetEase(Ease.InOutSine));
+        s.AppendInterval(1f);
+        s.OnComplete(() =>
+           {
+               Command.CommandExecutionComplete();
+           });
 
-        //   });
-        ShiftSlotsGameObjectAccordingToNumberOfMonsters();
-        PlaceMonstersOnNewSlots();
-        Command.CommandExecutionComplete();
+        
     }
-
 
     public void RemoveSpellTrapWithID(int IDToRemove)
     {
@@ -303,35 +300,6 @@ public class TableVisual : MonoBehaviour
         //ShiftSlotsGameObjectAccordingToNumberOfMonsters();
         //PlaceMonstersOnNewSlots();
         Command.CommandExecutionComplete();
-    }
-
-    /// <summary>
-    /// Shifts the slots game object according to number of monsters.
-    /// </summary>
-    void ShiftSlotsGameObjectAccordingToNumberOfMonsters()
-    {
-        float posX;
-        if (MonstersOnTable.Count > 0)
-            posX = (MonstersSlots.Children[0].transform.localPosition.x - MonstersSlots.Children[MonstersOnTable.Count - 1].transform.localPosition.x) / 2f;
-        else
-            posX = 0f;
-
-        MonstersSlots.gameObject.transform.DOLocalMoveX(posX, 0.3f);  
-    }
-
-    /// <summary>
-    /// After a new monster is added or an old monster dies, this method
-    /// shifts all the monsters and places the monsters on new slots.
-    /// </summary>
-    void PlaceMonstersOnNewSlots()
-    {
-        foreach (GameObject g in MonstersOnTable)
-        {
-            g.transform.DOLocalMoveX(MonstersSlots.Children[MonstersOnTable.IndexOf(g)].transform.localPosition.x, 0.3f);
-            // apply correct sorting order and HandSlot value for later 
-            // TODO: figure out if I need to do something here:
-            // g.GetComponent<WhereIsTheCardOrCreature>().SetTableSortingOrder() = MonstersOnTable.IndexOf(g);
-        }
     }
 
 }

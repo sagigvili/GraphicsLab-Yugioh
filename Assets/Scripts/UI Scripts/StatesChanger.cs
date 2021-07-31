@@ -69,10 +69,10 @@ public class StatesChanger : MonoBehaviour
         }
         else if (this.transform.parent.name.StartsWith("SpellTrapField")) {
             OneCardManager card = ((SelectStateOnTable)panel).cardInTable;
-            Effects effect = card.cardAsset.Effect;
+            SpellTrapEffects effect = card.cardAsset.Effect;
             if (card.cardAsset.SpellTrapState == SpellTrapPosition.Set)
             {
-                if (effect == Effects.Heal || effect == Effects.Draw)
+                if (effect == SpellTrapEffects.Heal || effect == SpellTrapEffects.Draw || effect == SpellTrapEffects.DirectAttack)
                 {
                     DefenceButton.gameObject.SetActive(false);
                     AttackSummonButton.gameObject.SetActive(true);
@@ -81,7 +81,7 @@ public class StatesChanger : MonoBehaviour
                 }
                 else if (TurnManager.Instance.whoseTurn.otherPlayer.PArea.tableVisual.getMonstersOnTableCount() > 0)
                 {
-                    if (((effect == Effects.ChangeToAttack || effect == Effects.ChangeToDefence) && TurnManager.Instance.whoseTurn.otherPlayer.table.AnyAttackOrDefenceMonsters(effect)) || effect == Effects.DestoryMonster)
+                    if (((effect == SpellTrapEffects.ChangeToAttack || effect == SpellTrapEffects.ChangeToDefence) && TurnManager.Instance.whoseTurn.otherPlayer.table.AnyAttackOrDefenceMonsters(effect)) || effect == SpellTrapEffects.DestoryMonster)
                     {
                         DefenceButton.gameObject.SetActive(false);
                         AttackSummonButton.gameObject.SetActive(true);
@@ -89,13 +89,13 @@ public class StatesChanger : MonoBehaviour
                         panel.gameObject.SetActive(true);
                     }
 
-                } else if (effect == Effects.DestorySpellTrap && TurnManager.Instance.whoseTurn.otherPlayer.PArea.tableVisual.getSpellsTrapsOnTableCount() > 0)
+                } else if (effect == SpellTrapEffects.DestorySpellTrap && TurnManager.Instance.whoseTurn.otherPlayer.PArea.tableVisual.getSpellsTrapsOnTableCount() > 0)
                 {
                     DefenceButton.gameObject.SetActive(false);
                     AttackSummonButton.gameObject.SetActive(true);
                     AttackSummonText.text = "Activate";
                     panel.gameObject.SetActive(true);
-                } else if (effect == Effects.Revive && TurnManager.Instance.whoseTurn.graveyard.cards.Count > 0)
+                } else if (effect == SpellTrapEffects.Revive && TurnManager.Instance.whoseTurn.graveyard.cards.Count > 0)
                 {
                     DefenceButton.gameObject.SetActive(false);
                     AttackSummonButton.gameObject.SetActive(true);

@@ -29,9 +29,9 @@ public class Table : MonoBehaviour
         SpellsTrapsOnTable.Insert(index, spelltrap);
     }
 
-    public bool AnyAttackOrDefenceMonsters(Effects effect)
+    public bool AnyAttackOrDefenceMonsters(SpellTrapEffects effect)
     {
-        if (effect == Effects.ChangeToAttack)
+        if (effect == SpellTrapEffects.ChangeToAttack)
         {
             foreach (MonsterLogic ml in MonstersOnTable)
             {
@@ -39,7 +39,7 @@ public class Table : MonoBehaviour
                     return true;
             }
             return false;
-        } else if (effect == Effects.ChangeToDefence)
+        } else if (effect == SpellTrapEffects.ChangeToDefence)
         {
             foreach (MonsterLogic ml in MonstersOnTable)
             {

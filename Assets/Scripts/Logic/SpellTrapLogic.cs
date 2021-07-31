@@ -36,7 +36,7 @@ public class SpellTrapLogic : ICharacter
 
     }
     public int amount = 0;
-    public Effects Effect;
+    public SpellTrapEffects Effect;
 
     public bool CanUse
     {

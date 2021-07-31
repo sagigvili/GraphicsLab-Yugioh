@@ -55,7 +55,7 @@ public class PlayerGraveyardVisual : MonoBehaviour {
         GlobalSettings.Instance.Players[owner].graveyard.cards.Add(card.GetComponent<OneCardManager>().cardAsset);
         CardsInGraveyardCounter++;
 
-        GameObject newCardInGraveyard = GameObject.Instantiate(GlobalSettings.Instance.CardInGraveyard, transform.position, Quaternion.identity) as GameObject;
+        GameObject newCardInGraveyard = GameObject.Instantiate(GlobalSettings.Instance.CardInGraveyard, card.transform.position, Quaternion.identity) as GameObject;
         newCardInGraveyard.GetComponent<OneCardManager>().CardImageFront.sprite = card.GetComponent<OneCardManager>().CardImageFront.sprite;
         newCardInGraveyard.GetComponent<OneCardManager>().cardAsset = card.GetComponent<OneCardManager>().cardAsset;
         newCardInGraveyard.transform.SetParent(EmptySlot.transform);

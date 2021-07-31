@@ -30,7 +30,7 @@ public enum MonsterType
     Aqua
 }
 
-public enum Effects
+public enum SpellTrapEffects
 {
     DestoryMonster,
     DestorySpellTrap,
@@ -61,7 +61,7 @@ public class CardAsset : ScriptableObject
 
     [Header("Monster Info")]
     public int Attack; // if -1 that is spell
-    public int Defence; // if -1 that is spell
+    public int Defence;
     public MonsterAttribute Attribute;
     public int AttacksForOneTurn = 1;
     public MonsterType Type;
@@ -75,7 +75,7 @@ public class CardAsset : ScriptableObject
 
     [Header("Spell and Trap Info")]
     public SpellOrTrap SpellTrap;
-    public Effects Effect;
+    public SpellTrapEffects Effect;
     public int amount = 0;
     private SpellTrapPosition spellTrapState;
     public SpellTrapPosition SpellTrapState

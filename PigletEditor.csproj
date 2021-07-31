@@ -269,12 +269,6 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
-    <Reference Include="AnimationConverterApplication">
-      <HintPath>F:/Repos/GraphicsLab-Yugioh/Assets/AnimationConverter/Plugins/Application/AnimationConverterApplication.dll</HintPath>
-    </Reference>
-    <Reference Include="AnimationConverterEditor">
-      <HintPath>F:/Repos/GraphicsLab-Yugioh/Assets/AnimationConverter/Plugins/Editor/AnimationConverterEditor.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>F:/Repos/GraphicsLab-Yugioh/Assets/Packages/Piglet/Dependencies/Json.NET/Newtonsoft.Json.dll</HintPath>
     </Reference>

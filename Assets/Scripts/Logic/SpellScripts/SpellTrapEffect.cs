@@ -7,17 +7,17 @@ public class SpellTrapEffect
     {
         switch (ca.Effect)
         {
-            case Effects.DestoryMonster:
+            case SpellTrapEffects.DestoryMonster:
                 GameObject tsDM = GameObject.Instantiate(GlobalSettings.Instance.TargetSelectorPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-                tsDM.GetComponent<EffectOperator>().InitiateEffect(true, Effects.DestoryMonster);
+                tsDM.GetComponent<EffectOperator>().InitiateEffect(true, SpellTrapEffects.DestoryMonster);
                 tsDM.SetActive(true);
                 break;
-            case Effects.DestorySpellTrap:
+            case SpellTrapEffects.DestorySpellTrap:
                 GameObject tsDST = GameObject.Instantiate(GlobalSettings.Instance.TargetSelectorPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-                tsDST.GetComponent<EffectOperator>().InitiateEffect(false, Effects.DestorySpellTrap);
+                tsDST.GetComponent<EffectOperator>().InitiateEffect(false, SpellTrapEffects.DestorySpellTrap);
                 tsDST.SetActive(true);
                 break;
-            case Effects.DirectAttack:
+            case SpellTrapEffects.DirectAttack:
                 int hp_amount = System.Int32.Parse(TurnManager.Instance.whoseTurn.otherPlayer.PArea.Portrait.HealthText.text) - ca.amount;
                 if (hp_amount < 0)
                     hp_amount = 0;
@@ -25,28 +25,28 @@ public class SpellTrapEffect
                 TurnManager.Instance.whoseTurn.otherPlayer.PArea.Portrait.HealthText.text = final_hp_other_amount;
                 TurnManager.Instance.whoseTurn.otherPlayer.Health -= ca.amount;
                 break;
-            case Effects.Draw:
+            case SpellTrapEffects.Draw:
                 TurnManager.Instance.whoseTurn.DrawACard();
                 TurnManager.Instance.whoseTurn.DrawACard();
                 break;
-            case Effects.Heal:
+            case SpellTrapEffects.Heal:
                 string final_hp_amount = (System.Int32.Parse(TurnManager.Instance.whoseTurn.PArea.Portrait.HealthText.text) + ca.amount).ToString();
                 TurnManager.Instance.whoseTurn.PArea.Portrait.HealthText.text = final_hp_amount;
                 TurnManager.Instance.whoseTurn.Health += ca.amount;
                 break;
-            case Effects.Negate:
+            case SpellTrapEffects.Negate:
                 break;
-            case Effects.ChangeToAttack:
+            case SpellTrapEffects.ChangeToAttack:
                 GameObject tsPCA = GameObject.Instantiate(GlobalSettings.Instance.TargetSelectorPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-                tsPCA.GetComponent<EffectOperator>().InitiateEffect(true, Effects.ChangeToAttack);
+                tsPCA.GetComponent<EffectOperator>().InitiateEffect(true, SpellTrapEffects.ChangeToAttack);
                 tsPCA.SetActive(true);
                 break;
-            case Effects.ChangeToDefence:
+            case SpellTrapEffects.ChangeToDefence:
                 GameObject tsPCB = GameObject.Instantiate(GlobalSettings.Instance.TargetSelectorPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-                tsPCB.GetComponent<EffectOperator>().InitiateEffect(true, Effects.ChangeToDefence);
+                tsPCB.GetComponent<EffectOperator>().InitiateEffect(true, SpellTrapEffects.ChangeToDefence);
                 tsPCB.SetActive(true);
                 break;
-            case Effects.Revive:
+            case SpellTrapEffects.Revive:
                 TurnManager.Instance.whoseTurn.PArea.graveyardVisual.CardsCanvas.SetActive(true);
                 break;
 
