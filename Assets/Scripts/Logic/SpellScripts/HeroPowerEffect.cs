@@ -3,13 +3,19 @@ using System.Collections;
 
 public class HeroPowerEffect : MonoBehaviour {
 
-    public GameObject partEffect;
+    public GameObject YugiPartEffect;
     public GameObject KaibaPartEffect;
+    public GameObject ModelHalo;
     public void ActivateEffect(Player p)
     {
+        TurnManager.Instance.whoseTurn.PArea.Portrait.Model.GetComponent<Animator>().SetTrigger("HeroPower");
+        GameObject newHaloEffect = GameObject.Instantiate(ModelHalo, TurnManager.Instance.whoseTurn.PArea.Portrait.HealPoint.transform.position, Quaternion.identity) as GameObject;
+        ParticleSystem ps1 = newHaloEffect.GetComponent<ParticleSystem>();
+        ps1.Play();
+        Destroy(newHaloEffect, 2.5f);
         if (p.PlayerID == 1) // Yugi Destroys all Kaiba's monsters
         {
-            GameObject newPartEffect = GameObject.Instantiate(partEffect, partEffect.transform.position, Quaternion.identity) as GameObject;
+            GameObject newPartEffect = GameObject.Instantiate(YugiPartEffect, YugiPartEffect.transform.position, Quaternion.identity) as GameObject;
             newPartEffect.transform.position = new Vector3(newPartEffect.transform.position.x - 500, newPartEffect.transform.position.y, newPartEffect.transform.position.z);
             ParticleSystem ps = newPartEffect.GetComponent<ParticleSystem>();
             ps.Play();

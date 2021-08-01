@@ -17,18 +17,10 @@ public class MonsterLogic : ICharacter
     // PUBLIC FIELDS
     public Player owner;
     public CardAsset ca;
-    public MonsterEffect effect;
     public int UniqueMonsterID;
     public int ID
     {
         get{ return UniqueMonsterID; }
-    }
-    private FieldPosition MonsterPosition;
-    public FieldPosition monsterPosition
-    {
-        get { return MonsterPosition; }
-        set { MonsterPosition = value; }
-
     }
 
     public bool CanAttack
@@ -36,7 +28,7 @@ public class MonsterLogic : ICharacter
         get
         {
             bool ownersTurn = (TurnManager.Instance.whoseTurn == owner);
-            return (ownersTurn && (AttacksLeftThisTurn > 0) && (MonsterPosition == FieldPosition.Attack));
+            return (ownersTurn && (AttacksLeftThisTurn > 0) && (ca.MonsterState == FieldPosition.Attack));
         }
     }
 
@@ -70,7 +62,6 @@ public class MonsterLogic : ICharacter
         baseDefence = ca.Defence;
         attacksForOneTurn = ca.AttacksForOneTurn;
         this.owner = owner;
-        monsterPosition = ca.MonsterState;
         UniqueMonsterID = IDFactory.GetUniqueID();
         //if (ca.MonsterScriptName != null && ca.MonsterScriptName != "")
         //{
@@ -103,19 +94,19 @@ public class MonsterLogic : ICharacter
     public void AttackMonster(MonsterLogic target)
     {
         AttacksLeftThisTurn--;
-
+        Debug.Log("Target position is " + target.ca.MonsterState);
         //calculate the values so that the monster does not fire the DIE command before the Attack command is sent
-        if (target.monsterPosition == FieldPosition.Set)
+        if (target.ca.MonsterState == FieldPosition.Set)
         {
             GameObject target_visual = IDHolder.GetGameObjectWithID(target.UniqueMonsterID);
             target_visual.transform.DOScaleZ(1, 1f);
-            target.monsterPosition = FieldPosition.Defence;
+            target.ca.MonsterState = FieldPosition.Defence;
             Transform monsterInfo = target_visual.transform.GetChild(5);
             monsterInfo.gameObject.SetActive(true);
             if (TurnManager.Instance.whoseTurn.otherPlayer.PArea.tableVisual.owner == AreaPosition.Top)
                 monsterInfo.localPosition = new Vector3(monsterInfo.localPosition.x, -1355.72f, monsterInfo.localPosition.z);
         }
-        if (target.monsterPosition == FieldPosition.Defence)
+        if (target.ca.MonsterState == FieldPosition.Defence)
         {
             if (Attack > target.Defence)
             {
@@ -183,8 +174,8 @@ public class MonsterLogic : ICharacter
 
     public void ChangeState(FieldPosition fp)
     {
-        ca.monsterState = fp;
-        owner.PArea.tableVisual.RemoveMonsterWithID(ID);
+        ca.MonsterState = fp;
+        owner.PArea.tableVisual.ChangeMonsterPosition(UniqueMonsterID, fp);
     }
 
     

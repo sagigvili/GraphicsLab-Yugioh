@@ -51,11 +51,10 @@ public class PlayerGraveyardVisual : MonoBehaviour {
 
     public GameObject AddCardToGraveyard(GameObject card)
     {
-        CardsInGraveyard.Add(card);
         GlobalSettings.Instance.Players[owner].graveyard.cards.Add(card.GetComponent<OneCardManager>().cardAsset);
-        CardsInGraveyardCounter++;
 
         GameObject newCardInGraveyard = GameObject.Instantiate(GlobalSettings.Instance.CardInGraveyard, card.transform.position, Quaternion.identity) as GameObject;
+        CardsInGraveyard.Add(newCardInGraveyard);
         newCardInGraveyard.GetComponent<OneCardManager>().CardImageFront.sprite = card.GetComponent<OneCardManager>().CardImageFront.sprite;
         newCardInGraveyard.GetComponent<OneCardManager>().cardAsset = card.GetComponent<OneCardManager>().cardAsset;
         newCardInGraveyard.transform.SetParent(EmptySlot.transform);
@@ -83,6 +82,7 @@ public class PlayerGraveyardVisual : MonoBehaviour {
         newCardInScrollArea.transform.SetParent(CardsContainer.transform);
         newCardInScrollArea.GetComponent<OneCardManager>().CardImageFront.sprite = img;
         newCardInScrollArea.GetComponent<OneCardManager>().cardAsset = ca;
+        CardsInGraveyardCounter++;
     }
 
     public GameObject FindCard(CardAsset ca)
@@ -120,4 +120,9 @@ public class PlayerGraveyardVisual : MonoBehaviour {
         CardsCanvas.SetActive(false);
     }
    
+    public GameObject GetRandomCardFromGraveyard()
+    {
+        int graveCount = CardsInGraveyard.Count;
+        return CardsInGraveyard[Random.Range(0, graveCount)];
+    }
 }

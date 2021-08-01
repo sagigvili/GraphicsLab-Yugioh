@@ -103,7 +103,6 @@ public class DragMonsterAttack : DraggingActions {
                     (h.transform.tag == "LowMonster" && this.tag == "TopMonster"))
             {
                 // hit a monster, save parent transform
-                Debug.Log(h.transform.parent.gameObject);
                 Target = h.transform.parent.gameObject;
             }
                
@@ -113,30 +112,37 @@ public class DragMonsterAttack : DraggingActions {
 
         if (Target != null && TurnManager.Instance.whoseTurn.table.InAttackPhase)
         {
-
-            if (IsThereAnyTrapOnOpponentsField())
+            int otherPlayerID = TurnManager.Instance.whoseTurn.otherPlayer.PlayerID;
+            bool isOtherPlayerAI = false;
+            SpellTrapLogic triggeredTrap = IsThereAnyTrapOnOpponentsField();
+            if (triggeredTrap != null)
             {
-                
-                new ActivateTrapCommand().AddToQueue();
+                new ActivateTrapCommand(otherPlayerID, triggeredTrap).AddToQueue();
+                if (otherPlayerID != 1)
+                    isOtherPlayerAI = true;
             }
-            int targetID = Target.GetComponent<IDHolder>().UniqueID;
-            if (targetID == GlobalSettings.Instance.LowPlayer.PlayerID || targetID == GlobalSettings.Instance.TopPlayer.PlayerID)
+            if (!isOtherPlayerAI)
             {
-                // attack character
-                if (TurnManager.Instance.whoseTurn.otherPlayer.PArea.tableVisual.getMonstersOnTableCount() == 0)
+                int targetID = Target.GetComponent<IDHolder>().UniqueID;
+                if (targetID == GlobalSettings.Instance.LowPlayer.PlayerID || targetID == GlobalSettings.Instance.TopPlayer.PlayerID)
                 {
-                    MonsterLogic.MonstersCreatedThisGame[GetComponentInParent<IDHolder>().UniqueID].GoFace();
+                    // attack character
+                    if (TurnManager.Instance.whoseTurn.otherPlayer.PArea.tableVisual.getMonstersOnTableCount() == 0)
+                    {
+                        MonsterLogic.MonstersCreatedThisGame[GetComponentInParent<IDHolder>().UniqueID].GoFace();
+                        targetValid = true;
+                    }
+                }
+                else if (MonsterLogic.MonstersCreatedThisGame[targetID] != null)
+                {
+                    // if targeted monster is still alive, attack monster
+
                     targetValid = true;
+                    MonsterLogic.MonstersCreatedThisGame[GetComponentInParent<IDHolder>().UniqueID].AttackMonsterWithID(targetID);
+
                 }
             }
-            else if (MonsterLogic.MonstersCreatedThisGame[targetID] != null)
-            {
-                // if targeted monster is still alive, attack monster
 
-                targetValid = true;
-                MonsterLogic.MonstersCreatedThisGame[GetComponentInParent<IDHolder>().UniqueID].AttackMonsterWithID(targetID);
-
-            }
                 
         }
 
@@ -161,14 +167,14 @@ public class DragMonsterAttack : DraggingActions {
         return true;
     }
 
-    public bool IsThereAnyTrapOnOpponentsField()
+    public SpellTrapLogic IsThereAnyTrapOnOpponentsField()
     {
         foreach (SpellTrapLogic st in TurnManager.Instance.whoseTurn.otherPlayer.table.SpellsTrapsOnTable)
         {
             if (st.Type == SpellOrTrap.Trap)
-                return true;
+                return st;
         }
-        return false;
+        return null;
     }
 
 }

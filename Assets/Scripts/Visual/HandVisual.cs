@@ -120,26 +120,26 @@ public class HandVisual : MonoBehaviour
             card = GameObject.Instantiate(GlobalSettings.Instance.SpellTrapCardPrefab, position, Quaternion.Euler(eulerAngles)) as GameObject;
         }
 
-        //if (owner == AreaPosition.Top)
-        //{
-        //    foreach(RectTransform t in card.GetComponentsInChildren<RectTransform>())
-        //    {
-        //        if(t.name == "CardFace")
-        //        {
-        //            t.gameObject.SetActive(false);
-        //        }
-        //    }
-        //}
-        //else
-        //{
-        //    foreach (RectTransform t in card.GetComponentsInChildren<RectTransform>())
-        //    {
-        //        if (t.name == "CardBack")
-        //        {
-        //            t.gameObject.SetActive(false);
-        //        }
-        //    }
-        //}
+        if (owner == AreaPosition.Top)
+        {
+            foreach (RectTransform t in card.GetComponentsInChildren<RectTransform>())
+            {
+                if (t.name == "CardFace")
+                {
+                    t.gameObject.SetActive(false);
+                }
+            }
+        }
+        else
+        {
+            foreach (RectTransform t in card.GetComponentsInChildren<RectTransform>())
+            {
+                if (t.name == "CardBack")
+                {
+                    t.gameObject.SetActive(false);
+                }
+            }
+        }
         // apply the look of the card based on the info from CardAsset
         OneCardManager manager = card.GetComponent<OneCardManager>();
         card.GetComponent<HoverPreview>().SetPreviewing();

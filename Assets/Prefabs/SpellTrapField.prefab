@@ -410,7 +410,7 @@ Transform:
   m_GameObject: {fileID: 6280730007172899172}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: -1}
   m_Children:
   - {fileID: 241912359464778131}
   - {fileID: 6280730008280546482}
@@ -463,6 +463,7 @@ MonoBehaviour:
   PreviewManager: {fileID: 6280730008280546485}
   CardImageFront: {fileID: 6280730007135076756}
   CardImageBack: {fileID: 6280730008196676977}
+  isFieldOnly: 1
 --- !u!65 &4257695183460462857
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -657,7 +658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -798,6 +799,7 @@ MonoBehaviour:
   PreviewManager: {fileID: 0}
   CardImageFront: {fileID: 6280730007673091462}
   CardImageBack: {fileID: 6280730008376661005}
+  isFieldOnly: 1
 --- !u!1 &6280730008376661003
 GameObject:
   m_ObjectHideFlags: 0

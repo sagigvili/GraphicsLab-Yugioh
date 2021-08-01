@@ -43,7 +43,7 @@ public class Table : MonoBehaviour
     {
         foreach (MonsterLogic ml in MonstersOnTable)
         {
-            if (ml.monsterPosition == FieldPosition.Defence)
+            if (ml.ca.MonsterState == FieldPosition.Defence)
                 return true;
         }
         return false;
@@ -53,7 +53,7 @@ public class Table : MonoBehaviour
     {
         foreach (MonsterLogic ml in MonstersOnTable)
         {
-            if (ml.monsterPosition == FieldPosition.Attack)
+            if (ml.ca.MonsterState == FieldPosition.Attack)
                 return true;
         }
         return false;

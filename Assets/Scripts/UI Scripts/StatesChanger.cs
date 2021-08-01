@@ -44,16 +44,15 @@ public class StatesChanger : MonoBehaviour
 
     private void ShowSelector()
     {
-        Debug.Log(transform);
         if (this.transform.parent.name.StartsWith("MonsterField")) {
             int targetID = ((SelectStateOnTable)panel).cardInTable.gameObject.GetComponent<IDHolder>().UniqueID;
             MonsterLogic monster = MonsterLogic.MonstersCreatedThisGame[targetID];
-            if (monster.monsterPosition == FieldPosition.Attack)
+            if (monster.ca.MonsterState == FieldPosition.Attack)
             {
                 AttackSummonButton.gameObject.SetActive(false);
                 DefenceButton.gameObject.SetActive(true);
             }
-            else if (monster.monsterPosition == FieldPosition.Set)
+            else if (monster.ca.MonsterState == FieldPosition.Set)
             {
                 DefenceButton.gameObject.SetActive(false);
                 AttackSummonButton.gameObject.SetActive(true);
@@ -129,7 +128,7 @@ public class StatesChanger : MonoBehaviour
             int targetID = ((SelectStateOnTable)panel).cardInTable.gameObject.GetComponent<IDHolder>().UniqueID;
             MonsterLogic monster = MonsterLogic.MonstersCreatedThisGame[targetID];
             // In case we flip summon a monster
-            if (monster.monsterPosition == FieldPosition.Set)
+            if (monster.ca.MonsterState == FieldPosition.Set)
             {
                 Parent = this.transform.parent.GetChild(3).GetChild(0).transform;
                 Transform monsterInfo = this.transform.parent.GetChild(5).transform;

@@ -75,6 +75,11 @@ public class TableVisual : MonoBehaviour
         return -1;
     }
 
+    public int numOfSpellsTrapsOnField()
+    {
+        return SpellsTrapsOnTable.Count;
+    }
+
     public int getSpellsTrapsOnTableCountAI()
     {
         for (int i = 0; i < 3; i++)
@@ -222,9 +227,16 @@ public class TableVisual : MonoBehaviour
         manager.isFieldOnly = false;
         manager.cardAsset = ca;
         manager.ReadCardFromAsset();
-        var tempColor = manager.CardImageFront.color;
+        var tempColor = manager.CardImageBack.color;
         tempColor.a = 255;
-        manager.CardImageFront.color = tempColor;
+        manager.CardImageBack.color = tempColor;
+        if (manager.cardAsset.SpellTrapState != SpellTrapPosition.Set)
+        {
+            spelltrap.transform.localScale = new Vector3(spelltrap.transform.localScale.x, spelltrap.transform.localScale.y, 1);
+            var tempColor1 = manager.CardImageFront.color;
+            tempColor1.a = 255;
+            manager.CardImageFront.color = tempColor1;
+        }
 
         // add tag according to owner
         foreach (Transform t in spelltrap.GetComponentsInChildren<Transform>())
@@ -245,12 +257,11 @@ public class TableVisual : MonoBehaviour
         IDHolder id = spelltrap.AddComponent<IDHolder>();
         id.UniqueID = UniqueID;
 
-        if (manager.cardAsset.SpellTrapState == SpellTrapPosition.Set)
-        {
-            spelltrap.transform.localScale = new Vector3(spelltrap.transform.localScale.x, spelltrap.transform.localScale.y, -1);
-        }
         if (ca.SpellTrapState == SpellTrapPosition.FaceUp)
         {
+            StartCoroutine(ToFront(spelltrap));
+            if (ca.Effect != SpellTrapEffects.Draw && ca.Effect != SpellTrapEffects.Revive)
+                new DelayCommand(2.0f).AddToQueue();
             if (owner == AreaPosition.Low)
                 SpellTrapEffect.ActivateEffect(ca);
             else
@@ -321,37 +332,55 @@ public class TableVisual : MonoBehaviour
         SpellsTrapsOnTable.Remove(spellTrapToRemove);
         Destroy(spellTrapToRemove);
 
-        //ShiftSlotsGameObjectAccordingToNumberOfMonsters();
-        //PlaceMonstersOnNewSlots();
         Command.CommandExecutionComplete();
     }
 
-    public void changeStateByID(int monsterID, FieldPosition fp)
+    public void flipSpellTrapCard(int spellTrapID)
     {
-        GameObject monsterToRotate = IDHolder.GetGameObjectWithID(monsterID);
-        if(fp == FieldPosition.Attack)
-        {
-            ToAttackPosition(monsterToRotate.GetComponent<OneMonsterManager>().CardImageFront.transform.parent);
-        }
-        else if(fp == FieldPosition.Defence)
-        {
-            ToDefencePosition(monsterToRotate.GetComponent<OneMonsterManager>().CardImageFront.transform.parent);
-        }
+        GameObject card = IDHolder.GetGameObjectWithID(spellTrapID);
+        var tempColor1 = card.GetComponent<OneCardManager>().CardImageFront.color;
+        tempColor1.a = 255;
+        card.GetComponent<OneCardManager>().CardImageFront.color = tempColor1;
+        StartCoroutine(ToFront(card));
     }
 
-    IEnumerator ToAttackPosition(Transform t)
+    public void ChangeMonsterPosition(int id, FieldPosition fp)
+    {
+        Transform t = IDHolder.GetGameObjectWithID(id).transform;
+        if (fp == FieldPosition.Defence)
+        {
+            t.GetChild(6).GetComponent<Animator>().SetTrigger("Defence_State");
+            ToDefencePosition(t.GetComponent<OneMonsterManager>().CardImageFront.transform.parent);
+        } 
+        else
+        {
+            t.GetChild(6).GetComponent<Animator>().SetTrigger("Attack_State");
+            ToAttackPosition(t.GetComponent<OneMonsterManager>().CardImageFront.transform.parent);
+        }
+            
+    }
+
+    IEnumerator ToFront(GameObject go)
+    {
+        go.GetComponent<OneCardManager>().CardImageFront.gameObject.SetActive(true);
+        go.GetComponent<OneCardManager>().CardImageBack.gameObject.SetActive(false);
+        for (float i = 10f; i >= 0; i -= Time.deltaTime)
+            yield return 0;
+    }
+
+
+    /// <summary>
+    /// flip to the front
+    /// </summary>
+    public void ToAttackPosition(Transform t)
     {
         // displace the card so that we can select it in the scene easier.
         t.DORotate(new Vector3(0, 0, 0), 1);
-        for (float i = 1; i >= 0; i -= Time.deltaTime)
-            yield return 0;
     }
 
-    IEnumerator ToDefencePosition(Transform t)
+    public void ToDefencePosition(Transform t)
     {
         t.DORotate(new Vector3(0, 0, 90), 1);
-        for (float i = 1; i >= 0; i -= Time.deltaTime)
-            yield return 0;
     }
 
 }

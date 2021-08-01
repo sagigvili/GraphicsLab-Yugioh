@@ -70,7 +70,7 @@ public class DragSpellTrapOnTable : DraggingActions {
             if (effect == SpellTrapEffects.Revive && TurnManager.Instance.whoseTurn.graveyard.cards.Count == 0)
                 transform.Find("StatesBalloon").transform.Find("Panel").GetComponent<SelectStateToTable>().summonState.gameObject.SetActive(false);
 
-            manager.toLoop = true;
+            new SelectStateToTableCommand(this.gameObject).AddToQueue();
         }
         else
         {
@@ -91,7 +91,6 @@ public class DragSpellTrapOnTable : DraggingActions {
         // determine table position
         int tablePos = playerOwner.PArea.tableVisual.getSpellsTrapsOnTableCount();
         // play this card
-        CardLogic.CardsCreatedThisGame[GetComponent<IDHolder>().UniqueID].ca.SpellTrapState = manager.cardAsset.SpellTrapState;
         playerOwner.PlayASpellFromHand(GetComponent<IDHolder>().UniqueID, tablePos);
     }
 
@@ -122,7 +121,6 @@ public class DragSpellTrapOnTable : DraggingActions {
     }
     protected override bool DragSuccessful()
     {
-        Debug.Log("Cursor over SPELLTRAP " + TableVisual.CursorOverSomeTable.ToString());
         bool TableNotFull = (playerOwner.table.SpellsTrapsOnTable.Count < 3);
 
         return TableVisual.CursorOverSomeTable && TableNotFull;

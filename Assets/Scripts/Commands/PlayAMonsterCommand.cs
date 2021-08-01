@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
 public class PlayAMonsterCommand : Command
 {
@@ -21,11 +22,28 @@ public class PlayAMonsterCommand : Command
         // remove and destroy the card in hand 
         HandVisual PlayerHand = p.PArea.handVisual;
         GameObject card = IDHolder.GetGameObjectWithID(cl.UniqueCardID);
-        PlayerHand.RemoveCard(card);
-        GameObject.Destroy(card);
-        // enable Hover Previews Back
-        HoverPreview.PreviewsAllowed = true;
-        // move this card to the spot 
-        p.PArea.tableVisual.AddMonsterAtIndex(cl.ca, monsterID, tablePos);
+        if (p.PArea.owner == AreaPosition.Top)
+        {
+            Sequence s = DOTween.Sequence();
+            s.Insert(0f, card.transform.DOMove(p.PArea.tableVisual.MonstersSlots.Children[tablePos].transform.position, 1f));
+            s.OnComplete(() =>
+            {
+                PlayerHand.RemoveCard(card);
+                GameObject.Destroy(card);
+                // enable Hover Previews Back
+                HoverPreview.PreviewsAllowed = true;
+                // move this card to the spot 
+                p.PArea.tableVisual.AddMonsterAtIndex(cl.ca, monsterID, tablePos);
+            });
+        }
+        else
+        {
+            PlayerHand.RemoveCard(card);
+            GameObject.Destroy(card);
+            // enable Hover Previews Back
+            HoverPreview.PreviewsAllowed = true;
+            // move this card to the spot 
+            p.PArea.tableVisual.AddMonsterAtIndex(cl.ca, monsterID, tablePos);
+        }
     }
 }

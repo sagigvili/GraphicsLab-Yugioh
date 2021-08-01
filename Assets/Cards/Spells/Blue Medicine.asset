@@ -16,6 +16,14 @@ MonoBehaviour:
   characterAsset: {fileID: 0}
   Description: Increase your Life Points by 400 points.
   CardImage: {fileID: 21300000, guid: ffead2f19902b3d43af2a92108faeb3b, type: 3}
+  Model: {fileID: 0}
+  LoadEffect: {fileID: 4839123360628674929, guid: 2978eeb3c3e4c3b40b365236aa063fb3,
+    type: 3}
+  ShotAttack: {fileID: 0}
+  AttackEffect: {fileID: 0}
+  xTransOffset: 0
+  yTransOffset: 0
+  zTransOffset: 0
   Attack: -1
   Defence: 0
   Attribute: 0

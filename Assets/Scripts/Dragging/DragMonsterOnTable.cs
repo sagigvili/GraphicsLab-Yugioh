@@ -51,8 +51,7 @@ public class DragMonsterOnTable : DraggingActions
         // 1) Check if we are holding a card over the table
         if (DragSuccessful() && !playerOwner.table.PlayedACard && !playerOwner.table.InAttackPhase)
         {
-            transform.Find("StatesBalloon").transform.Find("Panel").gameObject.SetActive(true);
-            manager.toLoop = true;
+            new SelectStateToTableCommand(this.gameObject).AddToQueue();
         }
         else
         {
@@ -74,7 +73,6 @@ public class DragMonsterOnTable : DraggingActions
         // determine table position
         int tablePos = playerOwner.PArea.tableVisual.getMonstersOnTableCount();
         // play this card
-        CardLogic.CardsCreatedThisGame[GetComponent<IDHolder>().UniqueID].ca.MonsterState = manager.cardAsset.MonsterState;
         playerOwner.PlayAMonsterFromHand(GetComponent<IDHolder>().UniqueID, tablePos);
     }
     protected override bool DragSuccessful()

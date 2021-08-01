@@ -16,6 +16,14 @@ MonoBehaviour:
   characterAsset: {fileID: 0}
   Description: Destroy all Spell and Trap Cards your opponent controls.
   CardImage: {fileID: 21300000, guid: 3a816e0b4fcea054c8e6bdc14107cc81, type: 3}
+  Model: {fileID: 0}
+  LoadEffect: {fileID: 0}
+  ShotAttack: {fileID: 0}
+  AttackEffect: {fileID: 1646335661157826612, guid: 44a8a500d2b136745835714ce44f46d3,
+    type: 3}
+  xTransOffset: 0
+  yTransOffset: 0
+  zTransOffset: 0
   Attack: -1
   Defence: 0
   Attribute: 0

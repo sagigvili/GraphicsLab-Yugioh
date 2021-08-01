@@ -66,11 +66,17 @@ public class CardAsset : ScriptableObject
     public int AttacksForOneTurn = 1;
     public MonsterType Type;
     public int Rank;
-    public FieldPosition monsterState;
+    private FieldPosition monsterState;
     public FieldPosition MonsterState
     {
-        get { return monsterState; }
-        set { monsterState = value; }
+        get {
+            //Debug.Log("Monster is " + Name + " Position is " + monsterState);
+            return monsterState; 
+        }
+        set {
+            Debug.Log("Monster is " + Name + " Old Position is " + monsterState + " New Position is " + value);
+            monsterState = value;
+        }
     }
 
     [Header("Spell and Trap Info")]

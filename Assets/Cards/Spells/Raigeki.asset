@@ -16,6 +16,14 @@ MonoBehaviour:
   characterAsset: {fileID: 0}
   Description: Destroy all monsters your opponent controls.
   CardImage: {fileID: 21300000, guid: ddba179a20eef5d4e96f974912ed94f8, type: 3}
+  Model: {fileID: 0}
+  LoadEffect: {fileID: 0}
+  ShotAttack: {fileID: 0}
+  AttackEffect: {fileID: 7990006580365948045, guid: 259db779600477047b044b68834e981a,
+    type: 3}
+  xTransOffset: 0
+  yTransOffset: 0
+  zTransOffset: 0
   Attack: -1
   Defence: 0
   Attribute: 0

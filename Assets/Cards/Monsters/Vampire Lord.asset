@@ -24,7 +24,7 @@ MonoBehaviour:
   LoadEffect: {fileID: 3911854415461569565, guid: 3d2a495131cb34a48aac014ce457667a,
     type: 3}
   ShotAttack: {fileID: 0}
-  AttackEffect: {fileID: 4370713415926309960, guid: f6b2b9ed3efe9ba48aa1b1102317c5a3,
+  AttackEffect: {fileID: 8418331973321157405, guid: 1326ca9745a4288428b39b4fddaeb182,
     type: 3}
   xTransOffset: 1400
   yTransOffset: -559

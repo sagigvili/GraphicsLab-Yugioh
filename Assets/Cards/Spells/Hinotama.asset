@@ -19,7 +19,8 @@ MonoBehaviour:
   Model: {fileID: 0}
   LoadEffect: {fileID: 0}
   ShotAttack: {fileID: 0}
-  AttackEffect: {fileID: 0}
+  AttackEffect: {fileID: 7672586155564306087, guid: 6606e5eba376ad54d890edc13aedbc4a,
+    type: 3}
   xTransOffset: 0
   yTransOffset: 0
   zTransOffset: 0

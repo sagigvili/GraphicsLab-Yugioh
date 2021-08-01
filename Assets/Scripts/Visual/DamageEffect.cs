@@ -29,7 +29,7 @@ public class DamageEffect : MonoBehaviour {
         while (cg.alpha > 0)
         {
             cg.alpha -= 0.05f;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.1f);
         }
         // after the effect is shown it gets destroyed.
         Destroy(this.gameObject);
@@ -40,15 +40,19 @@ public class DamageEffect : MonoBehaviour {
     /// </summary>
     /// <param name="position">Position.</param>
     /// <param name="amount">Amount.</param>
+    /// <param name="isDamage">If true it is a damage effect, else it is an healing effect</param>
    
-    public static void CreateDamageEffect(Vector3 position, int amount)
+    public static void CreateDamageEffect(Vector3 position, int amount, bool isDamage=true)
     {
         // Instantiate a DamageEffect from prefab
         GameObject newDamageEffect = GameObject.Instantiate(GlobalSettings.Instance.DamageEffectPrefab, position, Quaternion.identity) as GameObject;
         // Get DamageEffect component in this new game object
         DamageEffect de = newDamageEffect.GetComponent<DamageEffect>();
-        // Change the amount text to reflect the amount of damage dealt
-        de.AmountText.text = "-"+amount.ToString();
+        // Change the amount text to reflect the amount of damage dealt or HP added
+        if (isDamage)
+            de.AmountText.text = "-"+amount.ToString();
+        else
+            de.AmountText.text = "+" + amount.ToString();
         // start a coroutine to fade away and delete this effect after a certain time
         de.StartCoroutine(de.ShowDamageEffect());
     }

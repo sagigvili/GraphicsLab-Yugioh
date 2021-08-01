@@ -41,7 +41,7 @@ public class AITurnMaker: TurnMaker {
         if (Command.CardDrawPending())
             return true;
 
-        return UseHeroPower() || PlaySpellOnField() || PlayATrapFromHand() || PlayASpellFromHand() || PlayAMonsterFromHand() || AttackWithAMonster();
+        return ChangeAllMonstersToAttackPosition() || UseHeroPower() || PlaySpellOnField() || PlayATrapFromHand() || PlayASpellFromHand() || PlayAMonsterFromHand() || AttackWithAMonster();
     }
 
     bool PlayAMonsterFromHand()
@@ -75,6 +75,12 @@ public class AITurnMaker: TurnMaker {
 
             }
         }
+        // Change to attackphase in case monster field is full
+        if (p.table.MonstersOnTable.Count >= 3 && GlobalSettings.Instance.EndTurnButton.GetComponentInChildren<Text>().text != "End Turn")
+        {
+            pa.SetFlag(2);
+            pa.ClickByFlag();
+        }
         return false;
     }
 
@@ -88,7 +94,6 @@ public class AITurnMaker: TurnMaker {
                 {
                     // it is a trap card
                     int tablePos = p.PArea.tableVisual.getSpellsTrapsOnTableCountAI();
-                    Debug.Log("Trap Table pos: " + tablePos);
                     p.PlayASpellFromHand(c, tablePos, SpellTrapPosition.Set);
                     InsertDelay(1.5f);
                     return true;
@@ -109,19 +114,13 @@ public class AITurnMaker: TurnMaker {
                 {
                     // it is a trap card
                     int tablePos = p.PArea.tableVisual.getSpellsTrapsOnTableCountAI();
-                    Debug.Log("Spell Table pos: " + tablePos);
                     if (CanBeFaceUp(c.ca.Effect))
                         p.PlayASpellFromHand(c, tablePos, SpellTrapPosition.FaceUp);
                     else
                         p.PlayASpellFromHand(c, tablePos, SpellTrapPosition.Set);
-                    InsertDelay(1.5f);
+                    InsertDelay(0.5f);
                     return true;
                 }
-                else
-                {
-
-                }
-
             }
         }
         return false;
@@ -140,21 +139,21 @@ public class AITurnMaker: TurnMaker {
                     return true;
                 return false;
             case SpellTrapEffects.ChangeToAttack:
-                if (p.otherPlayer.table.SpellsTrapsOnTable.Count == 0)
+                if (p.otherPlayer.table.MonstersOnTable.Count == 0)
                     return false;
-                foreach (SpellTrapLogic stl in p.otherPlayer.table.SpellsTrapsOnTable)
-                    if (stl.ca.MonsterState == FieldPosition.Defence)
+                foreach (MonsterLogic ml in p.otherPlayer.table.MonstersOnTable)
+                    if (ml.ca.MonsterState == FieldPosition.Defence)
                         return true;
                 return false;
             case SpellTrapEffects.ChangeToDefence:
-                if (p.otherPlayer.table.SpellsTrapsOnTable.Count == 0)
+                if (p.otherPlayer.table.MonstersOnTable.Count == 0)
                     return false;
-                foreach (SpellTrapLogic stl in p.otherPlayer.table.SpellsTrapsOnTable)
-                    if (stl.ca.MonsterState == FieldPosition.Attack)
+                foreach (MonsterLogic ml in p.otherPlayer.table.MonstersOnTable)
+                    if (ml.ca.MonsterState == FieldPosition.Attack)
                         return true;
                 return false;
             case SpellTrapEffects.Revive:
-                if (p.otherPlayer.graveyard.cards.Count == 0)
+                if (p.graveyard.cards.Count == 0)
                     return false;
                 return true;
             case SpellTrapEffects.Heal:
@@ -183,12 +182,12 @@ public class AITurnMaker: TurnMaker {
     {
         foreach (MonsterLogic cl in p.table.MonstersOnTable)
         {
-            if (cl.AttacksLeftThisTurn > 0 &&  cl.monsterPosition == FieldPosition.Attack)
+            //Debug.Log("Monster trying to attack is " + cl.ca.Name + " Mosnters on rival field: " + p.otherPlayer.table.MonstersOnTable.Count + " Attacks Left: " + cl.AttacksLeftThisTurn);
+            if (cl.AttacksLeftThisTurn > 0 &&  cl.ca.MonsterState == FieldPosition.Attack)
             {
                 // attack a random target with a monster
                 if (p.otherPlayer.table.MonstersOnTable.Count > 0)
                 {
-                    
                     MonsterLogic targetMonster = SelectMonsterToAttack(cl.ca.Attack);
                     if (targetMonster != null)
                         cl.AttackMonster(targetMonster);
@@ -209,18 +208,17 @@ public class AITurnMaker: TurnMaker {
     {
         foreach (MonsterLogic cl in p.otherPlayer.table.MonstersOnTable)
         {
-            if(cl.ca.monsterState == FieldPosition.Attack && cl.ca.Attack <= attackMonsterATK)
+            if(cl.ca.MonsterState == FieldPosition.Attack && cl.ca.Attack <= attackMonsterATK)
             {
                 return cl;
             }
-            if (cl.ca.monsterState == FieldPosition.Defence && cl.ca.Defence <= attackMonsterATK)
+            if (cl.ca.MonsterState == FieldPosition.Defence && cl.ca.Defence <= attackMonsterATK)
             {
                 return cl;
             }
-            if(cl.ca.monsterState == FieldPosition.Set)
+            if(cl.ca.MonsterState == FieldPosition.Set)
             {
                 int toAttack = Random.Range(0, 2);
-                Debug.Log("is attack? " + toAttack);
                 if (toAttack == 1)
                     return cl;
             }
@@ -232,17 +230,36 @@ public class AITurnMaker: TurnMaker {
     {
         foreach (SpellTrapLogic stl in p.table.SpellsTrapsOnTable)
         {
-            if (stl.ca.SpellTrap == SpellOrTrap.Spell && CanBeFaceUp(stl.Effect))
+            if (stl.ca.SpellTrap == SpellOrTrap.Spell && CanBeFaceUp(stl.Effect) && !TurnManager.Instance.whoseTurn.table.InAttackPhase)
             {
+                p.PArea.tableVisual.flipSpellTrapCard(stl.ID);
+                if (stl.Effect != SpellTrapEffects.Draw)
+                    InsertDelay(1.5f);
                 SpellTrapEffect.ActivateEffectAI(stl.ca);
-                InsertDelay(1f);
+                InsertDelay(1.0f);
+                stl.Die();
                 return true;
             }
         }
         return false;
     }
 
-   
+    bool ChangeAllMonstersToAttackPosition()
+    {
+        foreach (MonsterLogic cl in p.table.MonstersOnTable)
+        {
+            if (cl.ca.MonsterState == FieldPosition.Defence)
+            {
+                int changeToAttack = Random.Range(0, 2);
+                if (changeToAttack == 1)
+                    cl.ChangeState(FieldPosition.Attack);
+            }
+                
+        }
+        return false;
+    }
+
+
 
     void InsertDelay(float delay)
     {

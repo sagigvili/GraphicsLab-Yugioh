@@ -28,13 +28,6 @@ public class SpellTrapLogic : ICharacter
     {
         get { return UniqueSpellTrapID; }
     }
-    private SpellTrapPosition state;
-    public SpellTrapPosition State
-    {
-        get { return state; }
-        set { state = value; }
-
-    }
     public int amount = 0;
     public SpellTrapEffects Effect;
 
@@ -43,7 +36,7 @@ public class SpellTrapLogic : ICharacter
         get
         {
             bool ownersTurn = (TurnManager.Instance.whoseTurn == owner);
-            return (ownersTurn && (state == SpellTrapPosition.FaceUp));
+            return (ownersTurn && (ca.SpellTrapState == SpellTrapPosition.FaceUp));
         }
     }
     public int Health { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
@@ -53,7 +46,6 @@ public class SpellTrapLogic : ICharacter
     {
         this.ca = ca;
         this.owner = owner;
-        state = ca.SpellTrapState;
         Type = ca.SpellTrap;
         amount = ca.amount;
         Effect = ca.Effect;

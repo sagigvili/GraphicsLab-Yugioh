@@ -20,7 +20,7 @@ public class TrapSelector : MonoBehaviour
         TableVisual tabVis = TurnManager.Instance.whoseTurn.otherPlayer.PArea.tableVisual;
         Table table = TurnManager.Instance.whoseTurn.otherPlayer.table;
         
-        for (int i = 0; i < tabVis.getSpellsTrapsOnTableCount(); i++)
+        for (int i = 0; i < tabVis.numOfSpellsTrapsOnField(); i++)
         {
             if(table.SpellsTrapsOnTable[i].Type == SpellOrTrap.Trap)
             {

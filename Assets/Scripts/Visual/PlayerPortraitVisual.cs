@@ -12,6 +12,7 @@ public class PlayerPortraitVisual : MonoBehaviour {
     //public Text NameText;
     public TextMeshPro HealthText;
     public GameObject Model;
+    public Transform HealPoint;
 
     private void Awake()
     {
