@@ -52,13 +52,25 @@ public class Table : MonoBehaviour
     public bool AnyAttackMonsters()
     {
         foreach (MonsterLogic ml in MonstersOnTable)
-        {
             if (ml.ca.MonsterState == FieldPosition.Attack)
                 return true;
-        }
         return false;
     }
 
+    public bool AnySetMonsters()
+    {
+        foreach (MonsterLogic ml in MonstersOnTable)
+            if (ml.ca.MonsterState == FieldPosition.Set)
+                return true;
+        return false;
+    }
 
+    public bool OnlySetMonsters()
+    {
+        foreach (MonsterLogic ml in MonstersOnTable)
+            if (ml.ca.MonsterState != FieldPosition.Set)
+                return false;
+        return true;
+    }
 
 }

@@ -63,11 +63,6 @@ public class MonsterLogic : ICharacter
         attacksForOneTurn = ca.AttacksForOneTurn;
         this.owner = owner;
         UniqueMonsterID = IDFactory.GetUniqueID();
-        //if (ca.MonsterScriptName != null && ca.MonsterScriptName != "")
-        //{
-        //    effect = System.Activator.CreateInstance(System.Type.GetType(ca.MonsterScriptName), new System.Object[] { owner, this, ca.specialMonsterAmount }) as MonsterEffect;
-        //    effect.RegisterEffect();
-        //}
         MonstersCreatedThisGame.Add(UniqueMonsterID, this);
     }
 
@@ -78,7 +73,6 @@ public class MonsterLogic : ICharacter
 
     public void Die()
     {
-        // TODO send to graveyard
         owner.table.MonstersOnTable.Remove(this);
         new MonsterDieCommand(UniqueMonsterID, owner).AddToQueue();
     }
@@ -94,7 +88,6 @@ public class MonsterLogic : ICharacter
     public void AttackMonster(MonsterLogic target)
     {
         AttacksLeftThisTurn--;
-        Debug.Log("Target position is " + target.ca.MonsterState);
         //calculate the values so that the monster does not fire the DIE command before the Attack command is sent
         if (target.ca.MonsterState == FieldPosition.Set)
         {

@@ -14,8 +14,15 @@ public class TargetSlot : MonoBehaviour
     {
         target = g.transform;
         OneCardManager targetManager = g.transform.GetComponentInChildren<OneCardManager>();
-        targetImage.sprite = targetManager.CardImageFront.sprite;
-        targetName.text = targetManager.cardAsset.Name;
+        if (targetManager.CardImageFront.gameObject.activeSelf == true)
+        {
+            targetImage.sprite = targetManager.CardImageFront.sprite;
+            targetName.text = targetManager.cardAsset.Name;
+        } else
+        {
+            targetImage.sprite = targetManager.CardImageBack.sprite;
+            targetName.text = "";
+        }    
         effect = targetManager.cardAsset.Effect;
     }
 

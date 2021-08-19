@@ -4,19 +4,20 @@ using System.Collections.Generic;
 
 public class SpellTrapEffect 
 {
-    static public void ActivateEffect(CardAsset ca)
+    static public void ActivateEffect(SpellTrapLogic stl)
     {
         Player p = TurnManager.Instance.whoseTurn;
+        CardAsset ca = stl.ca;
         switch (ca.Effect)
         {
             case SpellTrapEffects.DestoryMonster:
                 GameObject tsDM = GameObject.Instantiate(GlobalSettings.Instance.TargetSelectorPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-                tsDM.GetComponent<EffectOperator>().InitiateEffect(true, SpellTrapEffects.DestoryMonster, ca);
+                tsDM.GetComponent<EffectOperator>().InitiateEffect(true, SpellTrapEffects.DestoryMonster, stl);
                 tsDM.SetActive(true);
                 break;
             case SpellTrapEffects.DestorySpellTrap:
                 GameObject tsDST = GameObject.Instantiate(GlobalSettings.Instance.TargetSelectorPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-                tsDST.GetComponent<EffectOperator>().InitiateEffect(false, SpellTrapEffects.DestorySpellTrap, ca);
+                tsDST.GetComponent<EffectOperator>().InitiateEffect(false, SpellTrapEffects.DestorySpellTrap, stl);
                 tsDST.SetActive(true);
                 break;
             case SpellTrapEffects.DirectAttack:
@@ -31,15 +32,16 @@ public class SpellTrapEffect
                 ParticleSystem psD = attackPartEffect.GetComponent<ParticleSystem>();
                 psD.Play();
                 GameObject.Destroy(attackPartEffect, psD.main.duration);
-                //new DelayCommand(psD.main.duration).AddToQueue();
                 Transform t1 = p.otherPlayer.PArea.DamageSpot;
                 DamageEffect.CreateDamageEffect(t1.position, ca.amount);
                 p.otherPlayer.PArea.Portrait.HealthText.text = final_hp_other_amount;
                 p.otherPlayer.Health -= ca.amount;
+                stl.Die();
                 break;
             case SpellTrapEffects.Draw:
                 p.DrawACard();
                 p.DrawACard();
+                stl.Die();
                 break;
             case SpellTrapEffects.Heal:
                 string final_hp_amount = (System.Int32.Parse(p.PArea.Portrait.HealthText.text) + ca.amount).ToString();
@@ -55,23 +57,24 @@ public class SpellTrapEffect
                 DamageEffect.CreateDamageEffect(t.position, ca.amount, false);
                 p.PArea.Portrait.HealthText.text = final_hp_amount;
                 p.Health += ca.amount;
+                stl.Die();
                 break;
             case SpellTrapEffects.Negate:
                 break;
             case SpellTrapEffects.ChangeToAttack:
                 GameObject tsPCA = GameObject.Instantiate(GlobalSettings.Instance.TargetSelectorPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-                tsPCA.GetComponent<EffectOperator>().InitiateEffect(true, SpellTrapEffects.ChangeToAttack);
+                tsPCA.GetComponent<EffectOperator>().InitiateEffect(true, SpellTrapEffects.ChangeToAttack, stl);
                 tsPCA.SetActive(true);
                 break;
             case SpellTrapEffects.ChangeToDefence:
                 GameObject tsPCB = GameObject.Instantiate(GlobalSettings.Instance.TargetSelectorPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-                tsPCB.GetComponent<EffectOperator>().InitiateEffect(true, SpellTrapEffects.ChangeToDefence);
+                tsPCB.GetComponent<EffectOperator>().InitiateEffect(true, SpellTrapEffects.ChangeToDefence, stl);
                 tsPCB.SetActive(true);
                 break;
             case SpellTrapEffects.Revive:
                 p.PArea.graveyardVisual.CardsCanvas.SetActive(true);
+                stl.Die();
                 break;
-
         }
     }
 
@@ -97,19 +100,21 @@ public class SpellTrapEffect
                 Transform trans = IDHolder.GetGameObjectWithID(p.otherPlayer.table.GetMonsterAtIndex(index).ID).transform;
                 Vector3 destroyEffectPos = new Vector3(trans.position.x + 2000, trans.position.y, 500);
                 GameObject destroyEffectObj = GameObject.Instantiate(ca.AttackEffect, destroyEffectPos, Quaternion.identity) as GameObject;
-                GameObject.Destroy(destroyEffectObj, 3.0f);
-                new DelayCommand(2.0f).AddToQueue();
+                GameObject.Destroy(destroyEffectObj, 5.0f);
+                new DelayCommand(5.0f).AddToQueue();
                 p.otherPlayer.table.GetMonsterAtIndex(index).Die();
                 break;
             case SpellTrapEffects.DestorySpellTrap:
-                int i2 = Random.Range(0, p.otherPlayer.table.SpellsTrapsOnTable.Count-1);
+                int i2 = Random.Range(0, 2);
+                while (!p.otherPlayer.table.GetSpellTrapAtIndex(i2).ca)
+                    i2 = Random.Range(0, 2);
                 Transform trans1 = IDHolder.GetGameObjectWithID(p.otherPlayer.table.GetSpellTrapAtIndex(i2).ID).transform;
-                Vector3 destroyEffectPos1 = new Vector3(trans1.position.x, trans1.position.y, trans1.position.z - 20);
+                Vector3 destroyEffectPos1 = new Vector3(trans1.position.x - 100, trans1.position.y - 600, trans1.position.z);
                 GameObject destroyEffectObj1 = GameObject.Instantiate(ca.AttackEffect, destroyEffectPos1, Quaternion.identity) as GameObject;
-                ParticleSystem psDST = destroyEffectObj1.GetComponent<ParticleSystem>();
+                ParticleSystem psDST = destroyEffectObj1.transform.GetComponent<ParticleSystem>();
                 psDST.Play();
                 GameObject.Destroy(destroyEffectObj1, psDST.main.duration);
-                new DelayCommand(1f).AddToQueue();
+                new DelayCommand(psDST.main.duration - 0.5f).AddToQueue();
                 p.otherPlayer.table.GetSpellTrapAtIndex(i2).Die();
                 break;
             case SpellTrapEffects.DirectAttack:
@@ -165,6 +170,7 @@ public class SpellTrapEffect
                 }
                 int toChangeindex = Random.Range(0, count-1);
                 int tochange = DefMonstersIndexes[toChangeindex];
+                Debug.Log(tochange);
                 p.otherPlayer.table.GetMonsterAtIndex(tochange).ChangeState(FieldPosition.Attack);
                 break;
             case SpellTrapEffects.ChangeToDefence:

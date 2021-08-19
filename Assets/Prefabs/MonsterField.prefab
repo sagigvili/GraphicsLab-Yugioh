@@ -142,7 +142,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3773294984506819047}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -575,7 +575,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 883065498181335275}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 883065497430456723}
@@ -1389,7 +1389,7 @@ GameObject:
   - component: {fileID: 5248187920692497563}
   - component: {fileID: 3825968851690180318}
   - component: {fileID: 3782177631469459204}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: InfoCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1609,7 +1609,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5800690938643638449}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Defence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1933,6 +1933,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 883065498474253633}
     m_Modifications:
+    - target: {fileID: 723725497300731696, guid: 176c886e25ece84499024a83381df983,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2268008190373995839, guid: 176c886e25ece84499024a83381df983,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4138557355820686328, guid: 176c886e25ece84499024a83381df983,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4683964597697782698, guid: 176c886e25ece84499024a83381df983,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5988506248330870582, guid: 176c886e25ece84499024a83381df983,
         type: 3}
       propertyPath: Col
@@ -1943,6 +1963,26 @@ PrefabInstance:
       propertyPath: MonsterCol
       value: 
       objectReference: {fileID: 6275143645768607211}
+    - target: {fileID: 6057203613010227338, guid: 176c886e25ece84499024a83381df983,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6605310848775441310, guid: 176c886e25ece84499024a83381df983,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6829234750665653072, guid: 176c886e25ece84499024a83381df983,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6862800910447489129, guid: 176c886e25ece84499024a83381df983,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7516043204276526356, guid: 176c886e25ece84499024a83381df983,
         type: 3}
       propertyPath: cardInTable
@@ -1953,9 +1993,34 @@ PrefabInstance:
       propertyPath: monsterInTable
       value: 
       objectReference: {fileID: 2297874956141867600}
+    - target: {fileID: 7674982756564566756, guid: 176c886e25ece84499024a83381df983,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7773861974427601375, guid: 176c886e25ece84499024a83381df983,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862012874799198816, guid: 176c886e25ece84499024a83381df983,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862012874876364889, guid: 176c886e25ece84499024a83381df983,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7862012874876364889, guid: 176c886e25ece84499024a83381df983,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862012874945292914, guid: 176c886e25ece84499024a83381df983,
+        type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7862012875108779318, guid: 176c886e25ece84499024a83381df983,
@@ -2072,6 +2137,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StatesBalloonTable
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862012875161484226, guid: 176c886e25ece84499024a83381df983,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862012875955529237, guid: 176c886e25ece84499024a83381df983,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8181677316483824250, guid: 176c886e25ece84499024a83381df983,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8424680385832513978, guid: 176c886e25ece84499024a83381df983,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8805425763145783065, guid: 176c886e25ece84499024a83381df983,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 176c886e25ece84499024a83381df983, type: 3}

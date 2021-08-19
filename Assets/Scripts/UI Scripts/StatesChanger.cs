@@ -15,11 +15,6 @@ public class StatesChanger : MonoBehaviour
 
     private Transform Parent;
 
-    void Awake()
-    {
-        //ExitButton.onClick.AddListener(ExitChanger);
-    }
-
     private void Update()
     {
         // we need to Raycast because OnMouseEnter, etc reacts to colliders on cards and cards "cover" the table
@@ -178,8 +173,7 @@ public class StatesChanger : MonoBehaviour
         Parent.localScale = new Vector3(this.transform.localScale.x, this.transform.localScale.y, 1);
         StartCoroutine(ToAttackPosition());
         panel.canChangeState = false;
-        SpellTrapEffect.ActivateEffect(((SelectStateOnTable)this.panel).cardInTable.cardAsset);
-        SpellTrapLogic.SpellTrapsCreatedThisGame[((SelectStateOnTable)this.panel).cardInTable.gameObject.GetComponent<IDHolder>().UniqueID].Die();
+        SpellTrapEffect.ActivateEffect(SpellTrapLogic.SpellTrapsCreatedThisGame[((SelectStateOnTable)this.panel).cardInTable.gameObject.GetComponent<IDHolder>().UniqueID]);
         
     }
 

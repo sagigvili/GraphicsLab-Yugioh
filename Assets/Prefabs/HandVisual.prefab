@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5171119958160584518
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5492548838922274465}
+  m_Layer: 0
+  m_Name: Slot (10)
+  m_TagString: Untagged
+  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5492548838922274465
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5171119958160584518}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6722.75, y: 0, z: -0.15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6695809877303994414}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6471114125950930836
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1452677150927080112}
+  m_Layer: 0
+  m_Name: Slot (11)
+  m_TagString: Untagged
+  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1452677150927080112
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6471114125950930836}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6722.75, y: 0, z: -0.15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6695809877303994414}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6695809877303994409
 GameObject:
   m_ObjectHideFlags: 0
@@ -38,6 +98,8 @@ Transform:
   - {fileID: 6695809878649615711}
   - {fileID: 6695809878827435044}
   - {fileID: 6695809879026543573}
+  - {fileID: 5492548838922274465}
+  - {fileID: 1452677150927080112}
   m_Father: {fileID: 6695809878493623063}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -64,6 +126,8 @@ MonoBehaviour:
   - {fileID: 6695809878649615711}
   - {fileID: 6695809878827435044}
   - {fileID: 6695809879026543573}
+  - {fileID: 5492548838922274465}
+  - {fileID: 1452677150927080112}
 --- !u!1 &6695809877879011403
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,7 +319,7 @@ GameObject:
   - component: {fileID: 6695809878493623063}
   - component: {fileID: 6695809878493623060}
   m_Layer: 0
-  m_Name: Player1Hand
+  m_Name: HandVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -294,7 +358,7 @@ MonoBehaviour:
   slotCounter: 0
   DrawPreviewSpot: {fileID: 0}
   DeckTransform: {fileID: 0}
-  OtherCardDrawSourceTransform: {fileID: 0}
+  GraveyardTransform: {fileID: 0}
 --- !u!1 &6695809878649615710
 GameObject:
   m_ObjectHideFlags: 0

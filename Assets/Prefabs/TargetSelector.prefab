@@ -636,7 +636,6 @@ MonoBehaviour:
   - {fileID: 547505164314318369}
   - {fileID: 1423552615602460518}
   panel: {fileID: 1468359181200661686}
-  CurrentEffect: 0
 --- !u!1 &2863589223167315902
 GameObject:
   m_ObjectHideFlags: 0

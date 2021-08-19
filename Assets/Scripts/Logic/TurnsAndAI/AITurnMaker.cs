@@ -41,29 +41,32 @@ public class AITurnMaker: TurnMaker {
         if (Command.CardDrawPending())
             return true;
 
-        return ChangeAllMonstersToAttackPosition() || UseHeroPower() || PlaySpellOnField() || PlayATrapFromHand() || PlayASpellFromHand() || PlayAMonsterFromHand() || AttackWithAMonster();
+        return ChangeMonstersPositions() || UseHeroPower() || PlaySpellOnField() || PlayATrapFromHand() || PlayASpellFromHand() || PlayAMonsterFromHand() || AttackWithAMonster();
     }
 
     bool PlayAMonsterFromHand()
     {
-        int max = 0;
+        int maxAI = 0;
         foreach (CardLogic c in p.hand.CardsInHand)
         {
-            if (c.ca.Attack > max)
+            if (c.ca.Attack > maxAI)
             {
-                max = c.ca.Attack;
+                maxAI = c.ca.Attack;
             }
         }
         foreach (CardLogic c in p.hand.CardsInHand)
         {
             if (c.CanBePlayed && p.table.MonstersOnTable.Count < 3)
             {
-                if(c.ca.Attack != -1 && !p.table.PlayedACard && c.ca.Attack == max)
+                if(c.ca.Attack != -1 && !p.table.PlayedACard && c.ca.Attack == maxAI)
                 {
                     // it is a monster card
                     p.table.PlayedACard = true;
                     int tablePos = p.PArea.tableVisual.getMonstersOnTableCount();
-                    p.PlayAMonsterFromHand(c, tablePos, FieldPosition.Attack);
+                    if (getStrongestOpponentMonsterATK() >= maxAI)
+                        p.PlayAMonsterFromHand(c, tablePos, FieldPosition.Set);
+                    else
+                        p.PlayAMonsterFromHand(c, tablePos, FieldPosition.Attack);
                     InsertDelay(1.5f);
                     if (GlobalSettings.Instance.EndTurnButton.GetComponentInChildren<Text>().text != "End Turn")
                     {
@@ -244,21 +247,39 @@ public class AITurnMaker: TurnMaker {
         return false;
     }
 
-    bool ChangeAllMonstersToAttackPosition()
+    bool ChangeMonstersPositions()
     {
+        int maxOpponent = getStrongestOpponentMonsterATK();
+
         foreach (MonsterLogic cl in p.table.MonstersOnTable)
         {
-            if (cl.ca.MonsterState == FieldPosition.Defence)
+            if (maxOpponent >= cl.Attack)
             {
-                int changeToAttack = Random.Range(0, 2);
-                if (changeToAttack == 1)
+                if (cl.ca.MonsterState == FieldPosition.Attack)
+                    cl.ChangeState(FieldPosition.Defence);
+            } else
+            {
+                if (cl.ca.MonsterState != FieldPosition.Attack)
                     cl.ChangeState(FieldPosition.Attack);
             }
-                
+
+
         }
         return false;
     }
 
+    public int getStrongestOpponentMonsterATK()
+    {
+        int max = 0;
+        foreach (MonsterLogic c in p.otherPlayer.table.MonstersOnTable)
+        {
+            if (c.ca.Attack > max)
+            {
+                max = c.ca.Attack;
+            }
+        }
+        return max;
+    }
 
 
     void InsertDelay(float delay)

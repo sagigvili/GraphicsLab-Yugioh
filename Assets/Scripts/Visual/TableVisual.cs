@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using System;
 
 public class TableVisual : MonoBehaviour 
 {
@@ -25,9 +26,9 @@ public class TableVisual : MonoBehaviour
     // PRIVATE FIELDS
 
     // list of all the monster cards on the table as GameObjects
-    private List<GameObject> MonstersOnTable = new List<GameObject>();
+    private Dictionary<int, GameObject> MonstersOnTable = new Dictionary<int, GameObject>();
 
-    private List<GameObject> SpellsTrapsOnTable = new List<GameObject>();
+    private Dictionary<int, GameObject> SpellsTrapsOnTable = new Dictionary<int, GameObject>();
 
     // A 3D collider attached to this game object
     private BoxCollider MonstersCol;
@@ -55,6 +56,11 @@ public class TableVisual : MonoBehaviour
                 return i;
         }
         return -1;
+    }
+
+    public bool doesMonsterIndexExist(int index)
+    {
+        return MonstersOnTable.ContainsKey(index);
     }
 
     public GameObject getMonsterOnTable(int index)
@@ -85,7 +91,6 @@ public class TableVisual : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
            
-
             if (SpellsTrapsSlots.GetAChildInTable(i).GetComponent<OneCardManager>().isFieldOnly)
             {
                 SpellsTrapsSlots.GetAChildInTable(i).GetComponent<OneCardManager>().isFieldOnly = false;
@@ -96,9 +101,14 @@ public class TableVisual : MonoBehaviour
         return -1;
     }
 
+    public bool doesSpellTrapIndexExist(int index)
+    {
+        return SpellsTrapsOnTable.ContainsKey(index);
+    }
+
     public GameObject getSpellTrapOnTable(int index)
     {
-        return SpellsTrapsOnTable[index];
+       return SpellsTrapsOnTable[index];
     }
 
     // returns true only if we are hovering over this table`s collider
@@ -149,7 +159,7 @@ public class TableVisual : MonoBehaviour
     {
         // create a new Monster from prefab
         GameObject monster = GameObject.Instantiate(GlobalSettings.Instance.MonsterFieldPrefab, MonstersSlots.Children[index].transform.position, Quaternion.identity) as GameObject;
-
+        //SetLayerRecursively(monster, "OpponentMonster");
         // apply the look from CardAsset
         OneMonsterManager manager = monster.GetComponent<OneMonsterManager>();
         manager.isFieldOnly = false;
@@ -174,6 +184,7 @@ public class TableVisual : MonoBehaviour
             GameObject model = GameObject.Instantiate(manager.model, manager.transform.position, Quaternion.identity) as GameObject;
             if (owner == AreaPosition.Top)
             {
+                SetLayerRecursively(model, "OpponentMonster");
                 Vector3 modelPos = new Vector3(model.transform.localPosition.x + manager.transXOffset, model.transform.localPosition.y + manager.transYOffset, model.transform.localPosition.z + manager.transZOffset);
                 model.transform.localPosition = modelPos;
                 model.transform.rotation = new Quaternion(model.transform.rotation.x, 180.0f, model.transform.rotation.z, model.transform.rotation.w);
@@ -194,8 +205,8 @@ public class TableVisual : MonoBehaviour
         GameObject.Destroy(MonstersSlots.Children[index].GetChild(0).gameObject);
         monster.transform.SetParent(MonstersSlots.Children[index].transform);
 
-        // add a new monster to the list
-        MonstersOnTable.Insert(index, monster);
+        // add a new monster to the dict
+        MonstersOnTable.Add(index, monster);
 
         // let this monster know about its position
         WhereIsTheCardOrMonster w = monster.GetComponent<WhereIsTheCardOrMonster>();
@@ -243,7 +254,7 @@ public class TableVisual : MonoBehaviour
             t.tag = owner.ToString() + "Monster";
 
         // add a new spell or trap to the list
-        SpellsTrapsOnTable.Insert(index, spelltrap);
+        SpellsTrapsOnTable.Add(index, spelltrap);
 
         // let this spell or trap know about its position
         WhereIsTheCardOrMonster w = spelltrap.GetComponent<WhereIsTheCardOrMonster>();
@@ -259,18 +270,32 @@ public class TableVisual : MonoBehaviour
 
         if (ca.SpellTrapState == SpellTrapPosition.FaceUp)
         {
-            StartCoroutine(ToFront(spelltrap));
+            //StartCoroutine(ToFront(spelltrap));
             if (ca.Effect != SpellTrapEffects.Draw && ca.Effect != SpellTrapEffects.Revive)
                 new DelayCommand(2.0f).AddToQueue();
             if (owner == AreaPosition.Low)
-                SpellTrapEffect.ActivateEffect(ca);
+                SpellTrapEffect.ActivateEffect(SpellTrapLogic.SpellTrapsCreatedThisGame[UniqueID]);
             else
+            {
                 SpellTrapEffect.ActivateEffectAI(ca);
-            SpellTrapLogic.SpellTrapsCreatedThisGame[UniqueID].Die();
+                SpellTrapLogic.SpellTrapsCreatedThisGame[UniqueID].Die();
+            }
+                
         }
 
             // end command execution
             Command.CommandExecutionComplete();
+    }
+
+
+    public void SetLayerRecursively(GameObject go, string s)
+    {
+        go.layer = LayerMask.NameToLayer(s);
+
+        foreach (Transform child in go.transform)
+        {
+            SetLayerRecursively(child.gameObject, s);
+        }
     }
 
 
@@ -284,15 +309,6 @@ public class TableVisual : MonoBehaviour
     // Destroy a monster
     public void RemoveMonsterWithID(int IDToRemove)
     {
-        // TODO: This has to last for some time
-        // Adding delay here did not work because it shows one monster die, then another monster die. 
-        // 
-        //Sequence s = DOTween.Sequence();
-        //s.AppendInterval(1f);
-        //s.OnComplete(() =>
-        //   {
-
-        //    });
         GameObject monsterToRemove = IDHolder.GetGameObjectWithID(IDToRemove);
         if (monsterToRemove.transform.childCount > 6)  // In case card was destroied while Set, we don't have a model so we don't need to call Die trigger
             monsterToRemove.transform.GetChild(6).GetComponent<Animator>().SetTrigger("Die");
@@ -300,7 +316,14 @@ public class TableVisual : MonoBehaviour
             Destroy(monsterToRemove.transform.GetChild(6).gameObject);
         GameObject newMonsterField = GameObject.Instantiate(GlobalSettings.Instance.MonsterFieldPrefab, monsterToRemove.transform.position, Quaternion.identity) as GameObject;
         newMonsterField.transform.SetParent(monsterToRemove.transform.parent);
-        MonstersOnTable.Remove(monsterToRemove);
+        foreach (int key in MonstersOnTable.Keys)
+        {
+            if (MonstersOnTable[key] == monsterToRemove)
+            {
+                MonstersOnTable.Remove(key);
+                break;
+            }  
+        }
         GameObject temp = graveyard.AddCardToGraveyard(monsterToRemove);
         Destroy(monsterToRemove);
         Sequence s = DOTween.Sequence();
@@ -317,19 +340,17 @@ public class TableVisual : MonoBehaviour
 
     public void RemoveSpellTrapWithID(int IDToRemove)
     {
-        // TODO: This has to last for some time
-        // Adding delay here did not work because it shows one monster die, then another monster die. 
-        // 
-        //Sequence s = DOTween.Sequence();
-        //s.AppendInterval(1f);
-        //s.OnComplete(() =>
-        //   {
-
-        //    });
         GameObject spellTrapToRemove = IDHolder.GetGameObjectWithID(IDToRemove);
-        GameObject newSpellTrapField = GameObject.Instantiate(GlobalSettings.Instance.SpellTrapFieldPrefab, spellTrapToRemove.transform.position, Quaternion.identity) as GameObject;
+        GameObject newSpellTrapField = Instantiate(GlobalSettings.Instance.SpellTrapFieldPrefab, spellTrapToRemove.transform.position, Quaternion.identity);
         newSpellTrapField.transform.SetParent(spellTrapToRemove.transform.parent);
-        SpellsTrapsOnTable.Remove(spellTrapToRemove);
+        foreach (int key in SpellsTrapsOnTable.Keys)
+        {
+            if (SpellsTrapsOnTable[key] == spellTrapToRemove)
+            {
+                SpellsTrapsOnTable.Remove(key);
+                break;
+            }
+        }
         Destroy(spellTrapToRemove);
 
         Command.CommandExecutionComplete();
@@ -349,13 +370,28 @@ public class TableVisual : MonoBehaviour
         Transform t = IDHolder.GetGameObjectWithID(id).transform;
         if (fp == FieldPosition.Defence)
         {
-            t.GetChild(6).GetComponent<Animator>().SetTrigger("Defence_State");
+            try
+            {
+                t.GetChild(6).GetComponent<Animator>().SetTrigger("Defence_State");
+            } catch (Exception e)
+            {
+                Debug.Log(e);
+            }
+            
             ToDefencePosition(t.GetComponent<OneMonsterManager>().CardImageFront.transform.parent);
         } 
         else
         {
-            t.GetChild(6).GetComponent<Animator>().SetTrigger("Attack_State");
+            try
+            {
+                t.GetChild(6).GetComponent<Animator>().SetTrigger("Attack_State");
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e);
+            }
             ToAttackPosition(t.GetComponent<OneMonsterManager>().CardImageFront.transform.parent);
+            StartCoroutine(ToFront(t.gameObject));
         }
             
     }

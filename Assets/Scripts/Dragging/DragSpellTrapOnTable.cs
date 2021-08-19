@@ -47,7 +47,7 @@ public class DragSpellTrapOnTable : DraggingActions {
     public override void OnEndDrag()
     {
         // 1) Check if we are holding a card over the table
-        if (DragSuccessful() && !playerOwner.table.InAttackPhase)
+        if (DragSuccessful() && !playerOwner.table.InAttackPhase && !transform.Find("StatesBalloon").transform.Find("Panel").gameObject.activeSelf)
         {
             SpellTrapEffects effect = GetComponent<OneCardManager>().cardAsset.Effect;
             transform.Find("StatesBalloon").transform.Find("Panel").gameObject.SetActive(true);
@@ -100,23 +100,17 @@ public class DragSpellTrapOnTable : DraggingActions {
             return true;
         if (effect == SpellTrapEffects.ChangeToAttack)
         {
-            if (TurnManager.Instance.whoseTurn.otherPlayer.table.AnyAttackMonsters())
+            if (TurnManager.Instance.whoseTurn.otherPlayer.table.AnyAttackMonsters() || TurnManager.Instance.whoseTurn.otherPlayer.table.OnlySetMonsters())
                 return true;
             return false;
         }
 
         if (effect == SpellTrapEffects.ChangeToDefence)
         {
-            if (TurnManager.Instance.whoseTurn.otherPlayer.table.AnyDefenceMonsters())
+            if (TurnManager.Instance.whoseTurn.otherPlayer.table.AnyDefenceMonsters() || TurnManager.Instance.whoseTurn.otherPlayer.table.OnlySetMonsters())
                 return true;
             return false;
         }
-
-/*        foreach (MonsterLogic m in playerOwner.otherPlayer.table.MonstersOnTable)
-        {
-            if (!(m.monsterPosition == FieldPosition.Set))
-                return false;
-        }*/
         return true;
     }
     protected override bool DragSuccessful()

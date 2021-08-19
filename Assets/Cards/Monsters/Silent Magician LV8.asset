@@ -34,7 +34,6 @@ MonoBehaviour:
   AttacksForOneTurn: 1
   Type: 2
   Rank: 8
-  monsterState: 0
   SpellTrap: 0
   Effect: 0
   amount: 0

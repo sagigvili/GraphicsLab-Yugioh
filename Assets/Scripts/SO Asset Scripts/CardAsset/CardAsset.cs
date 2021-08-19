@@ -70,11 +70,9 @@ public class CardAsset : ScriptableObject
     public FieldPosition MonsterState
     {
         get {
-            //Debug.Log("Monster is " + Name + " Position is " + monsterState);
             return monsterState; 
         }
         set {
-            Debug.Log("Monster is " + Name + " Old Position is " + monsterState + " New Position is " + value);
             monsterState = value;
         }
     }

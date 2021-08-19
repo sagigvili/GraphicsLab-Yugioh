@@ -49,7 +49,7 @@ public class DragMonsterOnTable : DraggingActions
     public override void OnEndDrag()
     {
         // 1) Check if we are holding a card over the table
-        if (DragSuccessful() && !playerOwner.table.PlayedACard && !playerOwner.table.InAttackPhase)
+        if (DragSuccessful() && !playerOwner.table.PlayedACard && !playerOwner.table.InAttackPhase && !transform.Find("StatesBalloon").transform.Find("Panel").gameObject.activeSelf)
         {
             new SelectStateToTableCommand(this.gameObject).AddToQueue();
         }

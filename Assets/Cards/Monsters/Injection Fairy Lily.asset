@@ -29,14 +29,13 @@ MonoBehaviour:
     type: 3}
   xTransOffset: 0
   yTransOffset: 0
-  zTransOffset: 0
+  zTransOffset: -101
   Attack: 400
   Defence: 1500
   Attribute: 3
   AttacksForOneTurn: 1
   Type: 2
   Rank: 3
-  monsterState: 0
   SpellTrap: 0
   Effect: 0
   amount: 0

@@ -55,10 +55,6 @@ public class GlobalSettings: MonoBehaviour
     {
         bool PlayersTurn = (TurnManager.Instance.whoseTurn == ownerPlayer);
         bool NotDrawingAnyCards = !Command.CardDrawPending();
-        //Debug.Log("ownerPlayer.PArea.AllowedToControlThisPlayer " + ownerPlayer.PArea.AllowedToControlThisPlayer);
-        //Debug.Log("ownerPlayer.PArea.ControlsON " + ownerPlayer.PArea.ControlsON);
-        //Debug.Log("PlayersTurn " + PlayersTurn);
-        //Debug.Log("NotDrawingAnyCards " + NotDrawingAnyCards);
         return ownerPlayer.PArea.AllowedToControlThisPlayer && ownerPlayer.PArea.ControlsON && PlayersTurn && NotDrawingAnyCards;
     }
 

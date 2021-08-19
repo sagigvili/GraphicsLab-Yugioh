@@ -89,12 +89,6 @@ public class TurnManager : MonoBehaviour {
             });
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-            EndTurn();
-    }
-
     public void EndTurn()
     {
         // send all commands in the end of current player`s turn

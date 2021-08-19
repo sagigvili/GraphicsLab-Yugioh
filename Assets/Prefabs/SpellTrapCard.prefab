@@ -234,7 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TurnThisOffWhenPreviewing: {fileID: 2309285786358634445}
   TargetPosition: {x: 0, y: 5000, z: 0}
-  TargetScale: 4
+  TargetScale: 6
   previewGameObject: {fileID: 2309285787688161682}
   ActivateInAwake: 1
   ToPreview: 1
