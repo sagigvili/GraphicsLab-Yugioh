@@ -127,6 +127,7 @@ A spell card can only be set faced-down on the spells / traps zone and activated
 
 
 
+
 ## Implementation
 
 The game is managed by a "TurnManager", a script which randomly chooses which player go first then providing 4 cards to each player. Each player is defined on Player class which contains all the visual and logic data about a it. "TurnManager" holds "_whoseTurn" Player public field, that updates at every start of a turn to the current playing player. 
@@ -177,6 +178,7 @@ The AITurnMaker class is a class that illustrates the opponent's move a his turn
   If there are no monsters on the opponent's table side then each available monster will attack directly.
 
 The main (MakeOneAIMove) function of the AI is looping through all functionalities described above; The loop breaks when all of these functionalities has been committed or unavailable to do so (means all functions are returning false) and the turn is ended. 
+
 
 ## Graphics & Visualization
 
