@@ -50,16 +50,24 @@ If a player already has monster cards on the field, he may change their state ac
 
 * From set position (a face down card) - flip summon into face up attack position.
 
-  <img src="Photos/4.PNG" alt="4" style="zoom: 50%;" align="left"/>
+  
+
+  <img src="Photos/4.PNG" alt="4" style="zoom:50%;" align="left"/>
+
+  
 
 * From face-up attack position to face-up defense position.
 
    <img src="Photos/6.PNG" alt="6" style="zoom: 50%;" align="left"/>
 
+   
+
 * From face-up defense position to face-up attack position.
 
   <img src="Photos/5.PNG" alt="5" style="zoom: 50%;" align="left"/>
 
+  
+  
    
 
 **A player may change a monster's state only once per turn**
