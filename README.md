@@ -52,12 +52,10 @@ If a player already has monster cards on the field, he may change their state ac
 
   ![9](Photos/4.PNG)
   
-
 * From face-up attack position to face-up defense position.
 
    ![9](Photos/6.PNG)
    
-
 * From face-up defense position to face-up attack position.
 
   ![9](Photos/5.PNG)
@@ -187,14 +185,14 @@ The main (MakeOneAIMove) function of the AI is looping through all functionaliti
 Divine Battles is a cards game which requires us to support moving cards over the board. Therefore we implemented dragging class which provides the user an ability to move cards on an easy mouse drag and drop.
 The implementation is based on updating dragged card transform every frame according to mouse coordinates. Furthermore there is an option to manipulate objects throughout the dragging (like enlarging attacking target arrow according to mouse coordiniates, as seen on the image below). Finally, when dragging is over (card is dropped), we check if dragging was meaningful (like placing a card on the field), otherwise we bring the card back to its original position.
 
-![image-20210828100045796](Photos\image-20210828100045796.png)
+![image-20210828100045796](Photos/image-20210828100045796.png)
 
 #### Card Preview
 
 We provide the user an option to take a better look at his cards before using it (means while it's on hand)
 User may hover over cards on his hand and they'll automatically scale-up to a more clear view of them.
 
-![image-20210828101032987](Photos\image-20210828101032987.png)
+![image-20210828101032987](Photos/image-20210828101032987.png)
 
 #### Models
 
@@ -203,15 +201,15 @@ Therefore, we took this idea and implemented it on Divine Battles; when placing 
 
 1. Magicians - Monsters of Spellcaster type, cast spells on targets and using magic while on defense position.
 
-   ![MagicianAttack](Photos\MagicianAttack.PNG)
+   ![MagicianAttack](Photos/MagicianAttack.PNG)
 
 2. Throwers - Monsters of Dark attribute and non-Spellcaster type, using dark magic to throw an explosive orb to blow up their enemies in an huge blast.
 
-   ![image-20210828103225049](Photos\image-20210828103225049.png)
+   ![image-20210828103225049](Photos/image-20210828103225049.png)
 
 3. Warriors - Non-Dark attribute nor Spellcaster type monsters, using frontal fighting style - pounce on an enemy and brutally attack it using its fists.
 
-   ![image-20210828104213002](Photos\image-20210828104213002.png)
+   ![image-20210828104213002](Photos/image-20210828104213002.png)
 
 
 
@@ -236,8 +234,13 @@ In our project it's reflected by the following:
 
 1. Activating spell cards:
 
-   * Heal spells 					![PlayerHeal](Photos/PlayerHeal.PNG)
-   * Direct Attack spells        ![13](Photos/13.jpeg)
+   * Heal spells
+
+     ![PlayerHeal](Photos/PlayerHeal.PNG)
+
+   * Direct Attack spells
+
+     ![13](Photos/13.jpeg)
 
 2. Kaiba's Player Power  - "Lightning Force Chaos"  
 
