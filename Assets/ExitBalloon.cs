@@ -6,6 +6,6 @@ public class ExitBalloon : MonoBehaviour
 {
     public void ExitNow()
     {
-        GetComponent<TrapSelector>().setFinished(true);
+        GetComponent<StatesChanger>().panel.gameObject.SetActive(false);
     }
 }

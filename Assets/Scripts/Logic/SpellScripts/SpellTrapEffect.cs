@@ -97,10 +97,17 @@ public class SpellTrapEffect
                     }
                     i++;
                 }
-                Transform trans = IDHolder.GetGameObjectWithID(p.otherPlayer.table.GetMonsterAtIndex(index).ID).transform;
-                Vector3 destroyEffectPos = new Vector3(trans.position.x + 2000, trans.position.y, 500);
+                GameObject trans = IDHolder.GetGameObjectWithID(p.otherPlayer.table.GetMonsterAtIndex(index).ID);
+                Vector3 destroyEffectPos = new Vector3(trans.transform.position.x + 2000, trans.transform.position.y, 500);
                 GameObject destroyEffectObj = GameObject.Instantiate(ca.AttackEffect, destroyEffectPos, Quaternion.identity) as GameObject;
                 GameObject.Destroy(destroyEffectObj, 5.0f);
+                try
+                {
+                    trans.transform.GetChild(6).GetComponent<Animator>().SetTrigger("Die");
+                } catch
+                {
+
+                }
                 new DelayCommand(5.0f).AddToQueue();
                 p.otherPlayer.table.GetMonsterAtIndex(index).Die();
                 break;
@@ -109,7 +116,7 @@ public class SpellTrapEffect
                 while (!p.otherPlayer.table.GetSpellTrapAtIndex(i2).ca)
                     i2 = Random.Range(0, 2);
                 Transform trans1 = IDHolder.GetGameObjectWithID(p.otherPlayer.table.GetSpellTrapAtIndex(i2).ID).transform;
-                Vector3 destroyEffectPos1 = new Vector3(trans1.position.x - 100, trans1.position.y - 600, trans1.position.z);
+                Vector3 destroyEffectPos1 = new Vector3(trans1.position.x, trans1.position.y - 600, trans1.position.z);
                 GameObject destroyEffectObj1 = GameObject.Instantiate(ca.AttackEffect, destroyEffectPos1, Quaternion.identity) as GameObject;
                 ParticleSystem psDST = destroyEffectObj1.transform.GetComponent<ParticleSystem>();
                 psDST.Play();
@@ -188,7 +195,6 @@ public class SpellTrapEffect
                 }
                 int toChangeindex1 = Random.Range(0, count1-1);
                 int tochange1 = AtkMonstersIndexes[toChangeindex1];
-                Debug.Log(tochange1);
                 p.otherPlayer.table.GetMonsterAtIndex(tochange1).ChangeState(FieldPosition.Defence);
                 break;
             case SpellTrapEffects.Revive:

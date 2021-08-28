@@ -54,7 +54,6 @@ public class SpellTrapLogic : ICharacter
     }
     public void Die()
     {
-        // TODO send to graveyard
         owner.table.SpellsTrapsOnTable.Remove(this);
         new SpellTrapDieCommand(UniqueSpellTrapID, owner).AddToQueue();
     }

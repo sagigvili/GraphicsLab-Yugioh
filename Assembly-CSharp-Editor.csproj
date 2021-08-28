@@ -64,6 +64,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Packages\GlobalSnow\Editor\GlobalSnowEditor.cs" />
+    <Compile Include="Assets\Packages\GlobalSnow\Editor\GlobalSnowEditorStyles.cs" />
+    <Compile Include="Assets\Packages\GlobalSnow\Editor\GlobalSnowIgnoreCoverageEditor.cs" />
     <Compile Include="Assets\Packages\Mirza Beig\Editor Extensions\Utilities\Multi-Asset Renamer\Editor\MultiAssetRenamer.cs" />
     <Compile Include="Assets\Packages\Mirza Beig\Editor Extensions\Utilities\Particle Playback\Editor\ParticlePlayback.cs" />
     <Compile Include="Assets\Packages\Mirza Beig\Editor Extensions\Utilities\Particle Playback\Editor\ParticlePlaybackEditorWindow.cs" />
@@ -74,6 +77,7 @@
     <Compile Include="Assets\Scripts\SO Asset Scripts\CardAsset\Editor\CardUnityIntegration.cs" />
     <Compile Include="Assets\Scripts\SO Asset Scripts\CharacterAsset\Editor\CharacterUnityIntegration.cs" />
     <Compile Include="Assets\Scripts\SO Asset Scripts\Editor\ScriptableObjectUtility2.cs" />
+    <None Include="Assets\Packages\GlobalSnow\Editor\Resources\DepthTexPreview.shader" />
     <Reference Include="UnityEngine">
       <HintPath>F:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

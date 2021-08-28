@@ -47,13 +47,27 @@ public class HeroPowerEffect : MonoBehaviour {
                 l.abort();
                 Destroy(newHaloEffect);
                 TurnManager.Instance.whoseTurn.PArea.Portrait.Model.GetComponent<Animator>().SetTrigger("Idle");
-                transform.DOMove(transform.position, 3f).OnComplete(() => {
+                transform.DOMove(transform.position, 2f).OnComplete(() => {
                     MonsterLogic[] MonstersToDestory = TurnManager.Instance.whoseTurn.otherPlayer.table.MonstersOnTable.ToArray();
                     foreach (MonsterLogic ml in MonstersToDestory)
                     {
-                        ml.Die();
+                        GameObject trans = IDHolder.GetGameObjectWithID(ml.ID);
+                        try
+                        {
+                            trans.transform.GetChild(6).GetComponent<Animator>().SetTrigger("Die");
+                        }
+                        catch
+                        {
+                        }
                     }
-                    MonstersSnowLayer.gameObject.SetActive(false);
+                    transform.DOMove(transform.position, 1f).OnComplete(() =>
+                    {
+                        foreach (MonsterLogic ml in MonstersToDestory)
+                        {
+                            ml.Die();
+                        }
+                        MonstersSnowLayer.gameObject.SetActive(false);
+                    });
                 });
             });  
 

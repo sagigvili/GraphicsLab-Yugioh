@@ -14,8 +14,10 @@ public class SelectStateToTable : SelectState
     {
         if (state == 1)
             cardInHand.cardAsset.MonsterState = FieldPosition.Attack;
-        else
+        else if (state == 0)
             cardInHand.cardAsset.MonsterState = FieldPosition.Set;
+        else
+            return;
         Command.CommandExecutionComplete();
         cardInHand.GetComponent<DragMonsterOnTable>().AfterStateSelected();
         

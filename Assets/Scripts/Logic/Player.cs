@@ -162,8 +162,8 @@ public class Player : MonoBehaviour, ICharacter
     {
         // create a new monster object and add it to Table
         MonsterLogic newMonster = new MonsterLogic(this, playedCard.ca);
-        table.MonstersOnTable.Insert(tablePos, newMonster);
         newMonster.ca.MonsterState = state;
+        table.MonstersOnTable.Insert(tablePos, newMonster);
         // no matter what happens, move this card to PlayACardSpot
         new PlayAMonsterCommand(playedCard, this, tablePos, newMonster.UniqueMonsterID).AddToQueue();
         // remove this card from hand

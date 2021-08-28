@@ -310,8 +310,8 @@ public class TableVisual : MonoBehaviour
     public void RemoveMonsterWithID(int IDToRemove)
     {
         GameObject monsterToRemove = IDHolder.GetGameObjectWithID(IDToRemove);
-        if (monsterToRemove.transform.childCount > 6)  // In case card was destroied while Set, we don't have a model so we don't need to call Die trigger
-            monsterToRemove.transform.GetChild(6).GetComponent<Animator>().SetTrigger("Die");
+        //if (monsterToRemove.transform.childCount > 6)  // In case card was destroied while Set, we don't have a model so we don't need to call Die trigger
+        //    monsterToRemove.transform.GetChild(6).GetComponent<Animator>().SetTrigger("Die");
         if (monsterToRemove.transform.childCount > 6)
             Destroy(monsterToRemove.transform.GetChild(6).gameObject);
         GameObject newMonsterField = GameObject.Instantiate(GlobalSettings.Instance.MonsterFieldPrefab, monsterToRemove.transform.position, Quaternion.identity) as GameObject;

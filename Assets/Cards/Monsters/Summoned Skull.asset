@@ -25,8 +25,9 @@ MonoBehaviour:
   Model: {fileID: 1368529508631529962, guid: 3ba54f42062662b4db9e6c72bb562939, type: 3}
   LoadEffect: {fileID: 3911854415461569565, guid: 3d2a495131cb34a48aac014ce457667a,
     type: 3}
-  ShotAttack: {fileID: 0}
-  AttackEffect: {fileID: 8418331973321157405, guid: 1326ca9745a4288428b39b4fddaeb182,
+  ShotAttack: {fileID: 148421516734900436, guid: 07d2d75d71118f649931d31a08cddfb2,
+    type: 3}
+  AttackEffect: {fileID: 4453250706519415080, guid: 99ff90b3ae8c3e94fa7cd3e6e9749bf3,
     type: 3}
   xTransOffset: 450
   yTransOffset: -668
@@ -37,7 +38,6 @@ MonoBehaviour:
   AttacksForOneTurn: 1
   Type: 1
   Rank: 6
-  monsterState: 0
   SpellTrap: 0
   Effect: 0
   amount: 0

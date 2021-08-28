@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 //this class will take all decisions for AI. 
 
@@ -18,11 +19,8 @@ public class AITurnMaker: TurnMaker {
     // THE LOGIC FOR AI
     IEnumerator MakeAITurn()
     {
-        bool strategyAttackFirst = false;
-        if (Random.Range(0, 2) == 0 && p.table.MonstersOnTable.Count > 0)
-            strategyAttackFirst = true;
 
-        while (MakeOneAIMove(strategyAttackFirst))
+        while (MakeOneAIMove())
         {
             while (Command.playingQueue) {
                 yield return null;
@@ -36,7 +34,7 @@ public class AITurnMaker: TurnMaker {
         pa.EndTurn();
     }
 
-    bool MakeOneAIMove(bool attackFirst)
+    bool MakeOneAIMove()
     {
         if (Command.CardDrawPending())
             return true;
@@ -171,7 +169,7 @@ public class AITurnMaker: TurnMaker {
 
     bool UseHeroPower()
     {
-        if (!p.usedPlayerPower && p.otherPlayer.table.SpellsTrapsOnTable.Count>0)
+        if (!p.usedPlayerPower && p.otherPlayer.table.SpellsTrapsOnTable.Count>1)
         {
             p.UsePlayerPower();
             InsertDelay(1.5f);
@@ -211,17 +209,17 @@ public class AITurnMaker: TurnMaker {
     {
         foreach (MonsterLogic cl in p.otherPlayer.table.MonstersOnTable)
         {
-            if(cl.ca.MonsterState == FieldPosition.Attack && cl.ca.Attack <= attackMonsterATK)
+            if(cl.ca.MonsterState == FieldPosition.Attack && cl.ca.Attack < attackMonsterATK)
             {
                 return cl;
             }
-            if (cl.ca.MonsterState == FieldPosition.Defence && cl.ca.Defence <= attackMonsterATK)
+            if (cl.ca.MonsterState == FieldPosition.Defence && cl.ca.Defence < attackMonsterATK)
             {
                 return cl;
             }
             if(cl.ca.MonsterState == FieldPosition.Set)
             {
-                int toAttack = Random.Range(0, 2);
+                int toAttack = UnityEngine.Random.Range(0, 2);
                 if (toAttack == 1)
                     return cl;
             }
@@ -253,15 +251,55 @@ public class AITurnMaker: TurnMaker {
 
         foreach (MonsterLogic cl in p.table.MonstersOnTable)
         {
-            if (maxOpponent >= cl.Attack)
+            GameObject monsterToSetChangeable = IDHolder.GetGameObjectWithID(cl.ID);
+            if (monsterToSetChangeable.GetComponentInChildren<StatesChanger>().panel.canChangeState)
             {
-                if (cl.ca.MonsterState == FieldPosition.Attack)
-                    cl.ChangeState(FieldPosition.Defence);
-            } else
-            {
-                if (cl.ca.MonsterState != FieldPosition.Attack)
+                if (maxOpponent >= cl.Attack)
+                {
+                    if (cl.ca.MonsterState == FieldPosition.Attack)
+                    {
+                        cl.ChangeState(FieldPosition.Defence);
+                        monsterToSetChangeable.GetComponentInChildren<StatesChanger>().panel.canChangeState = false;
+                        InsertDelay(1.0f);
+                    }
+                }
+                else if (cl.ca.MonsterState == FieldPosition.Defence)
+                {
                     cl.ChangeState(FieldPosition.Attack);
+                    monsterToSetChangeable.GetComponentInChildren<StatesChanger>().panel.canChangeState = false;
+                    InsertDelay(1.0f);
+                }
+                else if (cl.ca.MonsterState == FieldPosition.Set)
+                {
+                    // create model above the card
+                    OneMonsterManager manager = monsterToSetChangeable.transform.GetComponent<OneMonsterManager>();
+                    GameObject model = GameObject.Instantiate(manager.model, manager.transform.position, Quaternion.identity) as GameObject;
+                    if (TurnManager.Instance.whoseTurn.PArea.tableVisual.owner == AreaPosition.Top)
+                    {
+                        model.transform.rotation = new Quaternion(model.transform.rotation.x, 180.0f, model.transform.rotation.z, model.transform.rotation.w);
+                    }
+                    else
+                    {
+                        Vector3 modelPos = new Vector3(model.transform.localPosition.x + manager.transXOffset, model.transform.localPosition.y + manager.transYOffset, model.transform.localPosition.z + manager.transZOffset);
+                        model.transform.localPosition = modelPos;
+                    }
+
+                    model.transform.SetParent(monsterToSetChangeable.transform);
+                    try
+                    {
+                        Transform monsterInfo = monsterToSetChangeable.transform.GetChild(5).transform;
+                        monsterInfo.gameObject.SetActive(true);
+                        monsterInfo.localPosition = new Vector3(monsterInfo.localPosition.x, -1355.72f, monsterInfo.localPosition.z);
+                    } catch (Exception e)
+                    {
+                        Debug.Log(e);
+                    }
+                    monsterToSetChangeable.GetComponentInChildren<StatesChanger>().panel.canChangeState = false;
+                    cl.ChangeState(FieldPosition.Attack);
+                    InsertDelay(1.0f);
+                }
             }
+
 
 
         }
@@ -273,7 +311,7 @@ public class AITurnMaker: TurnMaker {
         int max = 0;
         foreach (MonsterLogic c in p.otherPlayer.table.MonstersOnTable)
         {
-            if (c.ca.Attack > max)
+            if (c.ca.Attack > max && c.ca.MonsterState != FieldPosition.Set)
             {
                 max = c.ca.Attack;
             }

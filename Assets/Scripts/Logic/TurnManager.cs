@@ -53,11 +53,9 @@ public class TurnManager : MonoBehaviour {
         CardLogic.CardsCreatedThisGame.Clear();
         MonsterLogic.MonstersCreatedThisGame.Clear();
         SpellTrapLogic.SpellTrapsCreatedThisGame.Clear();
-        // TODO: later add SpellLogic and TrapLogic
 
         foreach (Player p in Player.Players)
         {
-            // TODO update each player's HP to 4000
             p.LoadCharacterInfoFromAsset();
             p.TransmitInfoAboutPlayerToVisual();
             p.PArea.PDeck.CardsInDeck = p.deck.cards.Count;
@@ -67,14 +65,9 @@ public class TurnManager : MonoBehaviour {
         s.OnComplete(() =>
             {
                 // determine who starts the game.
-                // TODO: flipping coin of choosing which player starts
                 int rnd = Random.Range(0,2);  // 2 is exclusive boundary
-                //Debug.Log(Player.Players.Length);
-                //Debug.Log("Who is first - " + rnd);
                 Player whoGoesFirst = Player.Players[rnd];
-                // Debug.Log(whoGoesFirst);
                 Player whoGoesSecond = whoGoesFirst.otherPlayer;
-                // Debug.Log(whoGoesSecond);
          
                 // draw 4 cards for first player and 5 for second player
                 int initDraw = 4;

@@ -55,17 +55,24 @@ public class EffectOperator : MonoBehaviour
         {
             case SpellTrapEffects.DestoryMonster:
                 MonsterLogic targetedMonster = MonsterLogic.MonstersCreatedThisGame[targetID];
-                Transform trans = IDHolder.GetGameObjectWithID(targetID).transform;
-                Vector3 destroyEffectPos = new Vector3(trans.position.x + 2000, trans.position.y, 500);
+                GameObject trans = IDHolder.GetGameObjectWithID(targetID);
+                Vector3 destroyEffectPos = new Vector3(trans.transform.position.x + 2000, trans.transform.position.y, 500);
                 GameObject destroyEffectObj = GameObject.Instantiate(stl.ca.AttackEffect, destroyEffectPos, Quaternion.identity) as GameObject;
                 GameObject.Destroy(destroyEffectObj, 5.0f);
+                try
+                {
+                    trans.transform.GetChild(6).GetComponent<Animator>().SetTrigger("Die");
+                } catch
+                {
+
+                }
                 new DelayCommand(5.0f).AddToQueue();
                 targetedMonster.Die();
                 break;
             case SpellTrapEffects.DestorySpellTrap:
                 SpellTrapLogic targetedSpellTrap = SpellTrapLogic.SpellTrapsCreatedThisGame[targetID];
                 Transform trans1 = IDHolder.GetGameObjectWithID(targetID).transform;
-                Vector3 destroyEffectPos1 = new Vector3(trans1.position.x - 100, trans1.position.y - 600, trans1.position.z);
+                Vector3 destroyEffectPos1 = new Vector3(trans1.position.x, trans1.position.y - 600, trans1.position.z);
                 GameObject destroyEffectObj1 = GameObject.Instantiate(stl.ca.AttackEffect, destroyEffectPos1, Quaternion.identity) as GameObject;
                 ParticleSystem psDST = destroyEffectObj1.transform.GetComponent<ParticleSystem>();
                 psDST.Play();

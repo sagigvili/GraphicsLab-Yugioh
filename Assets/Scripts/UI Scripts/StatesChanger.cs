@@ -27,7 +27,7 @@ public class StatesChanger : MonoBehaviour
             // check if the collider that we hit is the collider on this GameObject
             if (h.collider == Col)
             {
-                if (Input.GetMouseButtonDown(1) && panel.canChangeState)
+                if (Input.GetMouseButtonDown(1) && panel.canChangeState && GlobalSettings.Instance.CanControlThisPlayer(TurnManager.Instance.whoseTurn) && !TurnManager.Instance.whoseTurn.table.InAttackPhase)
                 {
                     ShowSelector();
                     return;
