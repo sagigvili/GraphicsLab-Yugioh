@@ -1,6 +1,8 @@
 # DIVINE BATTLES
 
 
+[![Play Demonstration](https://yt-embed.herokuapp.com/embed?v=LG0kH8nEPi4)](https://youtu.be/LG0kH8nEPi4 "Demonstration")
+
 
 ## Game Description 
 
